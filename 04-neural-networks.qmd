@@ -1,0 +1,31 @@
+---
+title: "Neural Networks"
+---
+
+# Learning outcome
+
+By the end of this chapter, you should be able to explain the central ideas of neural networks and apply them to a small example.
+
+# Why this matters
+
+<!-- Explain the learner's problem and connect it to a concrete application. -->
+
+# Core ideas
+
+<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+
+# Worked example
+
+<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/04-*.py and describe exact commands here. -->
+
+# Check your understanding
+
+<!-- Include 2–3 short questions or a small decision exercise. -->
+
+# Try it yourself
+
+<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+
+# Key takeaways
+
+<!-- Summarize the actionable lessons. -->

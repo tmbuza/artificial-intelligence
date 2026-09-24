@@ -1,0 +1,31 @@
+---
+title: "Hackathon: Build and Test"
+---
+
+# Learning outcome
+
+By the end of this chapter, you should be able to build a minimum prototype and record test results.
+
+# Why this matters
+
+<!-- Explain the learner's problem and connect it to a concrete application. -->
+
+# Core ideas
+
+<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+
+# Worked example
+
+<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/13-*.py and describe exact commands here. -->
+
+# Check your understanding
+
+<!-- Include 2–3 short questions or a small decision exercise. -->
+
+# Try it yourself
+
+<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+
+# Key takeaways
+
+<!-- Summarize the actionable lessons. -->

@@ -1,0 +1,23 @@
+---
+format:
+  html:
+    body-classes: front-page
+---
+
+# {-}
+
+<div style="text-align: center; margin-top: 1.5em;">
+
+  <img
+    src="assets/images/cover/artificial-intelligence-cover-free.png"
+    width="75%"
+    alt="Artificial Intelligence free guide cover"
+  />
+
+</div>
+
+<div style="text-align: center; font-style: normal; margin-top: 1em;">
+
+Free Guide · Updated {{< meta date >}}
+
+</div>

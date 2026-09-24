@@ -1,0 +1,15 @@
+---
+title: "Preface"
+---
+
+# Who this guide is for
+
+This free guide is for learners who want to understand, evaluate and build useful AI applications. Prior machine learning experience helps but is not required for the introductory chapters.
+
+# How to use the guide
+
+Read in order or use the hackathon pathway to start with a small problem. Examples shown in chapters are non-executable; runnable programs belong in `scripts/python/`, with optional wrappers in `scripts/bash/`.
+
+# A learning commitment
+
+Keep track of data sources, assumptions, tests, limitations and human review. A working demonstration is the beginning of evaluation, not evidence that a system is ready for real-world use.

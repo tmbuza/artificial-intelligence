@@ -1,0 +1,11 @@
+---
+title: "Appendix"
+---
+
+# Environment and reproducibility
+
+Record the Python and Quarto versions, dependencies, seeds, data origins and commands for each runnable example.
+
+# Further reading
+
+Add references and links to deeper reading as chapters are developed.

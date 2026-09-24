@@ -1,0 +1,63 @@
+project:
+  type: book
+  output-dir: docs
+
+bibliography: library/references.bib
+date: 2026-09-24
+date-format: "MMM YYYY"
+
+book:
+  title: "Artificial Intelligence"
+  subtitle: "A Practical Path from AI Concepts to a Working Prototype"
+  chapters:
+    - index.qmd
+
+    - part: "Foundations"
+      chapters:
+        - 00-preface.qmd
+        - 01-ai-thinking-and-problem-framing.qmd
+        - 02-data-models-and-inference.qmd
+        - 03-ai-and-machine-learning.qmd
+
+    - part: "Modern AI"
+      chapters:
+        - 04-neural-networks.qmd
+        - 05-language-models-and-generative-ai.qmd
+        - 06-images-and-multimodal-ai.qmd
+        - 07-prompting-and-structured-outputs.qmd
+        - 08-retrieval-tools-and-ai-workflows.qmd
+
+    - part: "Building Responsibly"
+      chapters:
+        - 09-evaluation-and-failure-analysis.qmd
+        - 10-privacy-bias-and-human-oversight.qmd
+        - 11-reproducible-ai-workflows.qmd
+
+    - part: "AI Hackathon"
+      chapters:
+        - 12-hackathon-choose-a-problem.qmd
+        - 13-hackathon-build-and-test.qmd
+        - 14-hackathon-present-and-improve.qmd
+
+    - part: "Next Steps"
+      chapters:
+        - 15-from-prototype-to-practical.qmd
+
+    - 99-references.qmd
+
+  appendices:
+    - 99-appendix.qmd
+
+    
+execute:
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
+
+format:
+  html:
+    toc: true
+    number-sections: false
+    code-copy: true
+    css: assets/css/cdi.css
