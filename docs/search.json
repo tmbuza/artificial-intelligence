@@ -1,0 +1,199 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Artificial Intelligence",
+    "section": "",
+    "text": "Free Guide · Updated Sep 2026",
+    "crumbs": [
+      "index.html"
+    ]
+  },
+  {
+    "objectID": "00-preface.html",
+    "href": "00-preface.html",
+    "title": "Preface",
+    "section": "",
+    "text": "Who this guide is for\nThis free guide is for learners who want to understand, evaluate and build useful AI applications. Prior machine learning experience helps but is not required for the introductory chapters.\n\n\nHow to use the guide\nRead in order or use the hackathon pathway to start with a small problem. Examples shown in chapters are non-executable; runnable programs belong in scripts/python/, with optional wrappers in scripts/bash/.\n\n\nA learning commitment\nKeep track of data sources, assumptions, tests, limitations and human review. A working demonstration is the beginning of evaluation, not evidence that a system is ready for real-world use.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "01-ai-thinking-and-problem-framing.html",
+    "href": "01-ai-thinking-and-problem-framing.html",
+    "title": "AI Thinking and Problem Framing",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to explain a problem, audience and measurable outcome.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>AI Thinking and Problem Framing</span>"
+    ]
+  },
+  {
+    "objectID": "02-data-models-and-inference.html",
+    "href": "02-data-models-and-inference.html",
+    "title": "Data, Models, Training and Inference",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of data, models, training and inference and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data, Models, Training and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "03-ai-and-machine-learning.html",
+    "href": "03-ai-and-machine-learning.html",
+    "title": "AI, Machine Learning and Software",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of ai, machine learning and software and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>AI, Machine Learning and Software</span>"
+    ]
+  },
+  {
+    "objectID": "04-neural-networks.html",
+    "href": "04-neural-networks.html",
+    "title": "Neural Networks",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of neural networks and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "Modern AI",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Neural Networks</span>"
+    ]
+  },
+  {
+    "objectID": "05-language-models-and-generative-ai.html",
+    "href": "05-language-models-and-generative-ai.html",
+    "title": "Language Models and Generative AI",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of language models and generative ai and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "Modern AI",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Language Models and Generative AI</span>"
+    ]
+  },
+  {
+    "objectID": "06-images-and-multimodal-ai.html",
+    "href": "06-images-and-multimodal-ai.html",
+    "title": "Images and Multimodal AI",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of images and multimodal ai and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "Modern AI",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Images and Multimodal AI</span>"
+    ]
+  },
+  {
+    "objectID": "07-prompting-and-structured-outputs.html",
+    "href": "07-prompting-and-structured-outputs.html",
+    "title": "Prompting and Structured Outputs",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of prompting and structured outputs and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "Modern AI",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Prompting and Structured Outputs</span>"
+    ]
+  },
+  {
+    "objectID": "08-retrieval-tools-and-ai-workflows.html",
+    "href": "08-retrieval-tools-and-ai-workflows.html",
+    "title": "Retrieval, Tools and AI Workflows",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of retrieval, tools and ai workflows and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "Modern AI",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Retrieval, Tools and AI Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "09-evaluation-and-failure-analysis.html",
+    "href": "09-evaluation-and-failure-analysis.html",
+    "title": "Evaluation and Failure Analysis",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to design tests that expose useful behavior and common failures.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "Building Responsibly",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Evaluation and Failure Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "10-privacy-bias-and-human-oversight.html",
+    "href": "10-privacy-bias-and-human-oversight.html",
+    "title": "Privacy, Bias and Human Oversight",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of privacy, bias and human oversight and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "Building Responsibly",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Privacy, Bias and Human Oversight</span>"
+    ]
+  },
+  {
+    "objectID": "11-reproducible-ai-workflows.html",
+    "href": "11-reproducible-ai-workflows.html",
+    "title": "Reproducible AI Workflows",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of reproducible ai workflows and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "Building Responsibly",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Reproducible AI Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "12-hackathon-choose-a-problem.html",
+    "href": "12-hackathon-choose-a-problem.html",
+    "title": "Hackathon: Choose a Problem",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to select a small, feasible problem and define a success check.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "AI Hackathon",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Hackathon: Choose a Problem</span>"
+    ]
+  },
+  {
+    "objectID": "13-hackathon-build-and-test.html",
+    "href": "13-hackathon-build-and-test.html",
+    "title": "Hackathon: Build and Test",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to build a minimum prototype and record test results.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "AI Hackathon",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Hackathon: Build and Test</span>"
+    ]
+  },
+  {
+    "objectID": "14-hackathon-present-and-improve.html",
+    "href": "14-hackathon-present-and-improve.html",
+    "title": "Hackathon: Present and Improve",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to present evidence, limitations and a concrete improvement.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "AI Hackathon",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Hackathon: Present and Improve</span>"
+    ]
+  },
+  {
+    "objectID": "15-from-prototype-to-practical.html",
+    "href": "15-from-prototype-to-practical.html",
+    "title": "From Prototype to Practical",
+    "section": "",
+    "text": "Learning outcome\nBy the end of this chapter, you should be able to choose a guided CDI AI practical and plan the next iteration.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
+    "crumbs": [
+      "Next Steps",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>From Prototype to Practical</span>"
+    ]
+  },
+  {
+    "objectID": "99-appendix.html",
+    "href": "99-appendix.html",
+    "title": "Appendix A — Appendix",
+    "section": "",
+    "text": "Environment and reproducibility\nRecord the Python and Quarto versions, dependencies, seeds, data origins and commands for each runnable example.\n\n\nFurther reading\nAdd references and links to deeper reading as chapters are developed.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Appendix</span>"
+    ]
+  }
+]
