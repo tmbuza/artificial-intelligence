@@ -14,10 +14,131 @@
     "href": "00-preface.html",
     "title": "Preface",
     "section": "",
-    "text": "Who this guide is for\nThis free guide is for learners who want to understand, evaluate and build useful AI applications. Prior machine learning experience helps but is not required for the introductory chapters.\n\n\nHow to use the guide\nRead in order or use the hackathon pathway to start with a small problem. Examples shown in chapters are non-executable; runnable programs belong in scripts/python/, with optional wrappers in scripts/bash/.\n\n\nA learning commitment\nKeep track of data sources, assumptions, tests, limitations and human review. A working demonstration is the beginning of evaluation, not evidence that a system is ready for real-world use.",
+    "text": "Welcome\nArtificial intelligence can seem like a collection of impressive demonstrations. A chatbot writes a response, a vision model labels an image, or an assistant summarizes a document. The demonstration shows what is possible, but it does not establish whether the system solves a real problem reliably, safely, or at an acceptable cost.\nArtificial Intelligence: From Concepts to Prototype is a practical introduction to making those judgments. It explains the ideas behind modern AI, helps you choose an appropriate approach, and guides you through designing, building, evaluating, and communicating a small prototype. You do not need to train a large model to learn how to build a useful AI application.\nThe principle throughout this guide is:",
     "crumbs": [
       "Foundations",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#welcome",
+    "href": "00-preface.html#welcome",
+    "title": "Preface",
+    "section": "",
+    "text": "Begin with the user’s task and a measurable definition of success. Choose the simplest suitable approach, test it on representative cases, and make its limitations visible.",
+    "crumbs": [
+      "Foundations",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#a-complete-open-guide",
+    "href": "00-preface.html#a-complete-open-guide",
+    "title": "Preface",
+    "section": "A complete open guide",
+    "text": "A complete open guide\nThis guide is available as one connected learning pathway. Its chapters provide the concepts and technical steps needed to develop a prototype. CDI practical products may offer additional exercises, project files, datasets, and structured deliverables; the guide itself remains complete and openly available.",
+    "crumbs": [
+      "Foundations",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#who-this-guide-is-for",
+    "href": "00-preface.html#who-this-guide-is-for",
+    "title": "Preface",
+    "section": "Who this guide is for",
+    "text": "Who this guide is for\nThis guide is intended for people who want to understand and apply AI in research, education, business, or public-interest work. Basic familiarity with Python and using a terminal will help with the hands-on sections. Prior experience with machine learning or large language models is useful but not required.\nThe examples focus on a small, reviewable use case. You can transfer the workflow to another domain, provided that you reconsider the data, users, errors, and risks in that setting.",
+    "crumbs": [
+      "Foundations",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#what-you-will-learn",
+    "href": "00-preface.html#what-you-will-learn",
+    "title": "Preface",
+    "section": "What you will learn",
+    "text": "What you will learn\nBy the end of the guide, you should be able to:\n\nexplain the relationship among artificial intelligence, machine learning, deep learning, and generative AI;\ndistinguish a compelling demonstration from an evaluated application;\nframe a user need as a specific task with inputs, outputs, constraints, and success criteria;\ndecide when a rule-based method, existing model, retrieval workflow, or human process is appropriate;\nidentify the data, permissions, and domain knowledge a prototype requires;\ndesign prompts and structured outputs for a narrowly defined task;\nunderstand how retrieval and tools can connect a model to relevant information or actions;\nimplement a small prototype with clear boundaries and reproducible configuration;\nevaluate outputs against representative cases and a meaningful baseline;\nexamine factual errors, failure modes, privacy, bias, and human oversight;\ndocument what the prototype does, where it fails, and what further testing is needed; and\ndemonstrate and communicate the prototype without overstating its readiness.",
+    "crumbs": [
+      "Foundations",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#what-we-mean-by-a-prototype",
+    "href": "00-preface.html#what-we-mean-by-a-prototype",
+    "title": "Preface",
+    "section": "What we mean by a prototype",
+    "text": "What we mean by a prototype\nA prototype is a limited implementation designed to answer a specific question: Can this approach help a defined user complete a defined task under stated conditions? It may be a command-line program, notebook-backed experiment, or small interface. Its purpose is to generate evidence and feedback, not to imply production readiness.\nFor example, a prototype might help a reviewer find passages in an approved set of documents and draft a cited summary. A useful evaluation would check whether the retrieved passages support the summary, whether the system admits when the documents lack an answer, and how often a reviewer must correct it. A polished interface alone would not answer those questions.",
+    "crumbs": [
+      "Foundations",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#the-learning-workflow",
+    "href": "00-preface.html#the-learning-workflow",
+    "title": "Preface",
+    "section": "The learning workflow",
+    "text": "The learning workflow\nThe guide follows a sequence that you can reuse for new AI ideas:\n\nDefine the task. Identify the user, the input, the desired output, and the decision or action the output supports.\nSet boundaries. Record the data sources, permitted uses, privacy requirements, cost and latency limits, and cases that require a person.\nChoose an approach. Compare a simple baseline with an AI method before adding complexity.\nBuild a small version. Keep components, configuration, prompts, and example inputs easy to inspect.\nEvaluate. Use representative examples, explicit criteria, and error review rather than selecting only impressive outputs.\nImprove deliberately. Change one part at a time and check whether the change addresses a documented failure.\nCommunicate the result. Show the working prototype alongside its evidence, limitations, and next steps.\n\nThis process is iterative. Evaluation may show that the problem needs a different data source, a narrower task, a simpler method, or more human review.",
+    "crumbs": [
+      "Foundations",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#how-to-use-this-guide",
+    "href": "00-preface.html#how-to-use-this-guide",
+    "title": "Preface",
+    "section": "How to use this guide",
+    "text": "How to use this guide\nRead the conceptual chapters in order if AI is new to you. In each hands-on chapter, first identify the question the example is meant to answer. Then inspect the code, run the corresponding repository script where one is provided, examine the output, and record what worked and what failed. Keep your own test cases separate from examples used to develop prompts or tune the prototype.\nCode in the .qmd chapters is illustrative and does not run when the book renders. Complete executable examples belong in scripts/python/, with shell wrappers in scripts/bash/ where appropriate. Run scripts from the repository root, use a repository-specific .venv, and consult requirements.txt for the project’s dependencies. Generated figures and tables, where used, belong under results/figures/ and results/tables/.\nSome examples may rely on a hosted AI service. Such examples require the service’s current access terms, credentials, and possible usage charges. Never place an API key or sensitive source material in a chapter, notebook output, screenshot, or committed file. The conceptual and evaluation steps remain useful even when you use a local model or a non-AI baseline instead.",
+    "crumbs": [
+      "Foundations",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#a-note-on-responsible-use",
+    "href": "00-preface.html#a-note-on-responsible-use",
+    "title": "Preface",
+    "section": "A note on responsible use",
+    "text": "A note on responsible use\nAI outputs can be plausible and wrong. They can omit important context, reflect bias in the data or evaluation, and reveal information when data handling is poorly designed. A prototype should therefore state what information it uses, what it is allowed to do, how its outputs are checked, and when a human must decide.\nPay particular attention to tasks involving health, finance, legal matters, employment, education, or personal data. In those settings, examples in this guide are learning exercises, and deployment requires domain-specific review, appropriate safeguards, and stronger evidence than a classroom prototype provides.",
+    "crumbs": [
+      "Foundations",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#before-continuing",
+    "href": "00-preface.html#before-continuing",
+    "title": "Preface",
+    "section": "Before continuing",
+    "text": "Before continuing\nChoose one potential task and write a short problem statement:\n\nFor [specific user], given [permitted input], the prototype will produce [defined output] to help with [specific task]. We will judge it using [representative examples and criteria], and a person will review [cases needing oversight].\n\nYou may revise this statement as you learn. A narrow first version makes the eventual prototype easier to build and evaluate.",
+    "crumbs": [
+      "Foundations",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#chapter-checklist",
+    "href": "00-preface.html#chapter-checklist",
+    "title": "Preface",
+    "section": "Chapter checklist",
+    "text": "Chapter checklist\n\nI understand that this is a complete open guide supported by optional CDI practical products.\nI can distinguish an AI demonstration from an evaluated prototype.\nI can name the user, task, inputs, outputs, and success criteria for a possible use case.\nI understand that chapter code is illustrative and runnable programs live in repository scripts.\nI know that a prototype must document its evidence, risks, limitations, and human review points.",
+    "crumbs": [
+      "Foundations",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#looking-ahead",
+    "href": "00-preface.html#looking-ahead",
+    "title": "Preface",
+    "section": "Looking ahead",
+    "text": "Looking ahead\nThe next chapter introduces the core concepts and language of artificial intelligence. It will help you compare different AI approaches before selecting one for your prototype.",
+    "crumbs": [
+      "Foundations",
+      "Preface"
     ]
   },
   {
@@ -28,7 +149,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to explain a problem, audience and measurable outcome.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "Foundations",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>AI Thinking and Problem Framing</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI Thinking and Problem Framing</span>"
     ]
   },
   {
@@ -39,7 +160,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of data, models, training and inference and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "Foundations",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data, Models, Training and Inference</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data, Models, Training and Inference</span>"
     ]
   },
   {
@@ -50,7 +171,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of ai, machine learning and software and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "Foundations",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>AI, Machine Learning and Software</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>AI, Machine Learning and Software</span>"
     ]
   },
   {
@@ -61,7 +182,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of neural networks and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "Modern AI",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Neural Networks</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Neural Networks</span>"
     ]
   },
   {
@@ -72,7 +193,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of language models and generative ai and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "Modern AI",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Language Models and Generative AI</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Language Models and Generative AI</span>"
     ]
   },
   {
@@ -83,7 +204,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of images and multimodal ai and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "Modern AI",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Images and Multimodal AI</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Images and Multimodal AI</span>"
     ]
   },
   {
@@ -94,7 +215,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of prompting and structured outputs and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "Modern AI",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Prompting and Structured Outputs</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Prompting and Structured Outputs</span>"
     ]
   },
   {
@@ -105,7 +226,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of retrieval, tools and ai workflows and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "Modern AI",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Retrieval, Tools and AI Workflows</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Retrieval, Tools and AI Workflows</span>"
     ]
   },
   {
@@ -116,7 +237,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to design tests that expose useful behavior and common failures.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "Building Responsibly",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Evaluation and Failure Analysis</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Evaluation and Failure Analysis</span>"
     ]
   },
   {
@@ -127,7 +248,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of privacy, bias and human oversight and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "Building Responsibly",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Privacy, Bias and Human Oversight</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Privacy, Bias and Human Oversight</span>"
     ]
   },
   {
@@ -138,7 +259,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to explain the central ideas of reproducible ai workflows and apply them to a small example.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "Building Responsibly",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Reproducible AI Workflows</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reproducible AI Workflows</span>"
     ]
   },
   {
@@ -149,7 +270,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to select a small, feasible problem and define a success check.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "AI Hackathon",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Hackathon: Choose a Problem</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Hackathon: Choose a Problem</span>"
     ]
   },
   {
@@ -160,7 +281,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to build a minimum prototype and record test results.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "AI Hackathon",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Hackathon: Build and Test</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Hackathon: Build and Test</span>"
     ]
   },
   {
@@ -171,7 +292,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to present evidence, limitations and a concrete improvement.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "AI Hackathon",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Hackathon: Present and Improve</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Hackathon: Present and Improve</span>"
     ]
   },
   {
@@ -182,7 +303,7 @@
     "text": "Learning outcome\nBy the end of this chapter, you should be able to choose a guided CDI AI practical and plan the next iteration.\n\n\nWhy this matters\n\n\n\nCore ideas\n\n\n\nWorked example\n\n\n\nCheck your understanding\n\n\n\nTry it yourself\n\n\n\nKey takeaways",
     "crumbs": [
       "Next Steps",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>From Prototype to Practical</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>From Prototype to Practical</span>"
     ]
   },
   {

@@ -1,15 +1,99 @@
----
-title: "Preface"
----
+# Preface {#sec-preface .unnumbered}
 
-# Who this guide is for
+::: {.cdi-message}
+- **ID:** AI-000
+- **Type:** Guide orientation and responsible prototype workflow
+- **Audience:** Learners, analysts, researchers, and practitioners beginning applied artificial intelligence
+- **Theme:** Moving from AI concepts to a useful, testable prototype
+:::
 
-This free guide is for learners who want to understand, evaluate and build useful AI applications. Prior machine learning experience helps but is not required for the introductory chapters.
+## Welcome
 
-# How to use the guide
+Artificial intelligence can seem like a collection of impressive demonstrations. A chatbot writes a response, a vision model labels an image, or an assistant summarizes a document. The demonstration shows what is possible, but it does not establish whether the system solves a real problem reliably, safely, or at an acceptable cost.
 
-Read in order or use the hackathon pathway to start with a small problem. Examples shown in chapters are non-executable; runnable programs belong in `scripts/python/`, with optional wrappers in `scripts/bash/`.
+**Artificial Intelligence: From Concepts to Prototype** is a practical introduction to making those judgments. It explains the ideas behind modern AI, helps you choose an appropriate approach, and guides you through designing, building, evaluating, and communicating a small prototype. You do not need to train a large model to learn how to build a useful AI application.
 
-# A learning commitment
+The principle throughout this guide is:
 
-Keep track of data sources, assumptions, tests, limitations and human review. A working demonstration is the beginning of evaluation, not evidence that a system is ready for real-world use.
+> Begin with the user's task and a measurable definition of success. Choose the simplest suitable approach, test it on representative cases, and make its limitations visible.
+
+## A complete open guide
+
+This guide is available as one connected learning pathway. Its chapters provide the concepts and technical steps needed to develop a prototype. CDI practical products may offer additional exercises, project files, datasets, and structured deliverables; the guide itself remains complete and openly available.
+
+## Who this guide is for
+
+This guide is intended for people who want to understand and apply AI in research, education, business, or public-interest work. Basic familiarity with Python and using a terminal will help with the hands-on sections. Prior experience with machine learning or large language models is useful but not required.
+
+The examples focus on a small, reviewable use case. You can transfer the workflow to another domain, provided that you reconsider the data, users, errors, and risks in that setting.
+
+## What you will learn
+
+By the end of the guide, you should be able to:
+
+- explain the relationship among artificial intelligence, machine learning, deep learning, and generative AI;
+- distinguish a compelling demonstration from an evaluated application;
+- frame a user need as a specific task with inputs, outputs, constraints, and success criteria;
+- decide when a rule-based method, existing model, retrieval workflow, or human process is appropriate;
+- identify the data, permissions, and domain knowledge a prototype requires;
+- design prompts and structured outputs for a narrowly defined task;
+- understand how retrieval and tools can connect a model to relevant information or actions;
+- implement a small prototype with clear boundaries and reproducible configuration;
+- evaluate outputs against representative cases and a meaningful baseline;
+- examine factual errors, failure modes, privacy, bias, and human oversight;
+- document what the prototype does, where it fails, and what further testing is needed; and
+- demonstrate and communicate the prototype without overstating its readiness.
+
+## What we mean by a prototype
+
+A prototype is a limited implementation designed to answer a specific question: **Can this approach help a defined user complete a defined task under stated conditions?** It may be a command-line program, notebook-backed experiment, or small interface. Its purpose is to generate evidence and feedback, not to imply production readiness.
+
+For example, a prototype might help a reviewer find passages in an approved set of documents and draft a cited summary. A useful evaluation would check whether the retrieved passages support the summary, whether the system admits when the documents lack an answer, and how often a reviewer must correct it. A polished interface alone would not answer those questions.
+
+## The learning workflow
+
+The guide follows a sequence that you can reuse for new AI ideas:
+
+1. **Define the task.** Identify the user, the input, the desired output, and the decision or action the output supports.
+2. **Set boundaries.** Record the data sources, permitted uses, privacy requirements, cost and latency limits, and cases that require a person.
+3. **Choose an approach.** Compare a simple baseline with an AI method before adding complexity.
+4. **Build a small version.** Keep components, configuration, prompts, and example inputs easy to inspect.
+5. **Evaluate.** Use representative examples, explicit criteria, and error review rather than selecting only impressive outputs.
+6. **Improve deliberately.** Change one part at a time and check whether the change addresses a documented failure.
+7. **Communicate the result.** Show the working prototype alongside its evidence, limitations, and next steps.
+
+This process is iterative. Evaluation may show that the problem needs a different data source, a narrower task, a simpler method, or more human review.
+
+## How to use this guide
+
+Read the conceptual chapters in order if AI is new to you. In each hands-on chapter, first identify the question the example is meant to answer. Then inspect the code, run the corresponding repository script where one is provided, examine the output, and record what worked and what failed. Keep your own test cases separate from examples used to develop prompts or tune the prototype.
+
+Code in the `.qmd` chapters is illustrative and does not run when the book renders. Complete executable examples belong in `scripts/python/`, with shell wrappers in `scripts/bash/` where appropriate. Run scripts from the repository root, use a repository-specific `.venv`, and consult `requirements.txt` for the project's dependencies. Generated figures and tables, where used, belong under `results/figures/` and `results/tables/`.
+
+Some examples may rely on a hosted AI service. Such examples require the service's current access terms, credentials, and possible usage charges. Never place an API key or sensitive source material in a chapter, notebook output, screenshot, or committed file. The conceptual and evaluation steps remain useful even when you use a local model or a non-AI baseline instead.
+
+## A note on responsible use
+
+AI outputs can be plausible and wrong. They can omit important context, reflect bias in the data or evaluation, and reveal information when data handling is poorly designed. A prototype should therefore state what information it uses, what it is allowed to do, how its outputs are checked, and when a human must decide.
+
+Pay particular attention to tasks involving health, finance, legal matters, employment, education, or personal data. In those settings, examples in this guide are learning exercises, and deployment requires domain-specific review, appropriate safeguards, and stronger evidence than a classroom prototype provides.
+
+## Before continuing
+
+Choose one potential task and write a short problem statement:
+
+> For **[specific user]**, given **[permitted input]**, the prototype will produce **[defined output]** to help with **[specific task]**. We will judge it using **[representative examples and criteria]**, and a person will review **[cases needing oversight]**.
+
+You may revise this statement as you learn. A narrow first version makes the eventual prototype easier to build and evaluate.
+
+## Chapter checklist
+
+- [ ] I understand that this is a complete open guide supported by optional CDI practical products.
+- [ ] I can distinguish an AI demonstration from an evaluated prototype.
+- [ ] I can name the user, task, inputs, outputs, and success criteria for a possible use case.
+- [ ] I understand that chapter code is illustrative and runnable programs live in repository scripts.
+- [ ] I know that a prototype must document its evidence, risks, limitations, and human review points.
+
+## Looking ahead
+
+The next chapter introduces the core concepts and language of artificial intelligence. It will help you compare different AI approaches before selecting one for your prototype.
