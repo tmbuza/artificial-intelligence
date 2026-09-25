@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>AI Thinking and Problem Framing – Artificial Intelligence</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02-data-models-and-inference.html" rel="next">
+<link href="./00-preface.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e2851886d12d134ff83effd9cfa02285.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="assets/css/cdi.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00-preface.html">Foundations</a></li><li class="breadcrumb-item"><a href="./01-ai-thinking-and-problem-framing.html"><span class="chapter-title">AI Thinking and Problem Framing</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Artificial Intelligence</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">index.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-ai-thinking-and-problem-framing.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">AI Thinking and Problem Framing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, and Inference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI and Machine Learning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modern AI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-neural-networks.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-language-models-and-generative-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Language Models and Generative AI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Image and Multimodal AI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-prompting-and-structured-outputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prompting and Structured Outputs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval and Tools</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Building Responsibly</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-evaluation-and-failure-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Evaluation and Failure Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Privacy, Bias, and Human Oversight</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-reproducible-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible AI Workflows</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">AI Hackathon</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Choose the Problem and Plan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Build and Test the Prototype</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Demonstrate, Decide, and Improve</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Next Steps</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical Application</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#begin-with-a-task-people-need-to-complete" id="toc-begin-with-a-task-people-need-to-complete" class="nav-link" data-scroll-target="#begin-with-a-task-people-need-to-complete">Begin with a task people need to complete</a></li>
+  <li><a href="#what-makes-a-system-an-ai-system" id="toc-what-makes-a-system-an-ai-system" class="nav-link" data-scroll-target="#what-makes-a-system-an-ai-system">What makes a system an AI system?</a>
+  <ul class="collapse">
+  <li><a href="#a-model-is-one-component-of-an-application" id="toc-a-model-is-one-component-of-an-application" class="nav-link" data-scroll-target="#a-model-is-one-component-of-an-application">A model is one component of an application</a></li>
+  </ul></li>
+  <li><a href="#define-the-problem-before-selecting-an-approach" id="toc-define-the-problem-before-selecting-an-approach" class="nav-link" data-scroll-target="#define-the-problem-before-selecting-an-approach">Define the problem before selecting an approach</a>
+  <ul class="collapse">
+  <li><a href="#user-and-affected-people" id="toc-user-and-affected-people" class="nav-link" data-scroll-target="#user-and-affected-people">User and affected people</a></li>
+  <li><a href="#task-and-unit-of-work" id="toc-task-and-unit-of-work" class="nav-link" data-scroll-target="#task-and-unit-of-work">Task and unit of work</a></li>
+  <li><a href="#permitted-inputs-and-knowledge-boundary" id="toc-permitted-inputs-and-knowledge-boundary" class="nav-link" data-scroll-target="#permitted-inputs-and-knowledge-boundary">Permitted inputs and knowledge boundary</a></li>
+  <li><a href="#output-contract" id="toc-output-contract" class="nav-link" data-scroll-target="#output-contract">Output contract</a></li>
+  <li><a href="#action-and-authority" id="toc-action-and-authority" class="nav-link" data-scroll-target="#action-and-authority">Action and authority</a></li>
+  <li><a href="#constraints-and-failure-consequences" id="toc-constraints-and-failure-consequences" class="nav-link" data-scroll-target="#constraints-and-failure-consequences">Constraints and failure consequences</a></li>
+  </ul></li>
+  <li><a href="#write-a-one-page-problem-brief" id="toc-write-a-one-page-problem-brief" class="nav-link" data-scroll-target="#write-a-one-page-problem-brief">Write a one-page problem brief</a></li>
+  <li><a href="#match-the-approach-to-the-task" id="toc-match-the-approach-to-the-task" class="nav-link" data-scroll-target="#match-the-approach-to-the-task">Match the approach to the task</a>
+  <ul class="collapse">
+  <li><a href="#when-to-narrow-or-stop" id="toc-when-to-narrow-or-stop" class="nav-link" data-scroll-target="#when-to-narrow-or-stop">When to narrow or stop</a></li>
+  </ul></li>
+  <li><a href="#design-the-evaluation-before-improving-the-method" id="toc-design-the-evaluation-before-improving-the-method" class="nav-link" data-scroll-target="#design-the-evaluation-before-improving-the-method">Design the evaluation before improving the method</a>
+  <ul class="collapse">
+  <li><a href="#cases-should-reflect-the-intended-work" id="toc-cases-should-reflect-the-intended-work" class="nav-link" data-scroll-target="#cases-should-reflect-the-intended-work">Cases should reflect the intended work</a></li>
+  <li><a href="#define-metrics-with-denominators" id="toc-define-metrics-with-denominators" class="nav-link" data-scroll-target="#define-metrics-with-denominators">Define metrics with denominators</a></li>
+  <li><a href="#turn-aspirations-into-acceptance-criteria" id="toc-turn-aspirations-into-acceptance-criteria" class="nav-link" data-scroll-target="#turn-aspirations-into-acceptance-criteria">Turn aspirations into acceptance criteria</a></li>
+  </ul></li>
+  <li><a href="#worked-example-evaluate-a-transparent-baseline" id="toc-worked-example-evaluate-a-transparent-baseline" class="nav-link" data-scroll-target="#worked-example-evaluate-a-transparent-baseline">Worked example: evaluate a transparent baseline</a>
+  <ul class="collapse">
+  <li><a href="#run-the-example" id="toc-run-the-example" class="nav-link" data-scroll-target="#run-the-example">Run the example</a></li>
+  <li><a href="#inspect-the-outputs" id="toc-inspect-the-outputs" class="nav-link" data-scroll-target="#inspect-the-outputs">Inspect the outputs</a></li>
+  <li><a href="#interpret-the-result" id="toc-interpret-the-result" class="nav-link" data-scroll-target="#interpret-the-result">Interpret the result</a></li>
+  <li><a href="#decide-what-the-evidence-supports" id="toc-decide-what-the-evidence-supports" class="nav-link" data-scroll-target="#decide-what-the-evidence-supports">Decide what the evidence supports</a></li>
+  </ul></li>
+  <li><a href="#common-framing-mistakes" id="toc-common-framing-mistakes" class="nav-link" data-scroll-target="#common-framing-mistakes">Common framing mistakes</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
+  <li><a href="#try-it-yourself-produce-a-reviewable-problem-brief" id="toc-try-it-yourself-produce-a-reviewable-problem-brief" class="nav-link" data-scroll-target="#try-it-yourself-produce-a-reviewable-problem-brief">Try it yourself: produce a reviewable problem brief</a></li>
+  <li><a href="#reproduce-and-verify-this-chapter" id="toc-reproduce-and-verify-this-chapter" class="nav-link" data-scroll-target="#reproduce-and-verify-this-chapter">Reproduce and verify this chapter</a></li>
+  <li><a href="#chapter-checklist" id="toc-chapter-checklist" class="nav-link" data-scroll-target="#chapter-checklist">Chapter checklist</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key takeaways</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking ahead</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00-preface.html">Foundations</a></li><li class="breadcrumb-item"><a href="./01-ai-thinking-and-problem-framing.html"><span class="chapter-title">AI Thinking and Problem Framing</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-ai-thinking-problem-framing" class="quarto-section-identifier"><span class="chapter-title">AI Thinking and Problem Framing</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Sep 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cdi-message">
+<ul>
+<li><strong>ID:</strong> AI-001</li>
+<li><strong>Type:</strong> Conceptual foundations and reproducible problem-framing exercise</li>
+<li><strong>Audience:</strong> Learners, analysts, researchers, and practitioners beginning applied AI</li>
+<li><strong>Theme:</strong> Turn a broad AI idea into a bounded task with evidence of usefulness</li>
+</ul>
+</div>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
+<p>By the end of this chapter, you will be able to:</p>
+<ol type="1">
+<li>distinguish an AI capability from a useful application;</li>
+<li>describe a task in terms of its users, inputs, outputs, and intended action;</li>
+<li>compare rules, search, predictive models, and generative approaches;</li>
+<li>define a baseline, evaluation cases, and measurable acceptance criteria;</li>
+<li>identify information boundaries, failure costs, and human review points; and</li>
+<li>produce a one-page problem brief before building a prototype.</li>
+</ol>
+</section>
+<section id="begin-with-a-task-people-need-to-complete" class="level2">
+<h2 class="anchored" data-anchor-id="begin-with-a-task-people-need-to-complete">Begin with a task people need to complete</h2>
+<p>“Build an AI assistant” describes a technology choice. It does not explain whose work should improve, what information the assistant may use, or how anyone will know that it helps.</p>
+<p>Consider a training centre whose staff repeatedly answer questions about course registration. One proposal is to build a chatbot. A better starting point is to observe the work: staff find the relevant policy, check that it applies to the question, and explain the answer. Sometimes the published information is incomplete, and staff must refer the question to a coordinator.</p>
+<p>That observation suggests a bounded first task:</p>
+<blockquote class="blockquote">
+<p>Help a course administrator locate the approved passage that answers a registration question, or identify that the question needs further review.</p>
+</blockquote>
+<p>A searchable page might solve this task. A retrieval system might improve it. A language model might help draft an explanation after retrieval. The task determines what to compare; the technology does not define success.</p>
+<p>The prototype in this chapter uses <strong>fictional course policies and synthetic questions</strong>. It illustrates problem framing and evaluation without using personal data, contacting an AI service, or making claims about a trained model’s performance.</p>
+<p>This course-policy task is the running example in the first chapters. It gives us a small document collection, observable errors, and a baseline that we can inspect. Later, we will transfer the same questions about source quality, evaluation, and human review to CDI research data, where the source documents and consequences differ.</p>
+</section>
+<section id="what-makes-a-system-an-ai-system" class="level2">
+<h2 class="anchored" data-anchor-id="what-makes-a-system-an-ai-system">What makes a system an AI system?</h2>
+<p>AI is a broad field concerned with systems that perform tasks such as perception, language processing, reasoning, prediction, and planning. The OECD’s explanatory memorandum describes AI systems in terms of how they infer outputs from inputs; those outputs can include predictions, content, recommendations, and decisions. The definition accommodates different levels of autonomy and does not require a conversational interface <span class="citation" data-cites="oecd2024ai-definition">(<a href="99-references.html#ref-oecd2024ai-definition" role="doc-biblioref">Organisation for Economic Co-operation and Development 2024</a>)</span>.</p>
+<p>For this guide, four terms are useful:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Practical meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Artificial intelligence</td>
+<td>The wider field of systems performing tasks associated with intelligent behaviour</td>
+<td>A system that interprets a question and proposes an answer</td>
+</tr>
+<tr class="even">
+<td>Machine learning</td>
+<td>Methods that estimate patterns from data</td>
+<td>A classifier learned from labelled support requests</td>
+</tr>
+<tr class="odd">
+<td>Deep learning</td>
+<td>Machine learning using multilayer neural networks</td>
+<td>A neural model that represents text or images</td>
+</tr>
+<tr class="even">
+<td>Generative AI</td>
+<td>Systems that produce content such as text, images, or audio</td>
+<td>A model drafting an explanation from retrieved passages</td>
+</tr>
+</tbody>
+</table>
+<p>These terms overlap. Generative AI is not synonymous with all AI, and not every useful automation requires machine learning. Modern generative systems commonly use deep learning, but this chapter does not require training or running one.</p>
+<section id="a-model-is-one-component-of-an-application" class="level3">
+<h3 class="anchored" data-anchor-id="a-model-is-one-component-of-an-application">A model is one component of an application</h3>
+<p>A model transforms inputs into outputs. An application also has data access, interfaces, rules, error handling, review procedures, and people who act on its outputs.</p>
+<p>For the course administrator, a fluent response is insufficient if it cites an outdated policy. A good model can still be part of an unreliable application when the wrong document is retrieved, the user cannot inspect the source, or an answer is sent without the necessary review.</p>
+<p>Think of the complete workflow:</p>
+<blockquote class="blockquote">
+<p><strong>User need → bounded task → permitted information → method → checked output → action → feedback</strong></p>
+</blockquote>
+<p>Each transition deserves a question. Is the input in scope? Is the information current? Does the evidence support the output? Can the user correct an error? What happens when the system cannot answer?</p>
+</section>
+</section>
+<section id="define-the-problem-before-selecting-an-approach" class="level2">
+<h2 class="anchored" data-anchor-id="define-the-problem-before-selecting-an-approach">Define the problem before selecting an approach</h2>
+<p>The NIST AI Risk Management Framework emphasizes understanding intended purposes, context, and relevant stakeholders, and evaluating systems in their intended settings <span class="citation" data-cites="tabassi2023ai-rmf">(<a href="99-references.html#ref-tabassi2023ai-rmf" role="doc-biblioref">Tabassi 2023</a>)</span>. This chapter turns that general principle into a practical brief; the worksheet is a teaching aid, not a certification checklist.</p>
+<section id="user-and-affected-people" class="level3">
+<h3 class="anchored" data-anchor-id="user-and-affected-people">User and affected people</h3>
+<p>Name the person who will use the output, and distinguish them from people affected by it. Here, the direct user is a course administrator; prospective learners are affected by any information they receive.</p>
+<p>“Everyone” is rarely a useful first audience. A narrow audience makes vocabulary, accessibility, working conditions, and review responsibilities easier to specify.</p>
+</section>
+<section id="task-and-unit-of-work" class="level3">
+<h3 class="anchored" data-anchor-id="task-and-unit-of-work">Task and unit of work</h3>
+<p>Describe one instance of work. In the running example, the unit is <strong>one registration question checked against one approved policy collection</strong>.</p>
+<p>Avoid combining unrelated tasks into the first version. Answering policy questions, deciding admission, collecting payments, and predicting dropout are separate tasks with different evidence and consequences.</p>
+</section>
+<section id="permitted-inputs-and-knowledge-boundary" class="level3">
+<h3 class="anchored" data-anchor-id="permitted-inputs-and-knowledge-boundary">Permitted inputs and knowledge boundary</h3>
+<p>Specify what the system receives and what it may consult. The example accepts a short English question and searches four fictional policy passages. It has no access to learner records, private messages, or live course availability.</p>
+<p>An input boundary prevents hidden assumptions. If a question needs information outside the approved collection, the correct behaviour is to refer it for review. Adding a powerful model would not create missing institutional knowledge.</p>
+</section>
+<section id="output-contract" class="level3">
+<h3 class="anchored" data-anchor-id="output-contract">Output contract</h3>
+<p>An output contract states what an acceptable result contains. Our baseline returns:</p>
+<ul>
+<li>the original question identifier;</li>
+<li>either a policy identifier or <code>REVIEW</code>;</li>
+<li>the selected policy passage, if any; and</li>
+<li>a status explaining whether there was one rule match, no match, or conflicting matches.</li>
+</ul>
+<p>The first version returns source text rather than a generated paraphrase. This makes the evidence inspectable. A later draft-answer feature would need additional criteria for factual support, completeness, and misleading wording.</p>
+</section>
+<section id="action-and-authority" class="level3">
+<h3 class="anchored" data-anchor-id="action-and-authority">Action and authority</h3>
+<p>The administrator reads the result, checks the passage, and decides how to respond. The prototype does not send messages, change enrolments, grant exceptions, or make decisions about eligibility.</p>
+<p>“Human review” must identify a real step. Specify who checks what, what evidence they see, and whether they have time and authority to reject the output. A nominal reviewer who accepts every result is not a demonstrated safeguard.</p>
+</section>
+<section id="constraints-and-failure-consequences" class="level3">
+<h3 class="anchored" data-anchor-id="constraints-and-failure-consequences">Constraints and failure consequences</h3>
+<p>Record constraints that could change the design: language, connectivity, response time, approved data sources, privacy, accessibility, and maintenance responsibilities.</p>
+<p>For this task, a wrong policy citation could mislead a learner; unnecessary referral costs staff time. These errors are not equivalent. A design that refers uncertain cases can be useful even if it answers fewer questions automatically, provided that referral is reliable and staff capacity is adequate.</p>
+</section>
+</section>
+<section id="write-a-one-page-problem-brief" class="level2">
+<h2 class="anchored" data-anchor-id="write-a-one-page-problem-brief">Write a one-page problem brief</h2>
+<p>Use this sentence as the starting point:</p>
+<blockquote class="blockquote">
+<p>For <strong>[user]</strong>, given <strong>[permitted input]</strong>, produce <strong>[defined output]</strong> to support <strong>[task or action]</strong>. Compare against <strong>[baseline]</strong> using <strong>[representative cases and criteria]</strong>. Refer <strong>[conditions]</strong> to <strong>[responsible person]</strong>, within <strong>[constraints]</strong>.</p>
+</blockquote>
+<p>A completed version for the example is:</p>
+<blockquote class="blockquote">
+<p>For course administrators, given a short registration question and an approved policy collection, return a relevant passage or a review flag so staff can prepare a supported response. Compare candidate approaches with keyword routing on policy questions, paraphrases, multi-topic requests, and questions outside the collection. Measure correct routing, incorrect automatic routing, and review volume. Staff check every result; admission decisions and personal records remain outside scope.</p>
+</blockquote>
+<p>The included <code>data/reference/01-problem-brief-template.md</code> expands this into a reusable worksheet. Keep the brief short enough to review with the intended user. Where evidence is missing, write “to be measured” rather than inventing a success claim.</p>
+</section>
+<section id="match-the-approach-to-the-task" class="level2">
+<h2 class="anchored" data-anchor-id="match-the-approach-to-the-task">Match the approach to the task</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>Appropriate starting condition</th>
+<th>Main limitation to examine</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Explicit rule or lookup</td>
+<td>Stable, clearly stated conditions map to known outputs</td>
+<td>Brittle wording and incomplete rules</td>
+</tr>
+<tr class="even">
+<td>Search or retrieval</td>
+<td>Answers already exist in an approved collection</td>
+<td>Failure to retrieve the right, current source</td>
+</tr>
+<tr class="odd">
+<td>Supervised prediction</td>
+<td>Relevant examples have reliable target labels</td>
+<td>Generalization, label quality, and data leakage</td>
+</tr>
+<tr class="even">
+<td>Generative model</td>
+<td>The task needs flexible drafting or transformation</td>
+<td>Unsupported, incomplete, or inconsistent content</td>
+</tr>
+<tr class="odd">
+<td>Retrieval with generation</td>
+<td>A draft must use an identifiable knowledge collection</td>
+<td>Retrieval errors and unsupported synthesis</td>
+</tr>
+<tr class="even">
+<td>Human process</td>
+<td>Judgment or missing context dominates the task</td>
+<td>Capacity, consistency, and turnaround time</td>
+</tr>
+</tbody>
+</table>
+<p>These are starting points, not mutually exclusive categories. A workflow can combine search, rules, and a model. Retrieval does not guarantee that a generated answer is correct, and adding a model does not automatically improve a deterministic task.</p>
+<section id="when-to-narrow-or-stop" class="level3">
+<h3 class="anchored" data-anchor-id="when-to-narrow-or-stop">When to narrow or stop</h3>
+<p>Pause the prototype if there is no agreed task, no usable evidence for checking outputs, no permitted information source, or no owner for consequential errors. Also reconsider AI when a maintained FAQ or existing search interface already meets the need.</p>
+<p>A useful first experiment should resolve a specific uncertainty: for example, whether paraphrased questions can be matched to the right policy. “Explore what AI can do” is too broad to provide a clear stopping condition.</p>
+</section>
+</section>
+<section id="design-the-evaluation-before-improving-the-method" class="level2">
+<h2 class="anchored" data-anchor-id="design-the-evaluation-before-improving-the-method">Design the evaluation before improving the method</h2>
+<p>A baseline is a reference method against which a new approach is compared. It might be the current manual workflow, a majority prediction, a keyword rule, or ordinary search. Its purpose is to establish what improvement means.</p>
+<p>Use the same evaluation cases and output requirements when comparing approaches. If one method may consult extra documents or gets easier questions, a higher score does not isolate the value of the method.</p>
+<section id="cases-should-reflect-the-intended-work" class="level3">
+<h3 class="anchored" data-anchor-id="cases-should-reflect-the-intended-work">Cases should reflect the intended work</h3>
+<p>Include routine cases and cases that test boundaries:</p>
+<ul>
+<li>direct questions that use policy vocabulary;</li>
+<li>paraphrases that avoid expected keywords;</li>
+<li>questions covering multiple topics;</li>
+<li>questions with missing context;</li>
+<li>questions outside the approved collection; and</li>
+<li>supported languages and accessibility needs relevant to the real setting.</li>
+</ul>
+<p>A small synthetic set is useful for debugging the workflow. It cannot establish population-level reliability, fairness, or production readiness. Later evaluation should use independently labelled, representative cases obtained through appropriate data handling.</p>
+<p>Keep development cases separate from final evaluation cases. Once you use a case to revise rules or prompts, it becomes part of development. Repeatedly improving against the same small set creates an optimistic estimate of performance.</p>
+</section>
+<section id="define-metrics-with-denominators" class="level3">
+<h3 class="anchored" data-anchor-id="define-metrics-with-denominators">Define metrics with denominators</h3>
+<p>For our routing task, use three quantities:</p>
+<p><span class="math display">\[
+\text{Correct routing rate} = \frac{\text{cases matching the expected route}}{\text{all cases}}.
+\]</span></p>
+<p>An expected route may be a policy identifier or <code>REVIEW</code>. Correct referral therefore counts as correct routing.</p>
+<p><span class="math display">\[
+\text{Incorrect automatic routing rate} = \frac{\text{wrong policy routes}}{\text{all automatic policy routes}}.
+\]</span></p>
+<p><span class="math display">\[
+\text{Review rate} = \frac{\text{cases sent to review}}{\text{all cases}}.
+\]</span></p>
+<p>The second metric is undefined when there are no automatic routes; the script reports <code>NA</code> in that situation. Always show counts with rates. The denominator affects interpretation: a method that refers every question has no incorrect automatic routes, but may offer no time saving.</p>
+</section>
+<section id="turn-aspirations-into-acceptance-criteria" class="level3">
+<h3 class="anchored" data-anchor-id="turn-aspirations-into-acceptance-criteria">Turn aspirations into acceptance criteria</h3>
+<p>“Accurate and fast” does not define an acceptance test. A prototype brief could instead say:</p>
+<ul>
+<li>every automatic result includes an inspectable approved passage;</li>
+<li>no case deliberately labelled outside scope receives an automatic policy route in the development suite;</li>
+<li>multi-topic requests are referred under the agreed single-passage contract; and</li>
+<li>a staff pilot measures correction time and referral workload before claiming time savings.</li>
+</ul>
+<p>These are example development criteria, not universal performance thresholds. A real team must agree on error tolerances, sample sizes, service requirements, and escalation arrangements for its own setting.</p>
+</section>
+</section>
+<section id="worked-example-evaluate-a-transparent-baseline" class="level2">
+<h2 class="anchored" data-anchor-id="worked-example-evaluate-a-transparent-baseline">Worked example: evaluate a transparent baseline</h2>
+<p>The chapter’s runnable example is a deterministic keyword router. It is intentionally simple so that every result can be traced to a rule. <strong>It does not train an AI model.</strong> It gives a later AI approach a concrete baseline to improve upon.</p>
+<p>Four fictional policies cover registration, certificates, refunds, and course schedules. The synthetic test set contains 16 questions: four direct questions, four paraphrases, four multi-topic requests, and four questions outside the collection.</p>
+<p>The script searches whole words in each question. One matching policy returns its passage; no matches or several policy matches return <code>REVIEW</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> [</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    policy_id</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> policy_id, policy <span class="kw">in</span> policies.items()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> tokens.intersection(policy[<span class="st">"keywords"</span>])</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>route <span class="op">=</span> matches[<span class="dv">0</span>] <span class="cf">if</span> <span class="bu">len</span>(matches) <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">"REVIEW"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This displayed fragment is illustrative. The complete program is in <code>scripts/python/01-ai-problem-framing.py</code>. Plain code fences do not execute during Quarto rendering.</p>
+<section id="run-the-example" class="level3">
+<h3 class="anchored" data-anchor-id="run-the-example">Run the example</h3>
+<p>Use the Artificial Intelligence repository’s own <code>.venv</code>, as described in the preface. The program uses the Python standard library and Matplotlib; Matplotlib is already listed in the guide’s <code>requirements.txt</code>.</p>
+<p>From the repository root, install the documented dependencies if needed, then run:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements.txt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/bash/01-ai-problem-framing.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The wrapper uses <code>.venv/bin/python</code> explicitly and stops with a useful message if the environment is missing. Alternatively, invoke the Python program directly with that interpreter:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> scripts/python/01-ai-problem-framing.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The program resolves paths from its own file location. It therefore writes to the intended repository even when called from a different working directory. No API key, network request, random seed, or downloaded dataset is needed: all input cases and rules are fixed and versionable. The inputs are fictional policies in <code>data/reference/01-course-policies.json</code> and 16 synthetic, labelled questions in <code>data/reference/01-framing-cases.csv</code>; they are not empirical observations. The reusable worksheet is <code>data/reference/01-problem-brief-template.md</code>.</p>
+</section>
+<section id="inspect-the-outputs" class="level3">
+<h3 class="anchored" data-anchor-id="inspect-the-outputs">Inspect the outputs</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>results/tables/01-routing-results.csv</code></td>
+<td>Every question, expected route, actual route, passage, and error flags</td>
+</tr>
+<tr class="even">
+<td><code>results/tables/01-routing-summary.csv</code></td>
+<td>Counts and rates overall and by case family</td>
+</tr>
+<tr class="odd">
+<td><code>results/figures/01-ai-task-workflow.png</code></td>
+<td>The bounded task and its human decision point</td>
+</tr>
+<tr class="even">
+<td><code>results/figures/01-baseline-routing-results.png</code></td>
+<td>Correct routes, unnecessary reviews, and wrong automatic routes</td>
+</tr>
+<tr class="odd">
+<td><code>results/tables/01-run-metadata.json</code></td>
+<td>Runtime versions and input hashes for tracing the run</td>
+</tr>
+</tbody>
+</table>
+<div id="fig-ai-task-workflow" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Six boxes connect a staff question, approved policies, keyword routing, a passage or review flag, an administrator check, and a staff response. The figure labels the knowledge boundary and states that no message is sent automatically.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ai-task-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/figures/01-ai-task-workflow.png" class="img-fluid figure-img" style="width:100.0%" alt="Six boxes connect a staff question, approved policies, keyword routing, a passage or review flag, an administrator check, and a staff response. The figure labels the knowledge boundary and states that no message is sent automatically.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ai-task-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: The workflow takes a question and approved policies, routes to a passage or review, and requires an administrator to check the result before responding.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-ai-task-workflow" class="quarto-xref">Figure&nbsp;<span>1.1</span></a> makes the boundary visible: retrieving a passage supports the administrator’s work, while the response remains a human action.</p>
+<div id="fig-ai-routing-results" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Each question family contains four cases. Direct questions have four correct routes. Paraphrases have four unnecessary reviews. Multi-topic questions have four correct reviews. Outside-scope questions have two correct reviews and two wrong automatic routes.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ai-routing-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/figures/01-baseline-routing-results.png" class="img-fluid figure-img" style="width:100.0%" alt="Each question family contains four cases. Direct questions have four correct routes. Paraphrases have four unnecessary reviews. Multi-topic questions have four correct reviews. Outside-scope questions have two correct reviews and two wrong automatic routes.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ai-routing-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: A stacked bar chart compares routing outcomes across four synthetic question families.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="interpret-the-result" class="level3">
+<h3 class="anchored" data-anchor-id="interpret-the-result">Interpret the result</h3>
+<p>The fixed example produces:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 40%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th style="text-align: right;">Result</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Correct routes</td>
+<td style="text-align: right;">10 / 16 (62.5%)</td>
+<td>Includes six correct referrals and four correct policy routes</td>
+</tr>
+<tr class="even">
+<td>Automatic policy routes</td>
+<td style="text-align: right;">6 / 16 (37.5%)</td>
+<td>Four are correct; two are wrong</td>
+</tr>
+<tr class="odd">
+<td>Incorrect automatic routing rate</td>
+<td style="text-align: right;">2 / 6 (33.3%)</td>
+<td>One third of automatic routes fail on this tiny set</td>
+</tr>
+<tr class="even">
+<td>Review rate</td>
+<td style="text-align: right;">10 / 16 (62.5%)</td>
+<td>Six reviews are expected; four are avoidable misses</td>
+</tr>
+</tbody>
+</table>
+<p>The aggregate correct-routing rate hides two different failures. The router misses all four paraphrases because they avoid its keywords. It also routes “birth certificate” and “bus schedule” questions to course policies because isolated keywords do not establish meaning.</p>
+<p>The two wrong automatic routes violate the example development criterion for outside-scope questions. The baseline is therefore useful as an experiment, but it does not meet that criterion.</p>
+<p>The chart uses counts rather than percentages because each family contains only four cases. The dataset was constructed to illustrate failure modes; the family frequencies do not represent actual demand. Do not interpret the 33.3% result as a forecast of real-world error. The outputs are reproducible from the supplied source and inputs, and the run metadata records runtime versions and SHA-256 hashes. Inspect the CSVs if you need the case-level counts behind the table.</p>
+</section>
+<section id="decide-what-the-evidence-supports" class="level3">
+<h3 class="anchored" data-anchor-id="decide-what-the-evidence-supports">Decide what the evidence supports</h3>
+<p>This run supports a limited conclusion: keyword overlap alone cannot reliably distinguish the intended questions in this test set. It does not prove that a language model will solve the problem.</p>
+<p>Possible next experiments include improving ordinary search, introducing explicit topic disambiguation, or comparing semantic retrieval on a separate set of questions. A generated draft would require additional evaluation of factual support and wording. Record the reason for each change and preserve the baseline outputs.</p>
+<p>The <code>REVIEW</code> route also needs care. It groups ambiguous questions, missing coverage, and unmatched wording under one operational action. A later version might distinguish these causes to help staff resolve them, but only if the extra categories improve the workflow.</p>
+</section>
+</section>
+<section id="common-framing-mistakes" class="level2">
+<h2 class="anchored" data-anchor-id="common-framing-mistakes">Common framing mistakes</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mistake</th>
+<th>Why it weakens the project</th>
+<th>Better framing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Use the strongest model”</td>
+<td>Names a component without defining value</td>
+<td>Specify the task and compare measured outcomes</td>
+</tr>
+<tr class="even">
+<td>“Answer any question”</td>
+<td>Hides the knowledge and authority boundaries</td>
+<td>Name approved sources and referral conditions</td>
+</tr>
+<tr class="odd">
+<td>“The answer sounds right”</td>
+<td>Fluency is not evidence of support</td>
+<td>Check it against an agreed source and rubric</td>
+</tr>
+<tr class="even">
+<td>“A person will review it”</td>
+<td>Omits the reviewer’s actual work</td>
+<td>Specify evidence, time, authority, and escalation</td>
+</tr>
+<tr class="odd">
+<td>“It scored well on our examples”</td>
+<td>Development cases can overstate reliability</td>
+<td>Reserve independent evaluation cases</td>
+</tr>
+<tr class="even">
+<td>“It will save staff time”</td>
+<td>Omits checking and correction costs</td>
+<td>Measure the complete task, including rework</td>
+</tr>
+</tbody>
+</table>
+<p>A predictive association also does not establish the effect of an intervention. If a later model predicts which learners may disengage, that prediction alone does not show which support action will help them. The intervention question needs its own evidence and study design.</p>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h2>
+<ol type="1">
+<li>Why is “build a course chatbot” less useful than a bounded problem statement?</li>
+<li>Why can a system that sends every case to review avoid wrong automatic routes without improving the workflow?</li>
+<li>Does returning a correct passage prove that a generated answer based on it would be correct?</li>
+<li>Which example result shows that a keyword can match while the question remains outside scope?</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Suggested answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>It leaves the user, permitted sources, output, action, and success criteria unspecified.</li>
+<li>It transfers all work to staff. Review capacity and total task time must also be measured; the wrong-automatic-route rate has no denominator when there are no automatic routes.</li>
+<li>No.&nbsp;Generation can omit a condition, misstate the passage, or add unsupported claims. Retrieval and answer quality require separate checks.</li>
+<li>The birth-certificate and bus-schedule questions match course-policy keywords but request information absent from the collection.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself-produce-a-reviewable-problem-brief" class="level2">
+<h2 class="anchored" data-anchor-id="try-it-yourself-produce-a-reviewable-problem-brief">Try it yourself: produce a reviewable problem brief</h2>
+<p>Choose a modest task from your own work: locating an approved procedure, routing support questions, or extracting fields from a standard form.</p>
+<ol type="1">
+<li>Complete <code>data/reference/01-problem-brief-template.md</code> in a separate copy.</li>
+<li>Define the output contract and at least three conditions requiring review.</li>
+<li>Name a simple baseline and explain why it is a fair comparison.</li>
+<li>Draft eight permitted, non-sensitive development cases: four routine, two ambiguous, and two outside scope. Provide expected outputs and a short reason for each.</li>
+<li>Define two error measures and one workload measure, each with a denominator or unit.</li>
+<li>Ask a colleague familiar with the task to challenge the scope and labels before implementation.</li>
+</ol>
+<p>Your deliverable is the completed brief and labelled case table. You do not need an AI service to complete this exercise.</p>
+<p>For an optional coding extension, add new synthetic cases to a copy of the chapter dataset and rerun the workflow. Keep the original set for comparison. If you change the routing rules after inspecting those cases, record them as development cases and create a fresh evaluation set for any later performance claim.</p>
+</section>
+<section id="reproduce-and-verify-this-chapter" class="level2">
+<h2 class="anchored" data-anchor-id="reproduce-and-verify-this-chapter">Reproduce and verify this chapter</h2>
+<p>From the repository root, after running the example above, render the chapter with:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render 01-ai-thinking-and-problem-framing.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rendering uses the generated figures but does not execute the displayed code fences or recreate the results. Check that the figures and table descriptions agree with the generated CSVs. The supplied example was run and its stated counts checked; both figures were visually inspected, and the chapter rendered as standalone HTML with Quarto 1.7.32. A full-book render is a separate integration check once all chapters and assets are in the repository.</p>
+</section>
+<section id="chapter-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-checklist">Chapter checklist</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">I can explain the difference between a model capability and application usefulness.</label></li>
+<li><label><input type="checkbox">I can identify the direct user and people affected by the output.</label></li>
+<li><label><input type="checkbox">I have defined the task, unit of work, input boundary, and output contract.</label></li>
+<li><label><input type="checkbox">I can explain why a simple baseline belongs in an AI project.</label></li>
+<li><label><input type="checkbox">I can separate model or routing quality from workload and operational usefulness.</label></li>
+<li><label><input type="checkbox">I can identify which results require review and who performs it.</label></li>
+<li><label><input type="checkbox">I can reproduce the example and inspect its row-level errors.</label></li>
+<li><label><input type="checkbox">I understand why this synthetic demonstration does not establish deployment readiness.</label></li>
+</ul>
+</section>
+<section id="key-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="key-takeaways">Key takeaways</h2>
+<p>A professional AI project begins with a bounded task and a way to judge the result. Inputs, outputs, permitted knowledge, human authority, and failure conditions are design decisions. A baseline makes improvement measurable, while row-level error analysis explains what an aggregate score hides. The appropriate next step follows from evidence about the task.</p>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking ahead</h2>
+<p>Chapter 02, <strong>Data, Models, Training and Inference</strong>, explains how data become learning signals, what a model represents, and how training differs from using a model to produce an output. The problem brief from this chapter provides the context for deciding which data and outputs matter.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-oecd2024ai-definition" class="csl-entry" role="listitem">
+Organisation for Economic Co-operation and Development. 2024. <span>“Explanatory Memorandum on the Updated <span>OECD</span> Definition of an <span>AI</span> System.”</span> 8. OECD Artificial Intelligence Papers. OECD. <a href="https://doi.org/10.1787/623da898-en">https://doi.org/10.1787/623da898-en</a>.
+</div>
+<div id="ref-tabassi2023ai-rmf" class="csl-entry" role="listitem">
+Tabassi, Elham. 2023. <span>“Artificial Intelligence Risk Management Framework (<span>AI RMF</span> 1.0).”</span> NIST AI 100-1. National Institute of Standards; Technology. <a href="https://doi.org/10.6028/NIST.AI.100-1">https://doi.org/10.6028/NIST.AI.100-1</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./00-preface.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02-data-models-and-inference.html" class="pagination-link" aria-label="Data, Models, and Inference">
+        <span class="nav-page-text"><span class="chapter-title">Data, Models, and Inference</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

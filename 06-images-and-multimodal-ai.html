@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Image and Multimodal AI – Artificial Intelligence</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./07-prompting-and-structured-outputs.html" rel="next">
+<link href="./05-language-models-and-generative-ai.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e2851886d12d134ff83effd9cfa02285.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="assets/css/cdi.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-neural-networks.html">Modern AI</a></li><li class="breadcrumb-item"><a href="./06-images-and-multimodal-ai.html"><span class="chapter-title">Image and Multimodal AI</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Artificial Intelligence</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">index.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-ai-thinking-and-problem-framing.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Thinking and Problem Framing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, and Inference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI and Machine Learning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modern AI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-neural-networks.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-language-models-and-generative-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Language Models and Generative AI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Image and Multimodal AI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-prompting-and-structured-outputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prompting and Structured Outputs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval and Tools</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Building Responsibly</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-evaluation-and-failure-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Evaluation and Failure Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Privacy, Bias, and Human Oversight</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-reproducible-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible AI Workflows</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">AI Hackathon</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Choose the Problem and Plan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Build and Test the Prototype</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Demonstrate, Decide, and Improve</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Next Steps</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical Application</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#when-the-input-is-more-than-text" id="toc-when-the-input-is-more-than-text" class="nav-link active" data-scroll-target="#when-the-input-is-more-than-text">When the input is more than text</a></li>
+  <li><a href="#define-the-input-and-output-separately" id="toc-define-the-input-and-output-separately" class="nav-link" data-scroll-target="#define-the-input-and-output-separately">Define the input and output separately</a></li>
+  <li><a href="#representations-and-visual-evidence" id="toc-representations-and-visual-evidence" class="nav-link" data-scroll-target="#representations-and-visual-evidence">Representations and visual evidence</a></li>
+  <li><a href="#scanned-documents-and-ocr" id="toc-scanned-documents-and-ocr" class="nav-link" data-scroll-target="#scanned-documents-and-ocr">Scanned documents and OCR</a></li>
+  <li><a href="#figures-and-tables-require-their-own-checks" id="toc-figures-and-tables-require-their-own-checks" class="nav-link" data-scroll-target="#figures-and-tables-require-their-own-checks">Figures and tables require their own checks</a></li>
+  <li><a href="#continue-the-article-summary-example" id="toc-continue-the-article-summary-example" class="nav-link" data-scroll-target="#continue-the-article-summary-example">Continue the article-summary example</a></li>
+  <li><a href="#images-used-as-input-versus-images-generated-as-output" id="toc-images-used-as-input-versus-images-generated-as-output" class="nav-link" data-scroll-target="#images-used-as-input-versus-images-generated-as-output">Images used as input versus images generated as output</a></li>
+  <li><a href="#a-practical-modality-plan" id="toc-a-practical-modality-plan" class="nav-link" data-scroll-target="#a-practical-modality-plan">A practical modality plan</a></li>
+  <li><a href="#build-evaluation-cases-that-expose-visual-errors" id="toc-build-evaluation-cases-that-expose-visual-errors" class="nav-link" data-scroll-target="#build-evaluation-cases-that-expose-visual-errors">Build evaluation cases that expose visual errors</a></li>
+  <li><a href="#practice-write-a-modality-and-evidence-plan" id="toc-practice-write-a-modality-and-evidence-plan" class="nav-link" data-scroll-target="#practice-write-a-modality-and-evidence-plan">Practice: write a modality and evidence plan</a></li>
+  <li><a href="#chapter-checklist" id="toc-chapter-checklist" class="nav-link" data-scroll-target="#chapter-checklist">Chapter checklist</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking ahead</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-neural-networks.html">Modern AI</a></li><li class="breadcrumb-item"><a href="./06-images-and-multimodal-ai.html"><span class="chapter-title">Image and Multimodal AI</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-image-and-multimodal-ai" class="quarto-section-identifier"><span class="chapter-title">Image and Multimodal AI</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Sep 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cdi-message">
+<ul>
+<li><strong>ID:</strong> AI-L06</li>
+<li><strong>Type:</strong> Modern AI</li>
+<li><strong>Focus:</strong> Understand what image and multimodal systems can extract, describe, and generate—and how to verify their outputs</li>
+<li><strong>Output:</strong> A modality and evidence plan for the prototype</li>
+</ul>
+</div>
+<section id="when-the-input-is-more-than-text" class="level2">
+<h2 class="anchored" data-anchor-id="when-the-input-is-more-than-text">When the input is more than text</h2>
+<p>Chapter 05 examined language models that draft or transform text. Many real tasks also involve photographs, scans, plots, diagrams, tables, audio, or video. A multimodal system can process or produce more than one kind of information, but the ability to accept a file does not ensure that it reads every detail correctly.</p>
+<p>Consider our article-summary prototype. The article may contain selectable text, a result shown only in a figure, or scanned pages that require text recognition. If the prototype ignores these materials, its summary may omit key evidence. If it interprets them carelessly, it may report the wrong result with misplaced confidence. The workflow must record what was actually supplied and what could be checked.</p>
+</section>
+<section id="define-the-input-and-output-separately" class="level2">
+<h2 class="anchored" data-anchor-id="define-the-input-and-output-separately">Define the input and output separately</h2>
+<p>The words <em>image AI</em> and <em>multimodal AI</em> cover several different tasks:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Example input</th>
+<th>Example output</th>
+<th>Main verification question</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Image classification</td>
+<td>Photograph</td>
+<td>Label from a defined set</td>
+<td>Does the label match the pictured subject and task definition?</td>
+</tr>
+<tr class="even">
+<td>Object detection</td>
+<td>Photograph or frame</td>
+<td>Locations and labels</td>
+<td>Are the objects present and correctly located?</td>
+</tr>
+<tr class="odd">
+<td>Optical character recognition (OCR)</td>
+<td>Scan or photographed page</td>
+<td>Extracted text</td>
+<td>Were words, numbers, units, and reading order preserved?</td>
+</tr>
+<tr class="even">
+<td>Visual question answering</td>
+<td>Chart or diagram plus a question</td>
+<td>Text answer</td>
+<td>Does the visual evidence support the answer?</td>
+</tr>
+<tr class="odd">
+<td>Image description</td>
+<td>Photograph or figure</td>
+<td>Caption or alt text</td>
+<td>Does the description distinguish visible facts from guesses?</td>
+</tr>
+<tr class="even">
+<td>Image generation</td>
+<td>Text instruction or reference image</td>
+<td>New image</td>
+<td>Does it meet the brief without misrepresenting evidence?</td>
+</tr>
+</tbody>
+</table>
+<p>A system may combine these tasks. For example, answering a question about a scanned plot requires reading axes and labels, interpreting marks, and expressing the result in text. Evaluate those stages separately when possible.</p>
+</section>
+<section id="representations-and-visual-evidence" class="level2">
+<h2 class="anchored" data-anchor-id="representations-and-visual-evidence">Representations and visual evidence</h2>
+<p>Image systems turn visual input into numerical representations that a model can process. Some systems work with an entire image; others use patches, crops, or selected regions. A multimodal model can relate these representations to text instructions and return an answer or description.</p>
+<p>The model’s answer remains an interpretation of the supplied pixels. Small text, low resolution, cropped axes, color legends, overlapping points, and unfamiliar notation can all affect that interpretation. A model can also draw on learned conventions to guess what a chart usually shows, even when the specific chart shows something different.</p>
+<p>Ask a concrete question: <strong>Which part of the source establishes this claim?</strong> If the source does not support the claim at readable quality, the appropriate output is uncertainty or a request for a better source.</p>
+</section>
+<section id="scanned-documents-and-ocr" class="level2">
+<h2 class="anchored" data-anchor-id="scanned-documents-and-ocr">Scanned documents and OCR</h2>
+<p>A PDF is a container, not a guarantee that its text can be copied. A scanned article may consist of page images. OCR can turn visible characters into text, but errors in digits, minus signs, decimal points, Greek letters, units, superscripts, and column order can change scientific meaning.</p>
+<p>Before summarizing a scanned article:</p>
+<ol type="1">
+<li>Identify whether pages contain selectable text or only images.</li>
+<li>Extract text or apply OCR using a permitted method.</li>
+<li>Inspect representative pages, including tables and pages with unusual layouts.</li>
+<li>Keep page references so a reviewer can return to the original.</li>
+<li>Mark unreadable or ambiguous portions instead of guessing.</li>
+</ol>
+<p>For the article example, “0.05” misread as “0.5” is not a small formatting issue. Any result that depends on a difficult scan should be checked directly against the page image.</p>
+</section>
+<section id="figures-and-tables-require-their-own-checks" class="level2">
+<h2 class="anchored" data-anchor-id="figures-and-tables-require-their-own-checks">Figures and tables require their own checks</h2>
+<p>A figure can show a trend while its caption limits the interpretation. A chart may show group means, confidence intervals, individual observations, or model estimates. Without reading the axes, legend, caption, and surrounding text, a visual summary can overstate what the figure establishes.</p>
+<p>Use the following inspection order for a figure or table:</p>
+<ul>
+<li>Identify the figure or table number and its caption.</li>
+<li>Read axes, column names, units, group definitions, and legend.</li>
+<li>Distinguish values shown directly from interpretations in the article text.</li>
+<li>Look for uncertainty intervals, sample sizes, exclusions, and footnotes.</li>
+<li>Record the specific claim being extracted and its location.</li>
+</ul>
+<p>If precise numerical values are needed, prefer an accessible source table or underlying data where available. Estimating a value from the height of a bar can be appropriate for a rough visual description, but should not be presented as an exact reported number.</p>
+</section>
+<section id="continue-the-article-summary-example" class="level2">
+<h2 class="anchored" data-anchor-id="continue-the-article-summary-example">Continue the article-summary example</h2>
+<p>Suppose the article’s main finding appears in a results paragraph and a figure. A reviewer may reasonably want both: the authors’ stated conclusion and a check that the figure is consistent with it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source component</th>
+<th>What the prototype can do</th>
+<th>What the reviewer must inspect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Extracted article text</td>
+<td>Draft the study aim and design</td>
+<td>Whether extraction preserved headings and meaning</td>
+</tr>
+<tr class="even">
+<td>Results figure</td>
+<td>Describe visible comparisons</td>
+<td>Axes, scale, groups, uncertainty, and caption</td>
+</tr>
+<tr class="odd">
+<td>Data table</td>
+<td>Copy requested values</td>
+<td>Exact cells, units, footnotes, and missing values</td>
+</tr>
+<tr class="even">
+<td>Discussion section</td>
+<td>Identify stated limitations</td>
+<td>Whether limitations are attributed to the authors</td>
+</tr>
+</tbody>
+</table>
+<p>The draft should distinguish “the authors report” from “the figure appears to show.” It should not turn a visual association into a causal claim. If a figure cannot be read reliably, the prototype can flag it for manual review while still completing fields supported by readable text.</p>
+</section>
+<section id="images-used-as-input-versus-images-generated-as-output" class="level2">
+<h2 class="anchored" data-anchor-id="images-used-as-input-versus-images-generated-as-output">Images used as input versus images generated as output</h2>
+<p>A generated illustration may help explain an idea or communicate a proposed design. It is not evidence that a pictured person, event, experiment, or observation exists. The same distinction matters when generating a chart: an attractive chart is only meaningful if its labels, numbers, and relationships come from verified data.</p>
+<p>For research communication, keep the source of each visual clear. Use actual source figures and data when reporting findings, subject to permission and attribution requirements. Use generated images for clearly identified conceptual illustrations when they serve the reader. Do not rely on image generation for exact labels, data relationships, or scientific measurements.</p>
+</section>
+<section id="a-practical-modality-plan" class="level2">
+<h2 class="anchored" data-anchor-id="a-practical-modality-plan">A practical modality plan</h2>
+<p>Before adding a visual model, write down the pathway for each input:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Input</th>
+<th>Proposed handling</th>
+<th>Evidence retained</th>
+<th>Failure response</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Selectable article text</td>
+<td>Extract and preserve section boundaries</td>
+<td>Article and section reference</td>
+<td>Flag extraction gaps</td>
+</tr>
+<tr class="even">
+<td>Scanned page</td>
+<td>OCR and page-level inspection</td>
+<td>Original page number and image</td>
+<td>Flag unreadable content</td>
+</tr>
+<tr class="odd">
+<td>Figure</td>
+<td>Read caption, axes, and marked values</td>
+<td>Figure number and location</td>
+<td>Ask for review if ambiguous</td>
+</tr>
+<tr class="even">
+<td>Table</td>
+<td>Parse or transcribe relevant cells</td>
+<td>Table number, row, column, and units</td>
+<td>Flag uncertain cells</td>
+</tr>
+</tbody>
+</table>
+<p>Include only modalities that solve a real problem in the first prototype. If the articles selected for the initial test are text-only, a text workflow may be the sensible first version. Add figures or scans when the use case needs them and you can evaluate them properly.</p>
+</section>
+<section id="build-evaluation-cases-that-expose-visual-errors" class="level2">
+<h2 class="anchored" data-anchor-id="build-evaluation-cases-that-expose-visual-errors">Build evaluation cases that expose visual errors</h2>
+<p>A representative visual test set should contain more than clear examples. For an article-review prototype, include:</p>
+<ol type="1">
+<li>a legible figure with an unambiguous caption;</li>
+<li>a figure whose axes or legend change the apparent interpretation;</li>
+<li>a table with a footnote or differing units;</li>
+<li>a scanned page with text-recognition errors; and</li>
+<li>an image too poor to support a confident answer.</li>
+</ol>
+<p>Record the expected claim and source location before examining the model output. Mark an abstention or review request as correct when the evidence is insufficient. Evaluate whether the system identifies the right figure or page, reads it correctly, and respects any limitation in the caption or surrounding text.</p>
+</section>
+<section id="practice-write-a-modality-and-evidence-plan" class="level2">
+<h2 class="anchored" data-anchor-id="practice-write-a-modality-and-evidence-plan">Practice: write a modality and evidence plan</h2>
+<p>For your prototype, answer these questions:</p>
+<ul>
+<li>Which inputs are text, images, audio, or a mixture? Are all of them necessary?</li>
+<li>How will each input be converted into a form the system can use?</li>
+<li>Which important details could be lost during extraction or resizing?</li>
+<li>What source location will accompany each output claim?</li>
+<li>Which claims can be checked mechanically, and which need a person?</li>
+<li>When should the system say that it cannot read or interpret the input?</li>
+</ul>
+<p>Write one test case in which the content is legible and one in which it is not. Describe the expected behavior in both cases. This simple exercise prevents “file accepted” from being confused with “evidence understood.”</p>
+</section>
+<section id="chapter-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-checklist">Chapter checklist</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">I can name the specific visual or multimodal task my prototype would perform.</label></li>
+<li><label><input type="checkbox">I understand that OCR, figure interpretation, and image generation require different checks.</label></li>
+<li><label><input type="checkbox">I have identified details that extraction or low image quality could distort.</label></li>
+<li><label><input type="checkbox">I can connect an output claim to a specific page, figure, table, or passage.</label></li>
+<li><label><input type="checkbox">I have an evaluation case where the correct response is uncertainty or human review.</label></li>
+</ul>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking ahead</h2>
+<p>Chapter 07 develops <strong>prompting and structured outputs</strong>. It shows how to specify a narrow task, request a predictable response shape, and validate what a model returns while preserving evidence checks for its content.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05-language-models-and-generative-ai.html" class="pagination-link" aria-label="Language Models and Generative AI">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Language Models and Generative AI</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./07-prompting-and-structured-outputs.html" class="pagination-link" aria-label="Prompting and Structured Outputs">
+        <span class="nav-page-text"><span class="chapter-title">Prompting and Structured Outputs</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

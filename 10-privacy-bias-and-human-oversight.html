@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Privacy, Bias, and Human Oversight – Artificial Intelligence</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./11-reproducible-ai-workflows.html" rel="next">
+<link href="./09-evaluation-and-failure-analysis.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e2851886d12d134ff83effd9cfa02285.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="assets/css/cdi.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-evaluation-and-failure-analysis.html">Building Responsibly</a></li><li class="breadcrumb-item"><a href="./10-privacy-bias-and-human-oversight.html"><span class="chapter-title">Privacy, Bias, and Human Oversight</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Artificial Intelligence</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">index.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-ai-thinking-and-problem-framing.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Thinking and Problem Framing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, and Inference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI and Machine Learning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modern AI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-neural-networks.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-language-models-and-generative-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Language Models and Generative AI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Image and Multimodal AI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-prompting-and-structured-outputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Prompting and Structured Outputs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval and Tools</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Building Responsibly</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-evaluation-and-failure-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Evaluation and Failure Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Privacy, Bias, and Human Oversight</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-reproducible-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible AI Workflows</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">AI Hackathon</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Choose the Problem and Plan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Build and Test the Prototype</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Demonstrate, Decide, and Improve</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Next Steps</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical Application</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#responsible-use-is-part-of-the-workflow" id="toc-responsible-use-is-part-of-the-workflow" class="nav-link active" data-scroll-target="#responsible-use-is-part-of-the-workflow">Responsible use is part of the workflow</a></li>
+  <li><a href="#map-the-information-before-sending-it-anywhere" id="toc-map-the-information-before-sending-it-anywhere" class="nav-link" data-scroll-target="#map-the-information-before-sending-it-anywhere">Map the information before sending it anywhere</a></li>
+  <li><a href="#minimize-what-the-system-sees-and-keeps" id="toc-minimize-what-the-system-sees-and-keeps" class="nav-link" data-scroll-target="#minimize-what-the-system-sees-and-keeps">Minimize what the system sees and keeps</a></li>
+  <li><a href="#bias-is-a-pattern-to-investigate" id="toc-bias-is-a-pattern-to-investigate" class="nav-link" data-scroll-target="#bias-is-a-pattern-to-investigate">Bias is a pattern to investigate</a></li>
+  <li><a href="#human-oversight-needs-a-real-decision-point" id="toc-human-oversight-needs-a-real-decision-point" class="nav-link" data-scroll-target="#human-oversight-needs-a-real-decision-point">Human oversight needs a real decision point</a></li>
+  <li><a href="#assign-responsibility-for-exceptions" id="toc-assign-responsibility-for-exceptions" class="nav-link" data-scroll-target="#assign-responsibility-for-exceptions">Assign responsibility for exceptions</a></li>
+  <li><a href="#protect-the-evaluation-process-too" id="toc-protect-the-evaluation-process-too" class="nav-link" data-scroll-target="#protect-the-evaluation-process-too">Protect the evaluation process too</a></li>
+  <li><a href="#practice-complete-a-risk-and-oversight-record" id="toc-practice-complete-a-risk-and-oversight-record" class="nav-link" data-scroll-target="#practice-complete-a-risk-and-oversight-record">Practice: complete a risk-and-oversight record</a></li>
+  <li><a href="#chapter-checklist" id="toc-chapter-checklist" class="nav-link" data-scroll-target="#chapter-checklist">Chapter checklist</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking ahead</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-evaluation-and-failure-analysis.html">Building Responsibly</a></li><li class="breadcrumb-item"><a href="./10-privacy-bias-and-human-oversight.html"><span class="chapter-title">Privacy, Bias, and Human Oversight</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-privacy-bias-and-human-oversight" class="quarto-section-identifier"><span class="chapter-title">Privacy, Bias, and Human Oversight</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Sep 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cdi-message">
+<ul>
+<li><strong>ID:</strong> AI-L10</li>
+<li><strong>Type:</strong> Building responsibly</li>
+<li><strong>Focus:</strong> Set data boundaries, examine uneven errors, and make review responsibilities explicit</li>
+<li><strong>Output:</strong> A prototype risk-and-oversight record</li>
+</ul>
+</div>
+<section id="responsible-use-is-part-of-the-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="responsible-use-is-part-of-the-workflow">Responsible use is part of the workflow</h2>
+<p>Chapter 09 asked whether the article-summary prototype helps reviewers and where it fails. This chapter asks what information the workflow may handle, whose work or interests its errors could affect, and who is responsible for decisions made with its output. These questions belong in the design and evaluation, not in a disclaimer added after the prototype is finished.</p>
+<p>Our continuing example drafts four fields about approved research articles. Even if the first demonstration uses public papers, future use might include unpublished manuscripts, licensed content, reviewer notes, or identifiable research information. The permitted inputs and access rules must therefore be defined for the actual setting, not inferred from an earlier demonstration.</p>
+</section>
+<section id="map-the-information-before-sending-it-anywhere" class="level2">
+<h2 class="anchored" data-anchor-id="map-the-information-before-sending-it-anywhere">Map the information before sending it anywhere</h2>
+<p>List the information the prototype receives, produces, and stores. For each item, identify its source, owner or custodian, permitted use, and retention plan.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Information</th>
+<th>Example</th>
+<th>Question to settle</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Source article</td>
+<td>Approved public paper or internal manuscript</td>
+<td>May it be processed by the chosen service?</td>
+</tr>
+<tr class="even">
+<td>Extracted passages</td>
+<td>Text with page and section markers</td>
+<td>May excerpts be indexed or retained?</td>
+</tr>
+<tr class="odd">
+<td>Prompts and responses</td>
+<td>Article text and four-field draft</td>
+<td>Are they logged, and who can access them?</td>
+</tr>
+<tr class="even">
+<td>Reviewer notes</td>
+<td>Corrections and approval decisions</td>
+<td>Do notes contain confidential assessments or names?</td>
+</tr>
+<tr class="odd">
+<td>Evaluation records</td>
+<td>Error labels and timing</td>
+<td>How long are they needed, and can identifiers be minimized?</td>
+</tr>
+</tbody>
+</table>
+<p>Do not place credentials, private manuscripts, or personal data into a hosted model simply because an interface accepts them. Check the service terms, organizational permissions, configuration, and actual data-handling requirements before use. A local model can reduce some external transfer but does not remove the need for access control, secure storage, or retention decisions.</p>
+</section>
+<section id="minimize-what-the-system-sees-and-keeps" class="level2">
+<h2 class="anchored" data-anchor-id="minimize-what-the-system-sees-and-keeps">Minimize what the system sees and keeps</h2>
+<p>Supply only the material required for the defined task. If the system summarizes one approved article, it should not have broad access to an entire drive. If a reviewer only needs four fields, the output need not include unrelated personal details found in the source. Preserve enough context to check claims, but avoid copying full source documents into every log when a controlled reference can suffice.</p>
+<p>For a pilot, a simple record may store article ID, passage IDs, model and prompt versions, the draft, reviewer corrections, and error categories. Decide whether source excerpts belong in the record and who may view them. Retention should match the purpose of evaluation and applicable permissions; there is no universal period that fits every project.</p>
+</section>
+<section id="bias-is-a-pattern-to-investigate" class="level2">
+<h2 class="anchored" data-anchor-id="bias-is-a-pattern-to-investigate">Bias is a pattern to investigate</h2>
+<p>A prototype can behave unevenly across article types, fields, authorship contexts, disciplines, languages, or document formats. The difference may arise from source availability, extraction, retrieval, model behavior, or reviewer practice. Do not use “bias” as a single unexplained label; identify the group or condition, the observed error, and its possible consequence.</p>
+<p>Suppose the prototype performs well on standard English journal articles but misses limitations in reports with different section conventions. Or suppose scanned articles have more unsupported claims than selectable-text articles. These are concrete patterns that a test set can expose. Whether a gap is acceptable depends on who relies on the summaries and what happens when a field is wrong or omitted.</p>
+<p>A practical subgroup record could include:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Condition</th>
+<th>Measure</th>
+<th>Interpretation to investigate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Selectable text versus scan</td>
+<td>Extraction errors and unsupported claims</td>
+<td>Does OCR create a predictable failure?</td>
+</tr>
+<tr class="even">
+<td>Standard versus unusual headings</td>
+<td>Retrieval coverage</td>
+<td>Does section lookup miss valid evidence?</td>
+</tr>
+<tr class="odd">
+<td>Short versus long articles</td>
+<td>Field completeness and reviewer time</td>
+<td>Is important context omitted?</td>
+</tr>
+<tr class="even">
+<td>Different disciplines or languages</td>
+<td>Source support and correction rate</td>
+<td>Does the workflow transfer to the intended scope?</td>
+</tr>
+</tbody>
+</table>
+<p>Do not interpret a difference from a handful of articles as a precise population estimate. Use it as a reason to inspect examples, expand the evaluation set, or narrow the prototype’s stated scope.</p>
+</section>
+<section id="human-oversight-needs-a-real-decision-point" class="level2">
+<h2 class="anchored" data-anchor-id="human-oversight-needs-a-real-decision-point">Human oversight needs a real decision point</h2>
+<p>“Human in the loop” has little value unless a person can see the source, recognize uncertainty, correct an output, and prevent an incorrect draft from being treated as final. Define what the reviewer must do before approving the article summary:</p>
+<ol type="1">
+<li>Confirm the correct article was selected and its text was extracted adequately.</li>
+<li>Check each substantive field against its cited passage and surrounding context.</li>
+<li>Inspect figures, tables, scans, or statistical claims when relevant.</li>
+<li>Correct omissions and overstatements, or mark unsupported content.</li>
+<li>Approve the final summary or reject the draft for further work.</li>
+</ol>
+<p>The interface or case sheet should make these actions possible. If the reviewer only sees polished prose without source locations, the design makes meaningful oversight harder. Record approval as a separate event from model generation.</p>
+</section>
+<section id="assign-responsibility-for-exceptions" class="level2">
+<h2 class="anchored" data-anchor-id="assign-responsibility-for-exceptions">Assign responsibility for exceptions</h2>
+<p>Specify what happens when the model cannot find evidence, the article is unreadable, a tool accesses the wrong document, or the reviewer disagrees with the draft. Some cases may be resolved by a second extraction attempt; others require manual completion. A model’s proposed answer should never silently become the authoritative record simply because the review queue is busy.</p>
+<p>For the article pilot, an exception policy might say:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Condition</th>
+<th>Prototype response</th>
+<th>Reviewer action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Field absent from supplied passages</td>
+<td>Mark unsupported</td>
+<td>Inspect article if needed; record final decision</td>
+</tr>
+<tr class="even">
+<td>Passage reference does not resolve</td>
+<td>Reject field</td>
+<td>Find correct evidence or remove claim</td>
+</tr>
+<tr class="odd">
+<td>OCR corrupts a number</td>
+<td>Flag page for review</td>
+<td>Read original page and correct value</td>
+</tr>
+<tr class="even">
+<td>Wrong article retrieved</td>
+<td>Stop the draft</td>
+<td>Correct document selection and rerun</td>
+</tr>
+<tr class="odd">
+<td>Claim affects a consequential decision</td>
+<td>Keep draft provisional</td>
+<td>Apply domain-specific review procedure</td>
+</tr>
+</tbody>
+</table>
+<p>The exact procedure should match the setting and user’s authority. In high-stakes settings, domain-specific safeguards and evidence requirements will exceed what this learning prototype establishes.</p>
+</section>
+<section id="protect-the-evaluation-process-too" class="level2">
+<h2 class="anchored" data-anchor-id="protect-the-evaluation-process-too">Protect the evaluation process too</h2>
+<p>Evaluation artifacts may contain confidential text or reviewer judgments. Use approved test articles, avoid unnecessary personal information, restrict who can access records, and document what was shared with each service. If a test case contains an intentionally misleading instruction, do not include real credentials or live external actions. Keep examples used for prompt development separate from reserved evaluation cases.</p>
+<p>If reviewers vary in how they interpret a field, discuss the definition before treating disagreement as model error. A reviewer-facing protocol should state whether “stated limitations” means limitations explicitly named by the authors or any limitation the reviewer can infer. The two are different tasks with different evidence standards.</p>
+</section>
+<section id="practice-complete-a-risk-and-oversight-record" class="level2">
+<h2 class="anchored" data-anchor-id="practice-complete-a-risk-and-oversight-record">Practice: complete a risk-and-oversight record</h2>
+<p>Create a short record with these headings:</p>
+<ol type="1">
+<li><strong>Scope:</strong> Who uses the prototype, on which approved inputs, for which output?</li>
+<li><strong>Data:</strong> What is sent to a model or service, stored, and deleted?</li>
+<li><strong>Access:</strong> Who can select articles, view drafts, and approve summaries?</li>
+<li><strong>Uneven performance:</strong> Which formats, article types, and groups need separate checks?</li>
+<li><strong>Review:</strong> What must a person verify, and how is approval recorded?</li>
+<li><strong>Exceptions:</strong> When does the system abstain, stop, or escalate?</li>
+<li><strong>Evidence:</strong> What results from Chapter 09 support continued testing?</li>
+</ol>
+<p>Write an explicit boundary for the current pilot. For example: “This prototype accepts only approved, non-confidential articles with readable text. Every draft is provisional until a reviewer checks all four fields against the original article.” Revise that boundary only after collecting evidence and checking permissions for the expanded scope.</p>
+</section>
+<section id="chapter-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-checklist">Chapter checklist</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">I can identify what data the prototype sends, stores, and exposes.</label></li>
+<li><label><input type="checkbox">I have checked whether the selected documents are permitted for this workflow.</label></li>
+<li><label><input type="checkbox">I have named conditions under which errors may be uneven or consequential.</label></li>
+<li><label><input type="checkbox">A reviewer can inspect evidence, correct the draft, and approve or reject it.</label></li>
+<li><label><input type="checkbox">The prototype has a defined response to missing evidence, unreadable sources, and wrong-document retrieval.</label></li>
+</ul>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking ahead</h2>
+<p>Chapter 11 develops <strong>reproducible AI workflows</strong>. It shows how to preserve source identifiers, configurations, prompts, outputs, reviews, and evaluation decisions so a prototype can be inspected and rerun.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./09-evaluation-and-failure-analysis.html" class="pagination-link" aria-label="Evaluation and Failure Analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Evaluation and Failure Analysis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./11-reproducible-ai-workflows.html" class="pagination-link" aria-label="Reproducible AI Workflows">
+        <span class="nav-page-text"><span class="chapter-title">Reproducible AI Workflows</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
