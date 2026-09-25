@@ -1,31 +1,134 @@
----
-title: "Images and Multimodal AI"
----
+# Image and Multimodal AI {#sec-image-and-multimodal-ai}
 
-# Learning outcome
+::: {.cdi-message}
+- **ID:** AI-L06
+- **Type:** Modern AI
+- **Focus:** Understand what image and multimodal systems can extract, describe, and generate—and how to verify their outputs
+- **Output:** A modality and evidence plan for the prototype
+:::
 
-By the end of this chapter, you should be able to explain the central ideas of images and multimodal ai and apply them to a small example.
+## When the input is more than text
 
-# Why this matters
+Chapter 05 examined language models that draft or transform text. Many real tasks also involve photographs, scans, plots, diagrams, tables, audio, or video. A multimodal system can process or produce more than one kind of information, but the ability to accept a file does not ensure that it reads every detail correctly.
 
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+Consider our article-summary prototype. The article may contain selectable text, a result shown only in a figure, or scanned pages that require text recognition. If the prototype ignores these materials, its summary may omit key evidence. If it interprets them carelessly, it may report the wrong result with misplaced confidence. The workflow must record what was actually supplied and what could be checked.
 
-# Core ideas
+## Define the input and output separately
 
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+The words *image AI* and *multimodal AI* cover several different tasks:
 
-# Worked example
+| Task | Example input | Example output | Main verification question |
+|---|---|---|---|
+| Image classification | Photograph | Label from a defined set | Does the label match the pictured subject and task definition? |
+| Object detection | Photograph or frame | Locations and labels | Are the objects present and correctly located? |
+| Optical character recognition (OCR) | Scan or photographed page | Extracted text | Were words, numbers, units, and reading order preserved? |
+| Visual question answering | Chart or diagram plus a question | Text answer | Does the visual evidence support the answer? |
+| Image description | Photograph or figure | Caption or alt text | Does the description distinguish visible facts from guesses? |
+| Image generation | Text instruction or reference image | New image | Does it meet the brief without misrepresenting evidence? |
 
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/06-*.py and describe exact commands here. -->
+A system may combine these tasks. For example, answering a question about a scanned plot requires reading axes and labels, interpreting marks, and expressing the result in text. Evaluate those stages separately when possible.
 
-# Check your understanding
+## Representations and visual evidence
 
-<!-- Include 2–3 short questions or a small decision exercise. -->
+Image systems turn visual input into numerical representations that a model can process. Some systems work with an entire image; others use patches, crops, or selected regions. A multimodal model can relate these representations to text instructions and return an answer or description.
 
-# Try it yourself
+The model's answer remains an interpretation of the supplied pixels. Small text, low resolution, cropped axes, color legends, overlapping points, and unfamiliar notation can all affect that interpretation. A model can also draw on learned conventions to guess what a chart usually shows, even when the specific chart shows something different.
 
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+Ask a concrete question: **Which part of the source establishes this claim?** If the source does not support the claim at readable quality, the appropriate output is uncertainty or a request for a better source.
 
-# Key takeaways
+## Scanned documents and OCR
 
-<!-- Summarize the actionable lessons. -->
+A PDF is a container, not a guarantee that its text can be copied. A scanned article may consist of page images. OCR can turn visible characters into text, but errors in digits, minus signs, decimal points, Greek letters, units, superscripts, and column order can change scientific meaning.
+
+Before summarizing a scanned article:
+
+1. Identify whether pages contain selectable text or only images.
+2. Extract text or apply OCR using a permitted method.
+3. Inspect representative pages, including tables and pages with unusual layouts.
+4. Keep page references so a reviewer can return to the original.
+5. Mark unreadable or ambiguous portions instead of guessing.
+
+For the article example, “0.05” misread as “0.5” is not a small formatting issue. Any result that depends on a difficult scan should be checked directly against the page image.
+
+## Figures and tables require their own checks
+
+A figure can show a trend while its caption limits the interpretation. A chart may show group means, confidence intervals, individual observations, or model estimates. Without reading the axes, legend, caption, and surrounding text, a visual summary can overstate what the figure establishes.
+
+Use the following inspection order for a figure or table:
+
+- Identify the figure or table number and its caption.
+- Read axes, column names, units, group definitions, and legend.
+- Distinguish values shown directly from interpretations in the article text.
+- Look for uncertainty intervals, sample sizes, exclusions, and footnotes.
+- Record the specific claim being extracted and its location.
+
+If precise numerical values are needed, prefer an accessible source table or underlying data where available. Estimating a value from the height of a bar can be appropriate for a rough visual description, but should not be presented as an exact reported number.
+
+## Continue the article-summary example
+
+Suppose the article's main finding appears in a results paragraph and a figure. A reviewer may reasonably want both: the authors' stated conclusion and a check that the figure is consistent with it.
+
+| Source component | What the prototype can do | What the reviewer must inspect |
+|---|---|---|
+| Extracted article text | Draft the study aim and design | Whether extraction preserved headings and meaning |
+| Results figure | Describe visible comparisons | Axes, scale, groups, uncertainty, and caption |
+| Data table | Copy requested values | Exact cells, units, footnotes, and missing values |
+| Discussion section | Identify stated limitations | Whether limitations are attributed to the authors |
+
+The draft should distinguish “the authors report” from “the figure appears to show.” It should not turn a visual association into a causal claim. If a figure cannot be read reliably, the prototype can flag it for manual review while still completing fields supported by readable text.
+
+## Images used as input versus images generated as output
+
+A generated illustration may help explain an idea or communicate a proposed design. It is not evidence that a pictured person, event, experiment, or observation exists. The same distinction matters when generating a chart: an attractive chart is only meaningful if its labels, numbers, and relationships come from verified data.
+
+For research communication, keep the source of each visual clear. Use actual source figures and data when reporting findings, subject to permission and attribution requirements. Use generated images for clearly identified conceptual illustrations when they serve the reader. Do not rely on image generation for exact labels, data relationships, or scientific measurements.
+
+## A practical modality plan
+
+Before adding a visual model, write down the pathway for each input:
+
+| Input | Proposed handling | Evidence retained | Failure response |
+|---|---|---|---|
+| Selectable article text | Extract and preserve section boundaries | Article and section reference | Flag extraction gaps |
+| Scanned page | OCR and page-level inspection | Original page number and image | Flag unreadable content |
+| Figure | Read caption, axes, and marked values | Figure number and location | Ask for review if ambiguous |
+| Table | Parse or transcribe relevant cells | Table number, row, column, and units | Flag uncertain cells |
+
+Include only modalities that solve a real problem in the first prototype. If the articles selected for the initial test are text-only, a text workflow may be the sensible first version. Add figures or scans when the use case needs them and you can evaluate them properly.
+
+## Build evaluation cases that expose visual errors
+
+A representative visual test set should contain more than clear examples. For an article-review prototype, include:
+
+1. a legible figure with an unambiguous caption;
+2. a figure whose axes or legend change the apparent interpretation;
+3. a table with a footnote or differing units;
+4. a scanned page with text-recognition errors; and
+5. an image too poor to support a confident answer.
+
+Record the expected claim and source location before examining the model output. Mark an abstention or review request as correct when the evidence is insufficient. Evaluate whether the system identifies the right figure or page, reads it correctly, and respects any limitation in the caption or surrounding text.
+
+## Practice: write a modality and evidence plan
+
+For your prototype, answer these questions:
+
+- Which inputs are text, images, audio, or a mixture? Are all of them necessary?
+- How will each input be converted into a form the system can use?
+- Which important details could be lost during extraction or resizing?
+- What source location will accompany each output claim?
+- Which claims can be checked mechanically, and which need a person?
+- When should the system say that it cannot read or interpret the input?
+
+Write one test case in which the content is legible and one in which it is not. Describe the expected behavior in both cases. This simple exercise prevents “file accepted” from being confused with “evidence understood.”
+
+## Chapter checklist
+
+- [ ] I can name the specific visual or multimodal task my prototype would perform.
+- [ ] I understand that OCR, figure interpretation, and image generation require different checks.
+- [ ] I have identified details that extraction or low image quality could distort.
+- [ ] I can connect an output claim to a specific page, figure, table, or passage.
+- [ ] I have an evaluation case where the correct response is uncertainty or human review.
+
+## Looking ahead
+
+Chapter 07 develops **prompting and structured outputs**. It shows how to specify a narrow task, request a predictable response shape, and validate what a model returns while preserving evidence checks for its content.

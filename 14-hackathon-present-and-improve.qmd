@@ -1,31 +1,132 @@
----
-title: "Hackathon: Present and Improve"
----
+# AI Hackathon: Demonstrate, Decide, and Improve {#sec-hackathon-demo-and-iteration}
 
-# Learning outcome
+::: {.cdi-message}
+- **ID:** AI-L14
+- **Type:** Guided hackathon, stage 3 of 3
+- **Focus:** Present the tested workflow honestly and choose a justified next iteration
+- **Output:** A short demonstration, results summary, failure review, and next-step decision
+:::
 
-By the end of this chapter, you should be able to present evidence, limitations and a concrete improvement.
+## Show the work and the evidence
 
-# Why this matters
+Chapter 12 defined the problem and baseline. Chapter 13 built the article-summary prototype and tested reserved cases. The final hackathon stage is to explain what the prototype actually does, how well it performed, where it failed, and what should happen next.
 
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+A demonstration is useful when an audience can see the defined task, the source, the provisional draft, the checks, and the reviewer's final decision. One polished output without evaluation does not establish usefulness. Present one ordinary case and one revealing difficult case, including a failure or an appropriate abstention.
 
-# Core ideas
+## Tell the story in a reviewable order
 
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+A concise demonstration can follow this sequence:
 
-# Worked example
+1. **User and task:** A reviewer prepares four fields for one approved research article.
+2. **Current process:** Show the manual template and the baseline completion effort.
+3. **Input:** Show the approved article ID and readable source passages.
+4. **Prototype:** Run or replay the frozen workflow and show its provisional draft.
+5. **Checks:** Display structural validation and inspect a cited passage in the original.
+6. **Difficult case:** Show a missing field, qualified finding, or extraction problem.
+7. **Results:** Summarize the reserved-case comparison and reviewer corrections.
+8. **Decision:** State whether to continue, narrow, revise, or stop this approach.
 
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/14-*.py and describe exact commands here. -->
+A recorded run can be used if a live service is unreliable or incurs avoidable cost. Label it as a replay and show the run configuration and source trace. Do not present a corrected output as the raw model output.
 
-# Check your understanding
+## Use a compact evidence table
 
-<!-- Include 2–3 short questions or a small decision exercise. -->
+The audience should be able to see the denominator, not just a percentage. A results sheet can have this shape:
 
-# Try it yourself
+| Measure | Manual baseline | Assisted workflow | Interpretation |
+|---|---:|---:|---|
+| Articles reviewed | [count] | [count] | State whether cases were matched |
+| Fields completed or marked unsupported | [count] | [count] | Report coverage |
+| Supported substantive draft fields | Not applicable | [count / assessed claims] | Report source support |
+| Critical errors before review | [count] | [count] | Describe severity and correction |
+| Total reviewer time | [minutes] | [minutes] | Include verification and retries |
+| Cases requiring manual completion | [count] | [count] | Show the remaining work |
 
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+Fill the placeholders from actual run records. The baseline can have reviewer errors too; review both arms under comparable criteria. If the pilot is small, show individual case outcomes alongside any aggregate. Avoid a numerical precision the evidence cannot support.
 
-# Key takeaways
+## Explain one success and one failure
 
-<!-- Summarize the actionable lessons. -->
+Choose examples that reveal the workflow rather than flatter it. For an ordinary article, demonstrate that the draft names the study design and points to the Methods passage, and show the reviewer confirming that passage. For a difficult article, show a case where retrieval missed a limitation or the model overstated a qualified finding. Trace the issue through extraction, retrieval, generation, validation, and review.
+
+A useful failure report is specific:
+
+> The relevant qualification appeared in Results-04 and was supplied to the model. The draft omitted “may” and stated a causal conclusion. Structural validation passed because the field and reference were present. The reviewer corrected the claim. The next change targets preservation of uncertainty language and will be retested on reserved articles.
+
+This says more than “the AI made a mistake.” It identifies the stage, consequence, control that caught it, and hypothesis for an improvement.
+
+## Treat abstention as a tested behavior
+
+A prototype that says “not established in the supplied text” can behave correctly when evidence is absent. Show whether the reviewer could then inspect the full article or finish the field manually. Also report false abstentions: cases where the evidence was available but the system failed to use it. Evaluate the balance between unsupported claims and lost usefulness rather than rewarding a system for refusing every difficult case.
+
+## Make a decision with explicit options
+
+At the end of the pilot, select one decision and give evidence for it:
+
+| Decision | When it fits | Example next action |
+|---|---|---|
+| Continue within scope | Support, review effort, and error pattern meet criteria | Expand the reserved case set |
+| Revise one stage | A specific fixable failure dominates | Improve extraction or retrieval and retest |
+| Narrow scope | Certain formats or tasks fail consistently | Limit first use to readable text articles |
+| Use the simpler baseline | AI adds cost or verification time without useful gain | Keep the manual or search-assisted template |
+| Stop pending permission or review | Inputs or consequences exceed current authorization | Resolve data and oversight requirements |
+
+A good hackathon may lead to a no-go decision for the chosen AI method. That result prevents wasted development and clarifies the user's actual need.
+
+## Plan one controlled iteration
+
+If you continue, choose a change tied to the error log. Write down:
+
+- the observed failure and its frequency or severity;
+- the proposed change and the stage it affects;
+- the expected improvement and possible trade-off;
+- the development cases used while making the change; and
+- fresh or still-reserved cases for the next comparison.
+
+For example, expanding passage context might reduce missed qualifications but increase irrelevant material and request cost. Test both effects. If a change alters the permitted data, external actions, or reviewer responsibility, revisit the Chapter 10 risk-and-oversight record before running it.
+
+## Package the hackathon result
+
+A small, reviewable package includes:
+
+1. The Chapter 12 problem brief and permission boundary.
+2. The baseline template and evaluation criteria.
+3. Workflow code or documented procedure and configuration.
+4. Prompt, output contract, and model identifier.
+5. Approved example references and separate development and reserved-case records.
+6. Raw provisional outputs, validation, reviewer corrections, and timings.
+7. A results summary with limitations and a next-step decision.
+
+Share only material you are allowed to share. Publicly distributed demonstrations can use a permitted example article or a clearly labeled synthetic case, while restricted articles and evaluation records remain in their approved location. A synthetic example can show how the interface works; it cannot substitute for evaluation on the intended articles.
+
+## Communicate limitations plainly
+
+A brief conclusion should state where the results apply. For example:
+
+> We tested this version on approved, readable articles using four summary fields and mandatory reviewer checks. The pilot found [observed result]. It struggled with [specific failure]. These results do not establish performance on scans, unpublished manuscripts, other disciplines, or unreviewed summaries. Our next step is [decision and test].
+
+Replace the bracketed phrases with measured findings. Do not call the prototype production-ready because it ran successfully in a demonstration. Chapter 15 describes additional work needed to move toward dependable use.
+
+## Practice: present the evidence
+
+Prepare a five-minute demonstration and a one-page decision memo. The memo should contain:
+
+- the user, task, and scope;
+- what the prototype and baseline each did;
+- the size and composition of the reserved case set;
+- results for support, coverage, critical errors, and total reviewer effort;
+- one traced success and one traced failure;
+- data and human-review boundaries; and
+- a clear next decision with its evidence.
+
+Invite a reviewer to ask: “Where did this claim come from?” and “What happens when the source does not answer?” If the demonstration cannot answer either question, improve the evidence path before expanding the prototype.
+
+## Chapter checklist
+
+- [ ] I can demonstrate an input, provisional output, source check, and reviewer decision.
+- [ ] My results show counts and denominators alongside any rates.
+- [ ] I have presented a meaningful failure or abstention and its cause.
+- [ ] I have stated the pilot's scope and limitations without overstating readiness.
+- [ ] My next decision follows from the measured results and permissions.
+
+## Looking ahead
+
+Chapter 15 considers **the path from prototype to practical application**. It identifies the stronger testing, operating controls, documentation, and ownership required before a promising hackathon result can be used more widely.

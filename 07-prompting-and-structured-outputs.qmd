@@ -1,31 +1,175 @@
----
-title: "Prompting and Structured Outputs"
----
+# Prompting and Structured Outputs {#sec-prompting-and-structured-outputs}
 
-# Learning outcome
+::: {.cdi-message}
+- **ID:** AI-L07
+- **Type:** Modern AI
+- **Focus:** Specify a narrow model task, request usable outputs, and check results
+- **Output:** A versioned prompt, an output contract, and test cases
+:::
 
-By the end of this chapter, you should be able to explain the central ideas of prompting and structured outputs and apply them to a small example.
+## Give the model a defined job
 
-# Why this matters
+Chapters 05 and 06 showed that a model can draft from text and describe visual material, but an accepted input and a fluent answer do not establish that it performed the intended task. A prompt is the material supplied to a model for a request: instructions, relevant context, examples, and the immediate question. Good prompting begins with the user task and evidence requirements established in Chapter 01.
 
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+For our article-summary prototype, the task is specific: draft four reviewer-facing fields from an approved article, provide a source location for each substantive claim, and identify missing evidence. Prompt design makes those expectations explicit. Evaluation determines whether the result satisfies them.
 
-# Core ideas
+## Specify task, source, boundaries, and output
 
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+A useful request answers four questions:
 
-# Worked example
+1. **Task:** What should the system do for the user?
+2. **Source:** Which information is it allowed to use?
+3. **Boundary:** What should happen when the source is unclear or silent?
+4. **Output:** What shape should the response have?
 
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/07-*.py and describe exact commands here. -->
+For example:
 
-# Check your understanding
+> Draft four article-summary fields for a human reviewer: study aim, study design, main finding, and stated limitations. Use only the supplied article text. Include a section or page reference with each field. If the supplied text does not establish a field, mark it as unsupported and explain what is missing. Do not invent article details. Return the four fields in the specified format.
 
-<!-- Include 2–3 short questions or a small decision exercise. -->
+This is a task specification, not a guarantee. A model might still invent a page reference or misread a result. Checks must address the content as well as the format.
 
-# Try it yourself
+## Separate instructions from untrusted source material
 
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+An article is evidence for the summary, not a source of instructions about how the assistant should behave. A document might contain quoted commands, irrelevant text, or even deliberate instructions telling an AI system to ignore its task. Treat these as document content. The application's task rules and permissions should come from its controlled configuration; supplied articles and retrieved passages provide facts to inspect.
 
-# Key takeaways
+A practical prompt can label its parts:
 
-<!-- Summarize the actionable lessons. -->
+```text
+TASK
+Draft the four fields for reviewer verification using only the article excerpt.
+Mark missing information as unsupported. Cite the passage identifier.
+
+ARTICLE EXCERPT
+[Approved text with section and passage identifiers]
+
+OUTPUT
+Return the four required fields in the agreed structure.
+```
+
+Clear labels help the reader and developer inspect what was supplied. They do not, by themselves, create a secure boundary. If retrieved content can influence tools or access to other data, the application also needs appropriate permission and tool controls. Chapter 08 examines those workflows.
+
+## Choose a response shape that fits the workflow
+
+Free-form paragraphs can be pleasant to read but difficult to check automatically. A small, explicit output structure makes missing fields and source references visible.
+
+For the article example, a conceptual response could be:
+
+```json
+{
+  "study_aim": {
+    "text": "The stated aim goes here.",
+    "source": "Introduction, passage 2",
+    "status": "supported"
+  },
+  "study_design": {
+    "text": "The design goes here.",
+    "source": "Methods, passage 1",
+    "status": "supported"
+  },
+  "main_finding": {
+    "text": "The main finding goes here.",
+    "source": "Results, passage 4",
+    "status": "supported"
+  },
+  "stated_limitations": {
+    "text": null,
+    "source": null,
+    "status": "unsupported"
+  }
+}
+```
+
+The example shows the *shape* of an output, not a finding from a real article. In an actual implementation, give every passage a stable identifier and define allowed statuses precisely. A null value indicates that evidence was not found in the supplied material; it does not prove the full article lacks that information.
+
+## Validate the structure independently
+
+A program can check that the response parses and contains exactly the expected fields. It can check types, permitted status values, required references for supported claims, and length limits. If a response fails these checks, ask for a correction or route it for review before presenting it as a completed draft.
+
+A small illustrative Python check might be:
+
+```python
+REQUIRED_FIELDS = {
+    "study_aim",
+    "study_design",
+    "main_finding",
+    "stated_limitations",
+}
+ALLOWED_STATUS = {"supported", "unsupported"}
+
+
+def validate_draft(draft):
+    if not isinstance(draft, dict) or set(draft) != REQUIRED_FIELDS:
+        raise ValueError("Unexpected article-summary fields")
+    for name, item in draft.items():
+        if not isinstance(item, dict) or set(item) != {"text", "source", "status"}:
+            raise ValueError(f"Invalid field structure: {name}")
+        if item["status"] not in ALLOWED_STATUS:
+            raise ValueError(f"Invalid status: {name}")
+        if item["status"] == "supported":
+            if not isinstance(item["text"], str) or not item["text"].strip():
+                raise ValueError(f"Missing supported text: {name}")
+            if not isinstance(item["source"], str) or not item["source"].strip():
+                raise ValueError(f"Missing source reference: {name}")
+        elif item["text"] is not None or item["source"] is not None:
+            raise ValueError(f"Unsupported field must be empty: {name}")
+```
+
+This is illustrative chapter code, not a complete executable program. It checks whether the response follows the contract. It cannot determine whether “Results, passage 4” exists or supports the claim. That second question requires comparing the output with the original article or an independently prepared answer.
+
+## Examples can clarify a rule
+
+A short example can show the expected behavior for an absent field:
+
+```text
+Source excerpt: The Methods describe the study design. No limitations
+section is included in the provided excerpt.
+Expected output for stated_limitations:
+{"text": null, "source": null, "status": "unsupported"}
+```
+
+Examples should be representative and should avoid teaching the model an accidental shortcut. A single example of a missing limitations section does not mean all articles lack one. Keep the final evaluation cases separate from examples used to develop the prompt.
+
+## Revisions should answer observed failures
+
+A common temptation is to lengthen the prompt every time one response disappoints. Instead, log the failure and identify its cause:
+
+| Observed failure | Possible cause | Focused next step |
+|---|---|---|
+| Missing field | Output contract unclear or unchecked | Enforce field validation |
+| Invented page number | Source lacks stable page mapping | Assign passage identifiers before generation |
+| Wrong finding | Relevant section omitted or misread | Inspect extraction and source selection |
+| Conclusion overstated | Source qualification ignored | Add a targeted instruction and test qualified cases |
+| Article instruction followed | Source treated as task authority | Strengthen application boundaries and test adversarial text |
+
+Change one component at a time when possible and rerun the same reserved cases. A better-sounding prompt is not evidence of an improved workflow until it performs better on the defined measures.
+
+## Costs, length, and uncertainty
+
+Instructions and source material consume input capacity and may affect cost and latency. Extra examples can help clarify a task, but they also enlarge the request. Choose only what the model needs to answer and what the evaluator needs to trace the answer.
+
+Asking a model to state that it is “confident” does not turn its self-assessment into a calibrated probability. For consequential decisions, use observable checks: source support, comparison with reviewed cases, error counts, and a rule for human review. When the evidence is incomplete, make unsupported status and escalation part of the output contract.
+
+## Practice: prepare a prompt and tests
+
+Create a first version of your prototype's prompt:
+
+1. Name the user task and permitted source.
+2. State the output fields and allowed status values.
+3. Define what to do when evidence is missing or ambiguous.
+4. Identify any source content that must be treated as data, not instructions.
+5. Provide one short formatting example if it clarifies the contract.
+6. Write a structural validator or a manual checklist for the output.
+
+Then prepare at least four reserved cases: a straightforward source, an absent field, a qualified or contradictory statement, and a source containing an irrelevant instruction. Record what correct behavior looks like before trying the prompt. Save a version identifier for the prompt and the cases used to evaluate it.
+
+## Chapter checklist
+
+- [ ] My prompt states the task, allowed source, missing-evidence behavior, and output shape.
+- [ ] I treat document text as evidence rather than application instructions.
+- [ ] I can distinguish a valid structure from a supported claim.
+- [ ] I have reserved cases for omissions, qualifications, and misleading source text.
+- [ ] I will compare prompt revisions using the same explicit criteria.
+
+## Looking ahead
+
+Chapter 08 connects models to **retrieval and tools**. It explains how external information reaches a model, how actions differ from reading, and how to check the complete workflow rather than only the generated response.

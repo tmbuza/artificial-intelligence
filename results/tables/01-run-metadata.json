@@ -1,0 +1,12 @@
+{
+  "chapter": "AI-001",
+  "data": "fictional policies and synthetic questions",
+  "method": "deterministic whole-word keyword routing; no trained model",
+  "python_version": "3.12.6",
+  "matplotlib_version": "3.11.2",
+  "sha256": {
+    "data/reference/01-course-policies.json": "1daf55ba8f632c578107d2078f967f95c1fa7b1f661af612c8a0661e3746543e",
+    "data/reference/01-framing-cases.csv": "d53e2151194ed3cb1858ddbaee703cbea5628a2a13ebf642d41e0a38a1b11093",
+    "scripts/python/01-ai-problem-framing.py": "65cc4269205a62e550a524733861b5a5d99a71cbf6c97e5af0bdb4780b781740"
+  }
+}

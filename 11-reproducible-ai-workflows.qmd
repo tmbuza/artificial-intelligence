@@ -1,31 +1,143 @@
----
-title: "Reproducible AI Workflows"
----
+# Reproducible AI Workflows {#sec-reproducible-ai-workflows}
 
-# Learning outcome
+::: {.cdi-message}
+- **ID:** AI-L11
+- **Type:** Building responsibly
+- **Focus:** Record the inputs, configurations, decisions, and evidence needed to inspect and repeat an AI prototype
+- **Output:** A run record and a reproducibility checklist for the article-summary workflow
+:::
 
-By the end of this chapter, you should be able to explain the central ideas of reproducible ai workflows and apply them to a small example.
+## Make the prototype inspectable
 
-# Why this matters
+Chapter 10 established data boundaries and human review. This chapter turns those commitments into a workflow another authorized person can inspect. If a summary changes, you should be able to identify the article version, extracted passages, retrieval configuration, prompt, model, validation result, and review decision involved.
 
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+Reproducibility does not promise that a hosted generative model will return identical words every time. It means the project preserves enough information to explain what was run, compare outcomes under stated conditions, and detect when a component changed. Exact repeatability may depend on access to the same model version, settings, service behavior, and source materials.
 
-# Core ideas
+## Identify the complete run
 
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+A *run* is one attempt to process a defined input through a defined version of the workflow. Give each run a unique identifier. Record at least:
 
-# Worked example
+| Record item | Example content | Why it matters |
+|---|---|---|
+| Run ID and time | `run-2026-09-25-001`, UTC timestamp | Connects outputs and reviews |
+| Source identity | Approved article ID and source version | Prevents wrong-document comparisons |
+| Extraction | Method, page count, warnings | Explains missing or damaged text |
+| Retrieval | Index or passage-set version and settings | Shows which evidence was available |
+| Prompt | Template version and filled task variables | Distinguishes instruction changes |
+| Model | Provider or local model identifier and available version | Exposes model changes |
+| Generation settings | Relevant settings and limits | Supports comparison across runs |
+| Validation | Parse result and reference checks | Identifies rejected outputs |
+| Human review | Corrections, decision, reviewer role | Separates drafts from approved summaries |
 
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/11-*.py and describe exact commands here. -->
+Do not save private credentials or unrestricted document copies merely to make a log detailed. Chapter 10's access and retention rules still apply.
 
-# Check your understanding
+## Separate source, configuration, and generated results
 
-<!-- Include 2–3 short questions or a small decision exercise. -->
+A small repository can keep program code, reusable prompt templates, evaluation definitions, and generated outputs in distinct locations:
 
-# Try it yourself
+```text
+.
+├── config/
+│   └── article-summary.example.yml
+├── prompts/
+│   └── article-summary-v1.txt
+├── scripts/
+│   ├── bash/
+│   └── python/
+├── data/
+│   ├── reference/
+│   └── approved/
+├── results/
+│   ├── tables/
+│   └── runs/
+└── README.md
+```
 
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+This is an illustrative layout, not a requirement to commit sensitive articles. The `approved/` directory may be local, access-controlled, or represented by references to another authorized location. Use repository-specific rules for ignored files and generated artifacts. The `.qmd` guide examples remain non-executable; complete programs, when developed, belong in `scripts/python/`, with Bash wrappers in `scripts/bash/` where useful.
 
-# Key takeaways
+## Keep prompts and output contracts versioned
 
-<!-- Summarize the actionable lessons. -->
+Store a prompt template in a file rather than relying on an unrecorded message copied into a chat window. Record the output schema and validation rules with it. Give meaningful versions to changes that alter the task, evidence policy, or result structure.
+
+For example, `article-summary-v1` may require four fields and passage IDs. A later version might add a separate flag for ambiguous evidence. Record what changed and why. Do not merge results from both versions under a single label when evaluating improvement.
+
+A simple run configuration might be:
+
+```yaml
+workflow_id: article-summary-v1
+prompt_file: prompts/article-summary-v1.txt
+required_fields:
+  - study_aim
+  - study_design
+  - main_finding
+  - stated_limitations
+source_policy: approved_article_only
+review_required: true
+```
+
+Actual provider settings, paths, and retention policies should be set for the project. This configuration illustrates the decisions that should be visible, not a ready-to-run application.
+
+## Preserve the evidence path
+
+For each generated field, retain the passage IDs supplied to the model, the reference returned by the model, and the reviewer's final judgment. This lets you distinguish a missing passage from a model that ignored a correct passage.
+
+A compact review record could include:
+
+| run_id | field | cited_passage | review_result | correction |
+|---|---|---|---|---|
+| run-001 | study_design | Methods-02 | supported | none |
+| run-001 | main_finding | Results-04 | overstatement | Restore qualification |
+| run-001 | stated_limitations | — | correctly unsupported | none |
+
+These are illustrative entries. If a field draws on a figure or table, preserve that location and note which visual check was performed. Protect the underlying article and reviewer notes according to the approved data plan.
+
+## Use a staged, checkable pipeline
+
+Keep the workflow's stages visible:
+
+1. **Intake:** confirm the article is approved and assign its identifier.
+2. **Extraction:** create text or visual references; record warnings.
+3. **Retrieval:** select passages and save the candidate identifiers.
+4. **Generation:** record the prompt version, model identifier, and draft.
+5. **Validation:** check output structure and whether references resolve.
+6. **Review:** compare claims with the original, correct fields, and record approval.
+7. **Evaluation:** add the run to the appropriate development or reserved test set.
+
+A failed stage should not silently advance as a success. For instance, if article extraction omits pages, mark the run incomplete or route it to manual review rather than generating a confident summary from partial text.
+
+## Track changes by reason
+
+When evaluation exposes a problem, record the observed failure, the proposed change, and the cases used to test it. A change log entry may read:
+
+> Run 014 overstated the main finding despite a qualifying phrase in the Results passage. Version 2 adds an instruction to preserve uncertainty language. Retest on the original case and on reserved articles with qualified findings.
+
+If retrieval, prompt, model, and output schema all change at once, you may improve the workflow but struggle to identify why. Make focused changes when feasible; document combined changes when they are necessary. Keep comparisons fair by reporting case-set changes and reviewer effort.
+
+## Reproducibility and changing external systems
+
+Hosted models and services may change their behavior or availability. Record the exact identifier exposed by the service, relevant settings, and date of use. If a service does not provide a fixed version or deterministic behavior, state that limitation. Re-run a small stable set after material changes and compare error categories, not just wording.
+
+Local software also changes. Maintain a documented Python environment, dependency specification, and commands for preparing data and running evaluation. Avoid embedding API keys in source files or command transcripts. Never assume that a recorded random seed alone makes the complete external workflow deterministic.
+
+## Practice: design one run record
+
+Create a template with fields for source ID, permission status, extraction warning, candidate passage IDs, prompt and model versions, generated draft, validation result, reviewer corrections, review status, timing, and storage location. Then trace one article from intake to review:
+
+- Can another authorized reviewer locate the original evidence?
+- Can they tell whether a field was drafted from supplied text or guessed?
+- Can they identify which component changed between two runs?
+- Can they reproduce the evaluation method without exposing restricted content?
+
+If any answer is no, revise the run record or workflow boundary before expanding the prototype.
+
+## Chapter checklist
+
+- [ ] Every run has a source identifier and recorded configuration.
+- [ ] Prompt, model, retrieval, and schema versions are distinguishable.
+- [ ] Generated drafts are separate from reviewer-approved summaries.
+- [ ] Extraction and validation failures remain visible.
+- [ ] The record supports comparison while respecting access and retention limits.
+
+## Looking ahead
+
+Chapter 12 begins the **AI Hackathon** sequence. You will choose a tightly scoped problem, set a baseline and success criteria, and prepare the materials for a focused prototype build.

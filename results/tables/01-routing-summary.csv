@@ -1,0 +1,6 @@
+family,total,correct,automatic,wrong_automatic,review,unnecessary_review,correct_rate,review_rate,wrong_automatic_rate
+Overall,16,10,6,2,10,4,0.625,0.625,0.3333333333333333
+Direct,4,4,4,0,0,0,1.0,0.0,0.0
+Paraphrase,4,0,0,0,4,4,0.0,1.0,NA
+Multi-topic,4,4,0,0,4,0,1.0,1.0,NA
+Outside scope,4,2,2,2,2,0,0.5,0.5,1.0

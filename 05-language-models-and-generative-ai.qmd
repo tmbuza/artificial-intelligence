@@ -1,31 +1,121 @@
----
-title: "Language Models and Generative AI"
----
+# Language Models and Generative AI {#sec-language-models-and-generative-ai}
 
-# Learning outcome
+::: {.cdi-message}
+- **ID:** AI-L05
+- **Type:** Modern AI
+- **Focus:** Understand how language models generate text and identify suitable uses and failure modes
+- **Output:** A generation-task specification and initial evaluation cases
+:::
 
-By the end of this chapter, you should be able to explain the central ideas of language models and generative ai and apply them to a small example.
+## From neural networks to generated content
 
-# Why this matters
+Chapter 04 explained how neural networks learn adjustable representations and why fluent output needs independent checks. This chapter focuses on language models: systems that use a text context to generate or transform text. They can draft, summarize, extract, classify, translate, and help organize information. Their flexibility makes them useful in a prototype, but the same flexibility makes the boundaries of a task important.
 
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+For the continuing example, a reviewer wants a draft with four fields about an approved research article: study aim, study design, main finding, and stated limitations. Each field needs a passage reference. The goal is to help the reviewer inspect and complete the summary, not to let fluent prose substitute for the article.
 
-# Core ideas
+## What a language model receives and produces
 
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+A language model receives a sequence of tokens representing its available context. Tokens may correspond to whole words, pieces of words, punctuation, or other units. The context can include instructions, a user request, examples, and source text supplied for the current request.
 
-# Worked example
+The model assigns relative likelihoods to possible next tokens and selects one according to its generation settings. The selected token joins the context, and the process repeats. This explains how a response can be coherent without being a checked account of the world. A high likelihood for a continuation means that it fits the model's learned patterns and current context; it does not establish that the statement is supported by the article.
 
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/05-*.py and describe exact commands here. -->
+Many practical applications wrap this model behavior in other components: document extraction, retrieval, output validation, access controls, and human review. Evaluate the resulting workflow as well as the model's individual response.
 
-# Check your understanding
+## Generative AI is broader than chat
 
-<!-- Include 2–3 short questions or a small decision exercise. -->
+Generative models can produce or transform text, images, audio, video, code, and structured content. A language model may also help with tasks whose desired output is short and constrained, such as assigning a category or filling fields. In those cases, generation is the mechanism, while the user's task is classification or extraction.
 
-# Try it yourself
+| User task | Requested output | Main test |
+|---|---|---|
+| Drafting | A proposed paragraph or message | Does it meet the brief and preserve the intended meaning? |
+| Summarization | A shorter account of source material | Are the important claims supported and key qualifications retained? |
+| Extraction | Named facts or fields from a source | Are values copied or paraphrased correctly, with missing items marked? |
+| Classification | A label from a defined set | Does the label match reviewed examples and decision rules? |
+| Question answering | A response to a specific question | Is the answer supported by permitted evidence, or does it abstain? |
 
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+The same model can attempt all five. Each task needs its own criteria, baseline, and examples. A pleasant writing style is useful for drafting but cannot replace a source-support test for extraction or question answering.
 
-# Key takeaways
+## The difference between training knowledge and supplied evidence
 
-<!-- Summarize the actionable lessons. -->
+A model may have learned broad patterns during training. It may therefore explain a common concept without receiving a source document. That does not mean it has access to your current article, a complete and authoritative record, or the exact passage behind a claim.
+
+For a document-specific task, give the system the approved source material through a deliberate workflow. Ask it to identify where each claim comes from and then verify the references. Source text in a prompt, a retrieved passage, or an uploaded document is *context supplied for this request*; it does not automatically become permanent training data for the model. Data handling depends on the chosen service and configuration and must be checked for the actual project.
+
+If the article is absent, unreadable, incomplete, or outside the model's available context, the system should identify that limitation. It should not reconstruct a plausible study from a title or its general knowledge.
+
+## Why generated answers can be wrong
+
+A model can produce a statement that sounds reasonable but is unsupported, misquoted, or false. This may occur when the requested information is missing, the input is ambiguous, the source text was extracted badly, or the prompt encourages an answer despite uncertainty. Generation settings alone cannot guarantee accuracy.
+
+For the article summary, inspect several distinct error types:
+
+- **Invented content:** a study result or limitation absent from the article.
+- **Misattribution:** a real statement assigned to the wrong section or study.
+- **Lost qualification:** “may be associated with” rewritten as “causes.”
+- **Omission:** a major limitation or relevant condition left out.
+- **Unsupported reference:** a cited passage exists but does not justify the field.
+- **False completeness:** a missing field is filled with a guess instead of marked for review.
+
+These errors have different remedies. Clearer instructions may help with a format failure. Better source extraction or retrieval may help with missing evidence. Human review may remain necessary for subtle interpretations. Chapter 09 develops a systematic evaluation and failure-analysis process.
+
+## Context is useful but finite
+
+Models can use a limited amount of text in a single request. The exact limit and behavior depend on the selected system. A long article, appendices, instructions, and examples may compete for available space. Even when text is accepted, the model can overlook an important passage or confuse nearby details.
+
+For short articles, the complete text may be manageable. For larger collections, a retrieval step can select candidate passages before generation. That introduces a new question: did retrieval find all material needed to answer? A model cannot faithfully summarize an omitted section it never received. Chapter 08 examines retrieval and tools as parts of the workflow.
+
+## Control the task, then check the result
+
+A useful request defines the task and the expected behavior for gaps. For example:
+
+> Using only the supplied article text, draft the study aim, study design, main finding, and stated limitations. For each field, include a short section or passage reference. If a field is not supported by the supplied text, write “not established in supplied text.” Do not infer missing results. Return the four fields separately for reviewer verification.
+
+This instruction narrows the task. It does not enforce truth. The prototype must still verify whether the stated references exist and support the draft. Later chapters cover prompting, structured outputs, and evaluation in more detail.
+
+Distinguish *format checks* from *content checks*. A program can verify that four fields are present and that each has a reference field. A reviewer or source-aware evaluation must determine whether the cited passage actually supports the claim.
+
+## Generation settings and repeatability
+
+Some systems let you adjust how output tokens are selected. Settings that favor more predictable continuations can reduce variation, while others produce more varied responses. A fixed setting or seed, when supported, may help comparison, but identical requests are not guaranteed to yield identical results across services, model versions, or configurations.
+
+Record the model identifier, relevant settings, prompt or instruction version, input article identifier, and date for each evaluation run. Keep test examples stable when comparing changes. If a model version changes, recheck the behavior rather than assuming that a previously successful prompt still works the same way.
+
+## Compare against the article-summary baseline
+
+The baseline from Chapter 03 is a manual template, possibly aided by document search. A model-assisted draft is useful only if its benefit persists after verification and correction.
+
+| Measure | Question to answer |
+|---|---|
+| Field support | Does the article support every substantive claim? |
+| Completeness | Are all four requested fields addressed, including explicit missingness? |
+| Reference validity | Can the reviewer locate the cited passage, and does it support the field? |
+| Reviewer effort | How long does checking and correcting the draft take? |
+| Error severity | Which mistakes could mislead a reader or change an interpretation? |
+| Cost and delay | What does each completed, reviewed summary require? |
+
+Use representative articles held back from prompt development. Include a straightforward paper, an unusual layout, an article with qualified findings, and a case where a requested detail is absent. Compare the completed workflow, not just the time taken to generate a first draft.
+
+## Practice: specify one generation task
+
+Write a short specification for your prototype:
+
+1. **User and purpose:** Who will use the output, and what work does it support?
+2. **Permitted input:** Which document or information may be supplied?
+3. **Output contract:** Which fields, format, and source references are required?
+4. **Missing information:** What should the system say when the evidence is absent?
+5. **Checks:** Which requirements can software check, and which require source review?
+6. **Comparison:** Which baseline and representative cases will you use?
+
+Then prepare four evaluation cases: an ordinary case, an unusual but valid case, a case with missing evidence, and a case with a tempting but unsupported conclusion. For each, record the expected behavior before viewing a model response. Do not place private or unapproved source material into a test service.
+
+## Chapter checklist
+
+- [ ] I can explain how token-by-token generation differs from verified factual reporting.
+- [ ] I can distinguish a model's learned patterns from evidence supplied for a specific request.
+- [ ] I can name failure modes relevant to my generation task.
+- [ ] I have specified what the system should do when information is missing.
+- [ ] I have a baseline and initial evaluation cases that test both support and reviewer effort.
+
+## Looking ahead
+
+Chapter 06 introduces **image and multimodal AI**. It considers how text, images, and other inputs change the task, the evidence available to the model, and the checks a prototype needs.

@@ -1,6 +1,1 @@
-# Add pinned dependencies when the first runnable Python example is authored.
-numpy
-pandas
-matplotlib
-scikit-learn
-pytest
+matplotlib>=3.9,<4

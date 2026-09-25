@@ -1,31 +1,147 @@
----
-title: "AI, Machine Learning and Software"
----
+# AI and Machine Learning {#sec-ai-and-machine-learning}
 
-# Learning outcome
+::: {.cdi-message}
+- **ID:** AI-L03
+- **Type:** Foundations
+- **Focus:** Understand how machine learning fits within AI and choose an approach for a defined task
+- **Output:** A justified method choice and a comparison plan
+:::
 
-By the end of this chapter, you should be able to explain the central ideas of ai, machine learning and software and apply them to a small example.
+## Where machine learning fits
 
-# Why this matters
+Artificial intelligence (AI) is a broad field concerned with systems that perform tasks associated with perception, reasoning, language, planning, or decision-making. The OECD's updated definition describes AI systems in terms of how they infer outputs, including predictions, content, recommendations, or decisions, from their inputs [@oecd2024ai-definition]. **Machine learning (ML)** is one way to build such systems: a model learns useful patterns from examples rather than having every possible case specified by hand.
 
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+Not every AI system is a machine-learning model. A system can combine fixed rules, search, a knowledge base, and a learned model. Nor does every task that sounds “intelligent” require AI. If a clearly defined rule solves the user's problem, the rule may be the better choice.
 
-# Core ideas
+The terms are related as follows:
 
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+| Term | Working meaning | Example |
+|---|---|---|
+| Artificial intelligence | Broad area of systems performing tasks that require context-sensitive interpretation or action | An assistant that finds and summarizes permitted documents |
+| Machine learning | Methods that learn relationships from examples | A classifier trained to label incoming requests |
+| Deep learning | Machine learning using multilayer neural networks | A model that recognizes patterns in images or text |
+| Generative AI | Models that generate content such as text, images, or audio | A language model drafting a summary |
 
-# Worked example
+These are overlapping descriptions of methods and capabilities, not a ladder of quality. A generative system may use deep learning; a broader AI workflow may also include ordinary software and human review. The right method depends on the task and evidence, not on which term sounds more advanced.
 
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/03-*.py and describe exact commands here. -->
+## Rules and learned patterns
 
-# Check your understanding
+Suppose a research assistant must identify the publication year of an article. If that year is in a reliable metadata field, a direct lookup is straightforward. If article files vary and metadata are missing, extraction may require more flexible text processing. If the task is to interpret a study's limitations, rules alone may struggle with the variety of wording and context.
 
-<!-- Include 2–3 short questions or a small decision exercise. -->
+| Approach | How it handles a new case | Typical strength | Typical limitation |
+|---|---|---|---|
+| Fixed rule | Applies instructions written in advance | Predictable for well-defined cases | Brittle when inputs vary beyond the rules |
+| Search or retrieval | Finds matching records or passages | Traceable to source material | Finding a passage does not interpret it |
+| Trained predictive model | Uses learned relationships to estimate an outcome | Handles patterns across many examples | Depends on suitable training data and evaluation |
+| Generative model | Produces content conditioned on an input and instructions | Flexible drafting and transformation | Can produce fluent but unsupported content |
+| Human-led workflow | Applies domain judgment and accountability | Handles ambiguity and consequences | Requires time and may vary across reviewers |
 
-# Try it yourself
+Real applications often combine approaches. A document assistant could use search to locate passages, a language model to draft a summary, fixed checks to ensure required fields are present, and a reviewer to verify meaning. The chosen design and level of review should reflect the system's context and risks; the NIST AI Risk Management Framework offers a structured approach to considering those risks [@tabassi2023ai-rmf].
 
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+## Common machine-learning tasks
 
-# Key takeaways
+The *task* describes the expected output. It does not by itself specify which algorithm to use.
 
-<!-- Summarize the actionable lessons. -->
+### Classification
+
+Classification assigns one or more categories to an input. An example is labeling a support message as a billing question, an access problem, or another request. The categories must be defined clearly, and some messages may belong to more than one category or none of the planned categories.
+
+### Regression
+
+Regression estimates a numeric value, such as the expected number of days to complete a process. Its accuracy depends on what information is available when the estimate is made and whether past examples reflect future cases.
+
+### Ranking
+
+Ranking orders candidates, such as documents likely to be relevant to a search. The first result may matter more than the tenth, so evaluation should reflect how people use the ordered list.
+
+### Clustering
+
+Clustering groups examples by similarity without requiring predefined labels for every group. A cluster is a pattern in the available representation, not automatically a meaningful real-world category. People must inspect and interpret the groups.
+
+### Generation
+
+Generation produces new text, images, or other content conditioned on a request. A paper summary is a generation task, but it also requires factual support and may depend on retrieval. Evaluating only whether the prose reads well would miss the core requirement.
+
+The same user need can contain several tasks. A literature assistant might rank papers, extract study characteristics, and generate a reviewer-facing draft. Define and evaluate each step rather than giving the entire workflow one vague “accuracy” score.
+
+## How learning from examples differs
+
+There are several ways models can learn. The distinctions help you understand the resources and evaluation each approach needs.
+
+| Learning setup | Available signal | Illustrative use |
+|---|---|---|
+| Supervised learning | Inputs paired with target labels or values | Predict a defined request category from past labeled requests |
+| Unsupervised learning | Inputs without task-specific target labels | Explore groups of similar documents |
+| Self-supervised learning | Training signals derived from the data itself | Learn general representations from text or images |
+
+These labels describe training setups. They do not guarantee an appropriate model, trustworthy data, or useful performance on your particular task. A general-purpose language model may have learned broad patterns before you use it, while your application still needs task-specific instructions, source material, and evaluation.
+
+## General models and task-specific systems
+
+A model can provide a capability without constituting a complete solution. For example, a language model may write a plausible summary. A dependable article-summary workflow additionally needs document intake, text extraction, source references, output formatting, verification, and review.
+
+Distinguish three levels:
+
+1. **Model capability:** Can the model perform a type of transformation at all?
+2. **Task performance:** Does it do so on representative examples under the stated constraints?
+3. **Workflow usefulness:** Does the full process improve the user's work after corrections, delays, and costs are counted?
+
+A good demonstration at level one does not establish levels two and three. This is why the problem brief from Chapter 01 and the data map from Chapter 02 come before choosing a model.
+
+## Continue the article example
+
+Our defined task is to draft four article-summary fields, each supported by a section reference, for review. Several approaches are possible:
+
+| Candidate | How it would work | What to test |
+|---|---|---|
+| Manual template | Reviewer reads and fills four fields | Time, consistency, and errors in the current workflow |
+| Search plus template | Reviewer uses section search and fills fields | Whether search reduces effort without hiding context |
+| Language-model draft | Model receives the article and instructions | Support, omissions, corrections, and reviewer time |
+| Retrieval plus draft | Relevant passages are selected before generation | Whether selection improves support or omits key context |
+
+The manual or search-assisted workflow is a meaningful baseline. If the model saves drafting time but takes longer to verify, the benefit may disappear. If retrieval excludes the limitations section, a fluent generated answer may perform worse than a simple template.
+
+The choice is therefore a hypothesis:
+
+> For approved articles in scope, a model-assisted draft with traceable references will reduce reviewer effort while meeting the agreed support and accuracy criteria.
+
+The hypothesis can be rejected. That is a useful outcome: it prevents investing further in a method that does not help the user.
+
+## Avoid three common shortcuts
+
+### Choosing a model before defining the task
+
+Starting with a popular model encourages a demonstration designed around its strengths. Start with the user's work, constraints, and baseline; then compare tools that could meet those needs.
+
+### Equating training success with real use
+
+Performance on training examples does not show how a model handles unfamiliar documents, changed wording, or missing information. Reserve appropriate evaluation cases and measure the workflow under conditions resembling use.
+
+### Treating generation as understanding
+
+Well-formed text can be wrong or unsupported. Require source checks, explicit uncertainty, and human review where errors matter. Do not infer factual reliability from a polished writing style.
+
+## Practice: justify an approach
+
+Return to your problem brief and data-and-inference map:
+
+1. State the primary task: classification, numeric prediction, ranking, grouping, generation, or a combination.
+2. Identify one non-ML baseline that could address all or part of it.
+3. Identify one learned approach and the data or context it would require.
+4. Compare likely failure modes, verification effort, cost, and permissions.
+5. Write a testable hypothesis explaining why the learned approach might help.
+6. State what finding would lead you to retain the simpler baseline.
+
+For a multi-step workflow, repeat the exercise for each step. You may discover that only one component benefits from a learned model.
+
+## Chapter checklist
+
+- [ ] I can describe the relationship among AI, ML, deep learning, and generative AI.
+- [ ] I can distinguish task types from model choices.
+- [ ] I can explain why a model alone is not a complete workflow.
+- [ ] I have named a simple baseline and a candidate learned approach for my task.
+- [ ] I can state how I would decide between them using representative cases.
+
+## Looking ahead
+
+Chapter 04 introduces **neural networks**. It explains why layered learned representations are useful for complex inputs, what training changes, and which limitations still matter when these models become components of an AI workflow.

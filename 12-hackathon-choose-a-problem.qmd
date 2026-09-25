@@ -1,31 +1,149 @@
----
-title: "Hackathon: Choose a Problem"
----
+# AI Hackathon: Choose the Problem and Plan {#sec-hackathon-problem-and-plan}
 
-# Learning outcome
+::: {.cdi-message}
+- **ID:** AI-L12
+- **Type:** Guided hackathon, stage 1 of 3
+- **Focus:** Choose one feasible user task and plan a testable AI prototype
+- **Output:** A problem brief, source and permission plan, baseline, case set, and build plan
+:::
 
-By the end of this chapter, you should be able to select a small, feasible problem and define a success check.
+## What the hackathon means here
 
-# Why this matters
+A hackathon is a focused period for making and testing a small solution. In this guide, it is a structured learning project that you can complete alone or with a team. The outcome is a working prototype and an honest account of its evidence, limitations, and next steps. Speed helps you focus; it does not justify using unapproved data or skipping evaluation.
 
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+Chapters 12–14 form a sequence. This chapter selects the problem and prepares the materials. Chapter 13 builds and tests one bounded workflow. Chapter 14 presents the results and decides what to improve. The same steps work over a single day, a weekend, or several shorter sessions; choose a schedule that gives you enough time to review outputs carefully.
 
-# Core ideas
+## Pick a task, not a technology demonstration
 
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+Start with a real user and one repeatable unit of work. The continuing example is a reviewer who prepares a four-field summary of an approved research article. The prototype may draft the study aim, study design, main finding, and stated limitations, with passage references. A reviewer checks every field before using it.
 
-# Worked example
+The first version does not need to process an entire literature collection, interpret every figure, publish a report, or make a research decision automatically. It needs to answer one useful question: **Does an evidence-linked draft help the reviewer complete this defined summary reliably and with acceptable effort?**
 
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/12-*.py and describe exact commands here. -->
+A candidate task is suitable for the hackathon if:
 
-# Check your understanding
+- a specific person can describe how they do it now;
+- permitted example inputs are available;
+- the expected output can be reviewed;
+- a simple baseline can be completed in the available time;
+- failure cases can be named in advance; and
+- the scope is small enough to build and evaluate honestly.
 
-<!-- Include 2–3 short questions or a small decision exercise. -->
+If the task depends on inaccessible documents, uncertain permission, or an unreviewable outcome, narrow it or choose another task.
 
-# Try it yourself
+## Write the problem brief
 
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+Use this template:
 
-# Key takeaways
+> For **[user]**, given **[permitted input]**, the prototype will produce **[defined output]** to support **[specific task]**. A person will review **[items requiring judgment]**. We will compare it with **[baseline]** using **[representative cases and measures]**. The first version will not handle **[explicit boundary]**.
 
-<!-- Summarize the actionable lessons. -->
+For the article example:
+
+> For a research reviewer, given one approved article with readable text, the prototype will draft four summary fields with passage references. The reviewer will verify every field against the article. We will compare it with a manually completed template on reserved articles, measuring claim support, missing-field behavior, and total reviewer time. The first version will flag unreadable scans and figures for manual review.
+
+The brief is short because its purpose is to guide decisions during the build. Save it with a version or date and revise it openly if evidence changes the scope.
+
+## Define the baseline and success criteria
+
+The baseline is the current or simplest credible way to complete the same task: a reviewer reading the article and filling the four-field template, possibly using ordinary text search. Record what “complete” means for both workflows. A faster first draft is not necessarily a faster reviewed summary.
+
+Agree on criteria before seeing the model's best examples. For the article task, criteria could include:
+
+| Dimension | Question | Evidence to collect |
+|---|---|---|
+| Support | Does each substantive field match its cited passage? | Reviewer judgments and source locations |
+| Missing information | Does the draft abstain when the supplied evidence lacks a field? | Reserved absence cases |
+| Coverage | Are all four fields addressed or explicitly marked unsupported? | Output validation |
+| Reviewer effort | Does the complete review save useful time? | Time for baseline and assisted workflow |
+| Critical errors | Does a draft reverse or overstate a result? | Severity-labeled corrections |
+
+Set thresholds appropriate to the intended use and review capacity. A pilot can produce evidence for revising thresholds, but do not move them after results solely to claim success.
+
+## Select and protect the case set
+
+Gather a small set of approved examples that reflect the intended work. Include straightforward and difficult cases. Before generating any model output, identify where the answer is supported or why a field should be marked unsupported.
+
+Separate cases by purpose:
+
+- **Development cases** help refine extraction, prompts, and formatting.
+- **Reserved evaluation cases** test the chosen version after development.
+
+Once a reserved case is used to tune the workflow, label it a development case and replace it for the final comparison. A handful of cases can demonstrate failures and guide learning, but cannot justify broad claims about reliability.
+
+For the article example, begin with a clear text article, one with qualified findings, one with an absent field, and one with unusual section headings. Add scanned or visual cases only if the first version is intended to handle them and you can check them properly.
+
+## Decide which parts need AI
+
+Map the workflow before selecting a model:
+
+| Step | First approach | When AI might help |
+|---|---|---|
+| Choose article | Manual selection and fixed ID | Usually unnecessary |
+| Extract text | Existing document extraction | A visual or OCR component for scans if needed |
+| Find evidence | Section lookup or keyword search | Semantic ranking for varied wording |
+| Draft fields | Manual template | Language-model draft from approved passages |
+| Check format | Ordinary program validation | Usually unnecessary |
+| Verify meaning | Human review against source | Model assistance cannot replace the agreed review |
+
+The plan may use an existing model, a simple rule, both, or no generative AI for a particular step. Choose what the comparison can test. Do not spend the hackathon training a large model when the learning question concerns evidence-linked drafting.
+
+## Set data and action boundaries
+
+Before the build, record which article materials can be used and where they may go. Identify whether the service is hosted or local, whether prompts and responses are logged, and whether any source material is confidential or licensed. For the first run, use material you have permission to process.
+
+Limit tools to the approved sources and necessary operations. A prototype that reads an article and writes a local draft needs less authority than one that changes shared records or sends messages. Define reviewer approval before any external publication or consequential use. Keep credentials out of files, screenshots, and example output.
+
+## Plan the smallest working version
+
+A practical first version can consist of:
+
+1. One approved, readable article with stable passage IDs.
+2. A manual or simple-search baseline.
+3. A prompt and four-field output contract from Chapter 07.
+4. A bounded way to supply relevant article text.
+5. A check for required fields and resolvable source IDs.
+6. A reviewer worksheet and error log from Chapters 09–11.
+
+Write a “done for the build” definition: the workflow runs on at least one development case, produces a provisional draft, detects malformed output, and gives the reviewer the original passages needed to verify claims. Evaluation on reserved cases follows in Chapter 13.
+
+## Roles and schedule
+
+If working in a team, assign responsibility for article permission and reference answers, implementation, evaluation, and the final presentation. One person may fill multiple roles, but the reviewer should not silently accept outputs from the person who tuned the prompt without applying the agreed source checks.
+
+A simple schedule is:
+
+| Stage | Main activity | Checkpoint |
+|---|---|---|
+| Plan | Scope, sources, baseline, cases | Approved problem brief and evaluation criteria |
+| Build | Intake, retrieval, prompt, validation | End-to-end provisional draft |
+| Test | Reserved cases and reviewer checks | Error log and baseline comparison |
+| Present | Evidence, limits, next decision | Demo and decision record |
+
+Adjust time allocations to your available period. Protect time for testing; a prototype without an evaluated output has not answered the hackathon question.
+
+## Practice: complete the hackathon brief
+
+Create a one-page brief with the following headings:
+
+1. User and task.
+2. Permitted input and intended output.
+3. In-scope and out-of-scope cases.
+4. Baseline and measurable success criteria.
+5. Development and reserved cases, with reference answers.
+6. Proposed approach and source trace.
+7. Data permissions, tool boundaries, and human approval.
+8. Team roles or individual checklist.
+9. Build checkpoint and final presentation deliverables.
+
+Read the brief as if you were a reviewer unfamiliar with the idea. If they cannot tell what a correct output looks like or what would count as failure, narrow and clarify the task before building.
+
+## Chapter checklist
+
+- [ ] I have a defined user, one task, and one unit of work.
+- [ ] My inputs are available and permitted for the chosen workflow.
+- [ ] I have a realistic baseline and criteria set before final testing.
+- [ ] Development cases are separate from reserved evaluation cases.
+- [ ] My first build has clear source, tool, and human-review boundaries.
+
+## Looking ahead
+
+Chapter 13 builds the focused prototype and runs the reserved tests. It records what worked, which stage caused each failure, and whether the completed workflow improves on the baseline.

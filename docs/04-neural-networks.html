@@ -70,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="assets/css/cdi.css">
 </head>
@@ -136,12 +165,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, Training and Inference</span></a>
+  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, and Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI, Machine Learning and Software</span></a>
+  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI and Machine Learning</span></a>
   </div>
 </li>
       </ul>
@@ -167,7 +196,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Images and Multimodal AI</span></a>
+  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Image and Multimodal AI</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -177,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval, Tools and AI Workflows</span></a>
+  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval and Tools</span></a>
   </div>
 </li>
       </ul>
@@ -198,7 +227,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Privacy, Bias and Human Oversight</span></a>
+  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Privacy, Bias, and Human Oversight</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -219,17 +248,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Choose a Problem</span></a>
+  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Choose the Problem and Plan</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Build and Test</span></a>
+  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Build and Test the Prototype</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Present and Improve</span></a>
+  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Demonstrate, Decide, and Improve</span></a>
   </div>
 </li>
       </ul>
@@ -245,7 +274,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical</span></a>
+  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical Application</span></a>
   </div>
 </li>
       </ul>
@@ -282,13 +311,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-outcome" id="toc-learning-outcome" class="nav-link active" data-scroll-target="#learning-outcome">Learning outcome</a></li>
-  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">Why this matters</a></li>
-  <li><a href="#core-ideas" id="toc-core-ideas" class="nav-link" data-scroll-target="#core-ideas">Core ideas</a></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key takeaways</a></li>
+  <li><a href="#why-this-chapter-matters" id="toc-why-this-chapter-matters" class="nav-link active" data-scroll-target="#why-this-chapter-matters">Why this chapter matters</a></li>
+  <li><a href="#from-inputs-to-outputs" id="toc-from-inputs-to-outputs" class="nav-link" data-scroll-target="#from-inputs-to-outputs">From inputs to outputs</a></li>
+  <li><a href="#what-training-changes" id="toc-what-training-changes" class="nav-link" data-scroll-target="#what-training-changes">What training changes</a></li>
+  <li><a href="#learned-representations" id="toc-learned-representations" class="nav-link" data-scroll-target="#learned-representations">Learned representations</a></li>
+  <li><a href="#training-adaptation-and-inference" id="toc-training-adaptation-and-inference" class="nav-link" data-scroll-target="#training-adaptation-and-inference">Training, adaptation, and inference</a></li>
+  <li><a href="#generalization-and-its-limits" id="toc-generalization-and-its-limits" class="nav-link" data-scroll-target="#generalization-and-its-limits">Generalization and its limits</a></li>
+  <li><a href="#a-closer-look-at-language-models" id="toc-a-closer-look-at-language-models" class="nav-link" data-scroll-target="#a-closer-look-at-language-models">A closer look at language models</a></li>
+  <li><a href="#continue-the-article-summary-example" id="toc-continue-the-article-summary-example" class="nav-link" data-scroll-target="#continue-the-article-summary-example">Continue the article-summary example</a></li>
+  <li><a href="#decide-whether-a-neural-network-is-warranted" id="toc-decide-whether-a-neural-network-is-warranted" class="nav-link" data-scroll-target="#decide-whether-a-neural-network-is-warranted">Decide whether a neural network is warranted</a></li>
+  <li><a href="#practice-write-a-suitability-note" id="toc-practice-write-a-suitability-note" class="nav-link" data-scroll-target="#practice-write-a-suitability-note">Practice: write a suitability note</a></li>
+  <li><a href="#chapter-checklist" id="toc-chapter-checklist" class="nav-link" data-scroll-target="#chapter-checklist">Chapter checklist</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking ahead</a></li>
   </ul>
 </nav>
     </div>
@@ -297,7 +331,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-neural-networks.html">Modern AI</a></li><li class="breadcrumb-item"><a href="./04-neural-networks.html"><span class="chapter-title">Neural Networks</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Neural Networks</span></h1>
+<h1 class="title"><span id="sec-neural-networks" class="quarto-section-identifier"><span class="chapter-title">Neural Networks</span></span></h1>
 </div>
 
 
@@ -320,33 +354,184 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="learning-outcome" class="level1">
-<h1>Learning outcome</h1>
-<p>By the end of this chapter, you should be able to explain the central ideas of neural networks and apply them to a small example.</p>
+<div class="cdi-message">
+<ul>
+<li><strong>ID:</strong> AI-L04</li>
+<li><strong>Type:</strong> Modern AI</li>
+<li><strong>Focus:</strong> Understand what neural networks learn and when their capabilities help a defined task</li>
+<li><strong>Output:</strong> A neural-network suitability note for the prototype</li>
+</ul>
+</div>
+<section id="why-this-chapter-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-chapter-matters">Why this chapter matters</h2>
+<p>Chapter 03 compared rules, retrieval, predictive models, and generation. Many modern systems used for language, images, and audio rely on neural networks. To select one responsibly, you need a working account of what the model learns, what happens when it receives a new input, and why a capable general model can still fail at your particular task.</p>
+<p>You do not need to train a large network for the article-summary prototype. Understanding the mechanism will help you decide whether an existing model is useful, what evidence to request, and where checks belong in the workflow.</p>
 </section>
-<section id="why-this-matters" class="level1">
-<h1>Why this matters</h1>
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+<section id="from-inputs-to-outputs" class="level2">
+<h2 class="anchored" data-anchor-id="from-inputs-to-outputs">From inputs to outputs</h2>
+<p>A neural network is a model with adjustable numerical parameters. It transforms an input through a sequence of operations to produce an output. During training, examples guide changes to those parameters so that the model performs better according to a chosen objective.</p>
+<p>For a simple network, one layer can be written as:</p>
+<p><span class="math display">\[
+\mathbf{h}=g(W\mathbf{x}+\mathbf{b}),
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{x}\)</span> is a numerical representation of the input, <span class="math inline">\(W\)</span> contains learned weights, <span class="math inline">\(\mathbf{b}\)</span> contains learned offsets, and <span class="math inline">\(g\)</span> is a nonlinear activation function. The resulting values <span class="math inline">\(\mathbf{h}\)</span> become input to another layer or an output calculation. The word <em>neuron</em> is a convenient analogy for a small computation; it does not mean the system thinks like a person.</p>
+<p>A network used to classify messages could turn text into numerical representations, combine those representations through learned layers, and return scores for categories. A language model instead uses its context to produce a distribution over possible next tokens, generating a response one token at a time. The task, architecture, data, and training objective determine what the output means.</p>
 </section>
-<section id="core-ideas" class="level1">
-<h1>Core ideas</h1>
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+<section id="what-training-changes" class="level2">
+<h2 class="anchored" data-anchor-id="what-training-changes">What training changes</h2>
+<p>A typical training loop has four stages:</p>
+<ol type="1">
+<li><strong>Forward pass:</strong> compute an output for an example or batch.</li>
+<li><strong>Loss:</strong> compare the output with the training objective using a numerical measure of error.</li>
+<li><strong>Gradient calculation:</strong> estimate how changes to the parameters would affect that loss, commonly using backpropagation.</li>
+<li><strong>Update:</strong> adjust parameters with an optimization method and repeat across examples.</li>
+</ol>
+<p>The network learns parameter values that improve its training objective. That achievement does not establish that an answer is true, that an explanation is faithful, or that the system will work on new users’ documents. Those are separate questions for evaluation.</p>
+<p>Training a model from scratch requires data, compute, and careful validation. A small prototype will often use an existing model through an approved local or hosted interface. You still need to test the complete workflow on representative inputs.</p>
 </section>
-<section id="worked-example" class="level1">
-<h1>Worked example</h1>
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/04-*.py and describe exact commands here. -->
+<section id="learned-representations" class="level2">
+<h2 class="anchored" data-anchor-id="learned-representations">Learned representations</h2>
+<p>A useful feature of layered models is that intermediate values can represent patterns that were not specified as individual rules. In image tasks, these may support recognition of visual structures. In language tasks, they can encode relationships among tokens and surrounding context. The representation depends on the model and training data; an apparently meaningful pattern need not match the user’s intended concept.</p>
+<p>Compare two approaches to locating an article’s limitations:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>Possible strength</th>
+<th>Possible failure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Search for a heading or keyword</td>
+<td>Easy to inspect and trace</td>
+<td>Misses an unusual heading or wording</td>
+</tr>
+<tr class="even">
+<td>Neural language model</td>
+<td>Can handle varied phrasing and context</td>
+<td>May infer a limitation the article never states</td>
+</tr>
+<tr class="odd">
+<td>Search followed by model-assisted extraction</td>
+<td>Grounds the draft in selected passages</td>
+<td>Retrieval may exclude a relevant passage</td>
+</tr>
+</tbody>
+</table>
+<p>These methods can work together. The network adds flexibility, while the source passage and reviewer provide checks on what it produces.</p>
 </section>
-<section id="check-your-understanding" class="level1">
-<h1>Check your understanding</h1>
-<!-- Include 2–3 short questions or a small decision exercise. -->
+<section id="training-adaptation-and-inference" class="level2">
+<h2 class="anchored" data-anchor-id="training-adaptation-and-inference">Training, adaptation, and inference</h2>
+<p>Keep three activities distinct:</p>
+<ul>
+<li><strong>Pretraining</strong> develops broad capability from a large collection of examples using a general training objective.</li>
+<li><strong>Task adaptation</strong> may use additional training or other configuration to improve performance on a narrower task. Instructions and retrieved documents can also shape behavior at use time without changing model weights.</li>
+<li><strong>Inference</strong> applies the already trained model to a new input. A normal prompt changes the context supplied for that request; it does not retrain the model.</li>
+</ul>
+<p>A general language model may draft clear summaries without knowing what your reviewer considers an acceptable article-summary field. Giving it an approved article and a precise instruction can help. Neither step alone proves that every field is supported.</p>
 </section>
-<section id="try-it-yourself" class="level1">
-<h1>Try it yourself</h1>
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+<section id="generalization-and-its-limits" class="level2">
+<h2 class="anchored" data-anchor-id="generalization-and-its-limits">Generalization and its limits</h2>
+<p>The useful question is whether a network performs well on cases it did not learn or tune against. A model can appear strong on familiar examples yet struggle with different document layouts, technical vocabulary, long articles, scanned pages, or articles that do not report the requested field.</p>
+<p>For the article-summary workflow, set aside articles representing these differences. Include cases where the answer is genuinely absent. Check whether the draft reports that absence instead of filling the gap with plausible language. Keep evaluation cases separate from examples repeatedly used to edit a prompt.</p>
+<p>The same principle applies to smaller supervised networks: a low training loss does not replace evaluation on independent data. Model size and fluent output are not measures of fitness for a specific task.</p>
 </section>
-<section id="key-takeaways" class="level1">
-<h1>Key takeaways</h1>
-<!-- Summarize the actionable lessons. -->
+<section id="a-closer-look-at-language-models" class="level2">
+<h2 class="anchored" data-anchor-id="a-closer-look-at-language-models">A closer look at language models</h2>
+<p>Modern language models commonly use transformer architectures that process token representations in context. An attention mechanism allows parts of the input to influence other parts as the model constructs its representations. This helps the model use surrounding text, but attention is not a guarantee that it identified the decisive evidence or that its generated answer follows from that evidence.</p>
+<p>Language models work with tokens, which can be words, word parts, punctuation, or other units depending on the tokenizer. An article and its instructions must fit within the model’s usable context for a request. Even when a document fits, important details can be missed. If the application supplies selected passages instead, selection quality becomes another part of the system to evaluate. Chapter 05 develops language models and generation in more detail; Chapter 08 examines retrieval and tools.</p>
+</section>
+<section id="continue-the-article-summary-example" class="level2">
+<h2 class="anchored" data-anchor-id="continue-the-article-summary-example">Continue the article-summary example</h2>
+<p>Suppose the prototype asks for four fields: study aim, study design, main finding, and stated limitations. Each field must cite a section or passage from the supplied article. The model may draft the fields, but the workflow should define what to do when a passage is missing or ambiguous.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Role</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Approved article text</td>
+<td>Supplies permitted source material</td>
+<td>Confirm article identity and readable extraction</td>
+</tr>
+<tr class="even">
+<td>Instructions</td>
+<td>Define fields, format, and absence handling</td>
+<td>Inspect whether the request matches the reviewer’s task</td>
+</tr>
+<tr class="odd">
+<td>Existing language model</td>
+<td>Drafts candidate fields</td>
+<td>Evaluate support, omissions, and incorrect claims</td>
+</tr>
+<tr class="even">
+<td>Passage references</td>
+<td>Let a reviewer inspect the basis for each field</td>
+<td>Verify that each reference exists and supports its claim</td>
+</tr>
+<tr class="odd">
+<td>Human reviewer</td>
+<td>Accepts, corrects, or rejects the draft</td>
+<td>Record corrections and time spent</td>
+</tr>
+</tbody>
+</table>
+<p>A passage reference generated by a model is only a claim about support. The reviewer or an independent check must confirm it. If the source does not state a limitation, the appropriate draft may be “not stated in the supplied article,” with that absence flagged for review.</p>
+</section>
+<section id="decide-whether-a-neural-network-is-warranted" class="level2">
+<h2 class="anchored" data-anchor-id="decide-whether-a-neural-network-is-warranted">Decide whether a neural network is warranted</h2>
+<p>Use the candidate method from Chapter 03 and ask:</p>
+<ol type="1">
+<li>Does the task require flexible interpretation of varied text, images, or other complex inputs?</li>
+<li>Can a rule, search, or template meet the same need with acceptable effort?</li>
+<li>Are the necessary inputs permitted, legible, and representative?</li>
+<li>Can each important output be checked against a source or other reference?</li>
+<li>What happens when the model is uncertain, the input is outside scope, or the source lacks an answer?</li>
+<li>Does the full workflow improve accuracy or reviewer effort after corrections, cost, and delay are included?</li>
+</ol>
+<p>A neural model is suitable when its measured benefit justifies its added complexity for this task. The comparison is a practical test, not a declaration that one family of methods is universally superior.</p>
+</section>
+<section id="practice-write-a-suitability-note" class="level2">
+<h2 class="anchored" data-anchor-id="practice-write-a-suitability-note">Practice: write a suitability note</h2>
+<p>For your own proposed prototype, write six short statements:</p>
+<ol type="1">
+<li><strong>Input:</strong> What will the network receive, and where does it come from?</li>
+<li><strong>Output:</strong> What exactly should it produce?</li>
+<li><strong>Reason to try it:</strong> Which variation or complexity is difficult for the baseline?</li>
+<li><strong>Baseline:</strong> What simpler process will you compare it with?</li>
+<li><strong>Evidence:</strong> Which held-out cases and checks would demonstrate improvement?</li>
+<li><strong>Boundary:</strong> Which output must a person verify, and when should the system abstain?</li>
+</ol>
+<p>For the article example, the note might say: “We will test whether a language-model draft reduces reviewer time for four supported fields on approved articles. We will compare it with a manual template using reserved articles, check each cited passage, count omissions and unsupported claims, and require a reviewer to approve the final summary.”</p>
+</section>
+<section id="chapter-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-checklist">Chapter checklist</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">I can explain inputs, learned parameters, layers, and outputs in plain language.</label></li>
+<li><label><input type="checkbox">I can distinguish training or adaptation from inference with a new prompt.</label></li>
+<li><label><input type="checkbox">I understand why training success or fluent generation does not establish task reliability.</label></li>
+<li><label><input type="checkbox">I have identified a baseline, representative evaluation cases, and a verification method.</label></li>
+<li><label><input type="checkbox">I have written a suitability note for my proposed prototype.</label></li>
+</ul>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking ahead</h2>
+<p>Chapter 05 examines <strong>language models and generative AI</strong>: how generated text is produced, which tasks it can help with, and why grounded evaluation matters when a model drafts content for a user.</p>
 
 
 </section>
@@ -753,8 +938,8 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03-ai-and-machine-learning.html" class="pagination-link" aria-label="AI, Machine Learning and Software">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">AI, Machine Learning and Software</span></span>
+      <a href="./03-ai-and-machine-learning.html" class="pagination-link" aria-label="AI and Machine Learning">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">AI and Machine Learning</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

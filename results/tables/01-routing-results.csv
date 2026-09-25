@@ -1,0 +1,17 @@
+case_id,family,question,expected_route,label_reason,actual_route,status,passage,correct,wrong_automatic,unnecessary_review
+D01,Direct,When does registration close?,registration,Explicit course registration question,registration,one_match,Fictional policy: Course registration closes seven days before the course begins. Staff review late requests.,True,False,False
+D02,Direct,What are the requirements for a course certificate?,certificate,Explicit course certificate question,certificate,one_match,Fictional policy: A course completion certificate requires attendance at all scheduled sessions and submission of the final exercise.,True,False,False
+D03,Direct,How do I request a course refund?,refund,Explicit course refund question,refund,one_match,Fictional policy: Refund requests must reach the course administrator at least seven days before the course begins.,True,False,False
+D04,Direct,What is the course timetable?,schedule,Explicit course schedule question,schedule,one_match,Fictional policy: The course timetable lists sessions on Tuesday and Thursday from 14:00 to 16:00.,True,False,False
+P01,Paraphrase,How many days before the course begins must I sign up?,registration,Sign up refers to course registration,REVIEW,no_match,,False,False,True
+P02,Paraphrase,What proof of completion do I get after attending all sessions and submitting the final exercise?,certificate,Proof of completion refers to the course certificate,REVIEW,no_match,,False,False,True
+P03,Paraphrase,When must I ask for my course fees back?,refund,Course fees back refers to refund timing,REVIEW,no_match,,False,False,True
+P04,Paraphrase,Which days and hours are the course sessions?,schedule,Days and hours refers to the course timetable,REVIEW,no_match,,False,False,True
+M01,Multi-topic,Explain registration and the course timetable.,REVIEW,Single-passage contract cannot resolve two topics,REVIEW,multiple_matches,,True,False,False
+M02,Multi-topic,Explain the certificate and refund rules.,REVIEW,Single-passage contract cannot resolve two topics,REVIEW,multiple_matches,,True,False,False
+M03,Multi-topic,Can you explain registration and refund deadlines?,REVIEW,Single-passage contract cannot resolve two topics,REVIEW,multiple_matches,,True,False,False
+M04,Multi-topic,Explain the course schedule and certificate requirements.,REVIEW,Single-passage contract cannot resolve two topics,REVIEW,multiple_matches,,True,False,False
+O01,Outside scope,Where can I obtain a birth certificate?,REVIEW,Course collection does not cover civil records,certificate,one_match,Fictional policy: A course completion certificate requires attendance at all scheduled sessions and submission of the final exercise.,False,True,False
+O02,Outside scope,What is the bus schedule to the training centre?,REVIEW,Course collection does not cover transport,schedule,one_match,Fictional policy: The course timetable lists sessions on Tuesday and Thursday from 14:00 to 16:00.,False,True,False
+O03,Outside scope,Can you book accommodation for me?,REVIEW,Collection and system authority exclude accommodation,REVIEW,no_match,,True,False,False
+O04,Outside scope,Will I receive a scholarship?,REVIEW,Collection contains no scholarship policy,REVIEW,no_match,,True,False,False

@@ -1,31 +1,111 @@
----
-title: "Privacy, Bias and Human Oversight"
----
+# Privacy, Bias, and Human Oversight {#sec-privacy-bias-and-human-oversight}
 
-# Learning outcome
+::: {.cdi-message}
+- **ID:** AI-L10
+- **Type:** Building responsibly
+- **Focus:** Set data boundaries, examine uneven errors, and make review responsibilities explicit
+- **Output:** A prototype risk-and-oversight record
+:::
 
-By the end of this chapter, you should be able to explain the central ideas of privacy, bias and human oversight and apply them to a small example.
+## Responsible use is part of the workflow
 
-# Why this matters
+Chapter 09 asked whether the article-summary prototype helps reviewers and where it fails. This chapter asks what information the workflow may handle, whose work or interests its errors could affect, and who is responsible for decisions made with its output. These questions belong in the design and evaluation, not in a disclaimer added after the prototype is finished.
 
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+Our continuing example drafts four fields about approved research articles. Even if the first demonstration uses public papers, future use might include unpublished manuscripts, licensed content, reviewer notes, or identifiable research information. The permitted inputs and access rules must therefore be defined for the actual setting, not inferred from an earlier demonstration.
 
-# Core ideas
+## Map the information before sending it anywhere
 
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+List the information the prototype receives, produces, and stores. For each item, identify its source, owner or custodian, permitted use, and retention plan.
 
-# Worked example
+| Information | Example | Question to settle |
+|---|---|---|
+| Source article | Approved public paper or internal manuscript | May it be processed by the chosen service? |
+| Extracted passages | Text with page and section markers | May excerpts be indexed or retained? |
+| Prompts and responses | Article text and four-field draft | Are they logged, and who can access them? |
+| Reviewer notes | Corrections and approval decisions | Do notes contain confidential assessments or names? |
+| Evaluation records | Error labels and timing | How long are they needed, and can identifiers be minimized? |
 
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/10-*.py and describe exact commands here. -->
+Do not place credentials, private manuscripts, or personal data into a hosted model simply because an interface accepts them. Check the service terms, organizational permissions, configuration, and actual data-handling requirements before use. A local model can reduce some external transfer but does not remove the need for access control, secure storage, or retention decisions.
 
-# Check your understanding
+## Minimize what the system sees and keeps
 
-<!-- Include 2–3 short questions or a small decision exercise. -->
+Supply only the material required for the defined task. If the system summarizes one approved article, it should not have broad access to an entire drive. If a reviewer only needs four fields, the output need not include unrelated personal details found in the source. Preserve enough context to check claims, but avoid copying full source documents into every log when a controlled reference can suffice.
 
-# Try it yourself
+For a pilot, a simple record may store article ID, passage IDs, model and prompt versions, the draft, reviewer corrections, and error categories. Decide whether source excerpts belong in the record and who may view them. Retention should match the purpose of evaluation and applicable permissions; there is no universal period that fits every project.
 
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+## Bias is a pattern to investigate
 
-# Key takeaways
+A prototype can behave unevenly across article types, fields, authorship contexts, disciplines, languages, or document formats. The difference may arise from source availability, extraction, retrieval, model behavior, or reviewer practice. Do not use “bias” as a single unexplained label; identify the group or condition, the observed error, and its possible consequence.
 
-<!-- Summarize the actionable lessons. -->
+Suppose the prototype performs well on standard English journal articles but misses limitations in reports with different section conventions. Or suppose scanned articles have more unsupported claims than selectable-text articles. These are concrete patterns that a test set can expose. Whether a gap is acceptable depends on who relies on the summaries and what happens when a field is wrong or omitted.
+
+A practical subgroup record could include:
+
+| Condition | Measure | Interpretation to investigate |
+|---|---|---|
+| Selectable text versus scan | Extraction errors and unsupported claims | Does OCR create a predictable failure? |
+| Standard versus unusual headings | Retrieval coverage | Does section lookup miss valid evidence? |
+| Short versus long articles | Field completeness and reviewer time | Is important context omitted? |
+| Different disciplines or languages | Source support and correction rate | Does the workflow transfer to the intended scope? |
+
+Do not interpret a difference from a handful of articles as a precise population estimate. Use it as a reason to inspect examples, expand the evaluation set, or narrow the prototype's stated scope.
+
+## Human oversight needs a real decision point
+
+“Human in the loop” has little value unless a person can see the source, recognize uncertainty, correct an output, and prevent an incorrect draft from being treated as final. Define what the reviewer must do before approving the article summary:
+
+1. Confirm the correct article was selected and its text was extracted adequately.
+2. Check each substantive field against its cited passage and surrounding context.
+3. Inspect figures, tables, scans, or statistical claims when relevant.
+4. Correct omissions and overstatements, or mark unsupported content.
+5. Approve the final summary or reject the draft for further work.
+
+The interface or case sheet should make these actions possible. If the reviewer only sees polished prose without source locations, the design makes meaningful oversight harder. Record approval as a separate event from model generation.
+
+## Assign responsibility for exceptions
+
+Specify what happens when the model cannot find evidence, the article is unreadable, a tool accesses the wrong document, or the reviewer disagrees with the draft. Some cases may be resolved by a second extraction attempt; others require manual completion. A model's proposed answer should never silently become the authoritative record simply because the review queue is busy.
+
+For the article pilot, an exception policy might say:
+
+| Condition | Prototype response | Reviewer action |
+|---|---|---|
+| Field absent from supplied passages | Mark unsupported | Inspect article if needed; record final decision |
+| Passage reference does not resolve | Reject field | Find correct evidence or remove claim |
+| OCR corrupts a number | Flag page for review | Read original page and correct value |
+| Wrong article retrieved | Stop the draft | Correct document selection and rerun |
+| Claim affects a consequential decision | Keep draft provisional | Apply domain-specific review procedure |
+
+The exact procedure should match the setting and user's authority. In high-stakes settings, domain-specific safeguards and evidence requirements will exceed what this learning prototype establishes.
+
+## Protect the evaluation process too
+
+Evaluation artifacts may contain confidential text or reviewer judgments. Use approved test articles, avoid unnecessary personal information, restrict who can access records, and document what was shared with each service. If a test case contains an intentionally misleading instruction, do not include real credentials or live external actions. Keep examples used for prompt development separate from reserved evaluation cases.
+
+If reviewers vary in how they interpret a field, discuss the definition before treating disagreement as model error. A reviewer-facing protocol should state whether “stated limitations” means limitations explicitly named by the authors or any limitation the reviewer can infer. The two are different tasks with different evidence standards.
+
+## Practice: complete a risk-and-oversight record
+
+Create a short record with these headings:
+
+1. **Scope:** Who uses the prototype, on which approved inputs, for which output?
+2. **Data:** What is sent to a model or service, stored, and deleted?
+3. **Access:** Who can select articles, view drafts, and approve summaries?
+4. **Uneven performance:** Which formats, article types, and groups need separate checks?
+5. **Review:** What must a person verify, and how is approval recorded?
+6. **Exceptions:** When does the system abstain, stop, or escalate?
+7. **Evidence:** What results from Chapter 09 support continued testing?
+
+Write an explicit boundary for the current pilot. For example: “This prototype accepts only approved, non-confidential articles with readable text. Every draft is provisional until a reviewer checks all four fields against the original article.” Revise that boundary only after collecting evidence and checking permissions for the expanded scope.
+
+## Chapter checklist
+
+- [ ] I can identify what data the prototype sends, stores, and exposes.
+- [ ] I have checked whether the selected documents are permitted for this workflow.
+- [ ] I have named conditions under which errors may be uneven or consequential.
+- [ ] A reviewer can inspect evidence, correct the draft, and approve or reject it.
+- [ ] The prototype has a defined response to missing evidence, unreadable sources, and wrong-document retrieval.
+
+## Looking ahead
+
+Chapter 11 develops **reproducible AI workflows**. It shows how to preserve source identifiers, configurations, prompts, outputs, reviews, and evaluation decisions so a prototype can be inspected and rerun.

@@ -2,10 +2,147 @@
 title: "Appendix"
 ---
 
-# Environment and reproducibility
+# Using the guide's materials
 
-Record the Python and Quarto versions, dependencies, seeds, data origins and commands for each runnable example.
+This appendix gathers the worksheets, run instructions, and review records used across the Artificial Intelligence guide. The chapters explain the decisions behind them. Copy the templates below into project files as needed and adapt their fields to the user and data permissions for your own task.
 
-# Further reading
+The guide's running example changes emphasis by chapter. Chapter 01 uses a **fictional course-policy question router** as a transparent baseline. Chapters 02–15 use a **research article-summary prototype** to explain model selection, generation, retrieval, evaluation, and human review. The policy router's numerical results do not measure the article-summary workflow.
 
-Add references and links to deeper reading as chapters are developed.
+# Environment and execution
+
+The book uses Quarto for rendering. Python examples displayed in `.qmd` files use ordinary, non-executing code fences. Complete runnable Python programs belong in `scripts/python/`; Bash wrappers, when provided, belong in `scripts/bash/`. Generated figures and tables belong in `results/figures/` and `results/tables/`.
+
+Use the repository's own `.venv` and its documented dependencies. From the repository root on macOS or Linux:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+```
+
+To reproduce Chapter 01's supplied baseline, run:
+
+```bash
+bash scripts/bash/01-ai-problem-framing.sh
+```
+
+Alternatively, use `.venv/bin/python scripts/python/01-ai-problem-framing.py`. The program reads fictional policies and synthetic questions from `data/reference/`, produces two figures and two CSV tables, and records run metadata in `results/tables/01-run-metadata.json`. The chapter reports 10 correct routes out of 16, including two wrong automatic routes among six automatic routes. Those counts describe an intentionally small, synthetic development set and should not be used as an operational performance estimate.
+
+After generating the figures, render the book from the repository root:
+
+```bash
+quarto render
+```
+
+Rendering the book does not run the displayed Python code. If a chapter references an image that has not been generated, run its documented script first or supply the corresponding repository asset. The remaining chapters describe conceptual or illustrative workflows; they do not currently provide full runnable model-service implementations. Consult the specific chapter before expecting a generated output.
+
+For a reproducible run, record the source and permission status, Python and Quarto versions, dependency versions, script or workflow version, input identifiers, commands, output paths, and review decisions. Where relevant, retain a hash or version identifier for the exact inputs. Never record credentials in a run log.
+
+# Problem brief template
+
+Use this worksheet before building a model-assisted workflow:
+
+| Item | Question to answer |
+|---|---|
+| User | Who performs the task and who is affected by its result? |
+| Unit of work | What is one case, article, request, or decision? |
+| Permitted input | What may the application receive and where does it come from? |
+| Expected output | What form, fields, and source references are required? |
+| Action and authority | Who may approve, send, publish, or act on the result? |
+| Baseline | How is the same task completed without this AI method? |
+| Success criteria | What support, coverage, effort, and error levels matter? |
+| Failure response | When does the system abstain, request review, or stop? |
+| Scope boundary | Which users, documents, formats, and actions are excluded for now? |
+
+A short statement ties the fields together:
+
+> For **[specific user]**, given **[permitted input]**, the prototype will produce **[defined output]** to support **[task]**. A person will review **[specified claims or actions]**. We will compare it with **[baseline]** on **[representative cases]** using **[criteria]**. The first version excludes **[boundary]**.
+
+Chapter 01 also supplies `data/reference/01-problem-brief-template.md` as a reusable file for its course-policy exercise.
+
+# Article-summary output contract
+
+Chapters 03–15 use a proposed four-field summary: `study_aim`, `study_design`, `main_finding`, and `stated_limitations`. A provisional output should make the status and evidence of each field visible. For example:
+
+```json
+{
+  "study_aim": {
+    "text": "[Claim to be verified]",
+    "source": "Introduction-02",
+    "status": "supported"
+  },
+  "study_design": {
+    "text": "[Claim to be verified]",
+    "source": "Methods-01",
+    "status": "supported"
+  },
+  "main_finding": {
+    "text": null,
+    "source": null,
+    "status": "unsupported"
+  },
+  "stated_limitations": {
+    "text": null,
+    "source": null,
+    "status": "unsupported"
+  }
+}
+```
+
+The example is a format illustration, not a finding from a real article. `supported` means the draft claims a source passage exists; a reviewer must still inspect whether that passage supports the wording. `unsupported` means the supplied evidence did not establish the field, not necessarily that the full article lacks it. Confirm that source identifiers belong to the correct article before review. See Chapters 07–09 for validation and evaluation.
+
+# Evaluation case sheet
+
+Record expected behavior before using a case to adjust a prompt or workflow:
+
+| Field | What to record |
+|---|---|
+| Case ID | Stable identifier and eligible source version |
+| Split | Development or reserved evaluation |
+| Case type | Ordinary, unusual heading, qualified finding, absent evidence, scan, figure, or other |
+| Expected field status | Supported, unsupported, or not assessable from supplied material |
+| Reference evidence | Article, page, section, passage, figure, or table |
+| Acceptable interpretation | What a reviewer would accept and what would be an overstatement |
+| Consequence of error | Whether a mistake is cosmetic, substantive, or critical |
+
+Once a reserved case is used to tune the workflow, move it to development and obtain a fresh reserved case. Report the number of articles and fields assessed. Four fields from one article are related observations, not four independent articles.
+
+# Run and review record
+
+For every model-assisted article summary, record:
+
+1. run ID and timestamp;
+2. article ID, source version, and permission status;
+3. extraction method, coverage, and warnings;
+4. candidate passage IDs and retrieval configuration;
+5. prompt, model, output-contract, and relevant setting versions;
+6. provisional draft and structural validation results;
+7. whether every cited passage ID resolves to the supplied article;
+8. reviewer judgments, corrections, and final approval status; and
+9. generation, checking, correction, and total completion time.
+
+Keep the raw draft distinct from the approved summary. An existing passage ID does not prove that a claim is supported. Protect source material, reviewer notes, and logs according to the project's access and retention rules.
+
+# Reporting a pilot honestly
+
+A short report should present the baseline and assisted workflow under comparable requirements, with counts and denominators for claim support, required-field coverage, missing-evidence behavior, and critical errors. Include total reviewer effort, retries, and case types. Trace at least one important failure to extraction, retrieval, generation, validation, or review.
+
+Conclude with a decision supported by the evidence: continue within scope, revise one stage and retest, narrow the task, retain the simpler baseline, or pause pending permission or domain review. The hackathon chapters (12–14) provide the guided sequence; Chapter 15 describes what further testing and ownership broader use would require.
+
+# Key terms
+
+| Term | Meaning in this guide |
+|---|---|
+| Baseline | A credible simpler way to complete the same user task |
+| Chunk or passage | A labeled piece of source material selected for inspection or retrieval |
+| Generative model | A model that produces text, images, or other content conditioned on input |
+| Human oversight | A defined opportunity for a person to inspect, correct, approve, or reject an output |
+| Inference | Applying a trained model to a new input |
+| Output contract | Agreed response fields, types, statuses, and reference requirements |
+| Prototype | A limited implementation built to test a specific usefulness claim |
+| Retrieval | Selecting source material potentially relevant to a request |
+| Run record | The configuration, inputs, intermediate evidence, outputs, and review decision for one attempt |
+| Supported claim | A claim that a reviewer judges consistent with the cited source in context |
+
+# References and further study
+
+The guide's cited sources are maintained in `library/references.bib` and rendered in `99-references.qmd`. Use the references attached to individual chapters for deeper study of their particular topics. For a new application, add domain-specific sources and document permissions, evaluation requirements, and oversight procedures appropriate to its setting.

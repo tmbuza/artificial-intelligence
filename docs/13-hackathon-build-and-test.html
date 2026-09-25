@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hackathon: Build and Test – Artificial Intelligence</title>
+<title>AI Hackathon: Build and Test the Prototype – Artificial Intelligence</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -70,6 +105,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="assets/css/cdi.css">
 </head>
@@ -83,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./12-hackathon-choose-a-problem.html">AI Hackathon</a></li><li class="breadcrumb-item"><a href="./13-hackathon-build-and-test.html"><span class="chapter-title">Hackathon: Build and Test</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./12-hackathon-choose-a-problem.html">AI Hackathon</a></li><li class="breadcrumb-item"><a href="./13-hackathon-build-and-test.html"><span class="chapter-title">AI Hackathon: Build and Test the Prototype</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -136,12 +200,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, Training and Inference</span></a>
+  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, and Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI, Machine Learning and Software</span></a>
+  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI and Machine Learning</span></a>
   </div>
 </li>
       </ul>
@@ -167,7 +231,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Images and Multimodal AI</span></a>
+  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Image and Multimodal AI</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -177,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval, Tools and AI Workflows</span></a>
+  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval and Tools</span></a>
   </div>
 </li>
       </ul>
@@ -198,7 +262,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Privacy, Bias and Human Oversight</span></a>
+  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Privacy, Bias, and Human Oversight</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -219,17 +283,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Choose a Problem</span></a>
+  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Choose the Problem and Plan</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Hackathon: Build and Test</span></a>
+  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">AI Hackathon: Build and Test the Prototype</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Present and Improve</span></a>
+  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Demonstrate, Decide, and Improve</span></a>
   </div>
 </li>
       </ul>
@@ -245,7 +309,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical</span></a>
+  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical Application</span></a>
   </div>
 </li>
       </ul>
@@ -282,22 +346,28 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-outcome" id="toc-learning-outcome" class="nav-link active" data-scroll-target="#learning-outcome">Learning outcome</a></li>
-  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">Why this matters</a></li>
-  <li><a href="#core-ideas" id="toc-core-ideas" class="nav-link" data-scroll-target="#core-ideas">Core ideas</a></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key takeaways</a></li>
+  <li><a href="#build-the-smallest-complete-path" id="toc-build-the-smallest-complete-path" class="nav-link active" data-scroll-target="#build-the-smallest-complete-path">Build the smallest complete path</a></li>
+  <li><a href="#prepare-an-inspectable-article" id="toc-prepare-an-inspectable-article" class="nav-link" data-scroll-target="#prepare-an-inspectable-article">Prepare an inspectable article</a></li>
+  <li><a href="#establish-the-baseline-first" id="toc-establish-the-baseline-first" class="nav-link" data-scroll-target="#establish-the-baseline-first">Establish the baseline first</a></li>
+  <li><a href="#implement-the-draft-pathway" id="toc-implement-the-draft-pathway" class="nav-link" data-scroll-target="#implement-the-draft-pathway">Implement the draft pathway</a></li>
+  <li><a href="#use-the-chapter-07-output-contract" id="toc-use-the-chapter-07-output-contract" class="nav-link" data-scroll-target="#use-the-chapter-07-output-contract">Use the Chapter 07 output contract</a></li>
+  <li><a href="#handle-failures-without-disguising-them" id="toc-handle-failures-without-disguising-them" class="nav-link" data-scroll-target="#handle-failures-without-disguising-them">Handle failures without disguising them</a></li>
+  <li><a href="#test-development-cases-then-freeze-a-version" id="toc-test-development-cases-then-freeze-a-version" class="nav-link" data-scroll-target="#test-development-cases-then-freeze-a-version">Test development cases, then freeze a version</a></li>
+  <li><a href="#review-the-outputs-against-the-original" id="toc-review-the-outputs-against-the-original" class="nav-link" data-scroll-target="#review-the-outputs-against-the-original">Review the outputs against the original</a></li>
+  <li><a href="#calculate-transparent-pilot-measures" id="toc-calculate-transparent-pilot-measures" class="nav-link" data-scroll-target="#calculate-transparent-pilot-measures">Calculate transparent pilot measures</a></li>
+  <li><a href="#test-at-least-one-hard-boundary" id="toc-test-at-least-one-hard-boundary" class="nav-link" data-scroll-target="#test-at-least-one-hard-boundary">Test at least one hard boundary</a></li>
+  <li><a href="#practice-complete-one-evaluated-run" id="toc-practice-complete-one-evaluated-run" class="nav-link" data-scroll-target="#practice-complete-one-evaluated-run">Practice: complete one evaluated run</a></li>
+  <li><a href="#chapter-checklist" id="toc-chapter-checklist" class="nav-link" data-scroll-target="#chapter-checklist">Chapter checklist</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking ahead</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./12-hackathon-choose-a-problem.html">AI Hackathon</a></li><li class="breadcrumb-item"><a href="./13-hackathon-build-and-test.html"><span class="chapter-title">Hackathon: Build and Test</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./12-hackathon-choose-a-problem.html">AI Hackathon</a></li><li class="breadcrumb-item"><a href="./13-hackathon-build-and-test.html"><span class="chapter-title">AI Hackathon: Build and Test the Prototype</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Hackathon: Build and Test</span></h1>
+<h1 class="title"><span id="sec-hackathon-build-and-test" class="quarto-section-identifier"><span class="chapter-title">AI Hackathon: Build and Test the Prototype</span></span></h1>
 </div>
 
 
@@ -320,33 +390,214 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="learning-outcome" class="level1">
-<h1>Learning outcome</h1>
-<p>By the end of this chapter, you should be able to build a minimum prototype and record test results.</p>
+<div class="cdi-message">
+<ul>
+<li><strong>ID:</strong> AI-L13</li>
+<li><strong>Type:</strong> Guided hackathon, stage 2 of 3</li>
+<li><strong>Focus:</strong> Implement a bounded workflow, run representative cases, and investigate failures</li>
+<li><strong>Output:</strong> A working provisional draft, review records, and a baseline comparison</li>
+</ul>
+</div>
+<section id="build-the-smallest-complete-path" class="level2">
+<h2 class="anchored" data-anchor-id="build-the-smallest-complete-path">Build the smallest complete path</h2>
+<p>Chapter 12 produced a task brief, approved inputs, a baseline, success criteria, and development and reserved cases. This chapter turns that plan into a working prototype. For the continuing article-summary example, a complete path starts with one approved article and ends with four provisional fields that a reviewer can verify against the source.</p>
+<p>Avoid optimizing the interface before the evidence path works. A command-line run and a review sheet can answer the first learning question. The prototype may call an approved existing language model, use a local model, or begin with a search-assisted template. The exact provider is a project choice; the checks and evidence requirements remain the same.</p>
 </section>
-<section id="why-this-matters" class="level1">
-<h1>Why this matters</h1>
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+<section id="prepare-an-inspectable-article" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-an-inspectable-article">Prepare an inspectable article</h2>
+<p>Assign a stable article ID, confirm permission to process it, and extract readable text. Preserve headings, page locations where available, and passage IDs. Inspect the beginning, a results passage, and the limitations or discussion section against the original. If extraction omits pages or corrupts key values, correct the input or mark the case for manual handling.</p>
+<p>For a compact pilot, passages can be prepared in a simple structured file:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"article_id"</span><span class="fu">:</span> <span class="st">"article-017"</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"passages"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"Introduction-02"</span><span class="fu">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"section"</span><span class="fu">:</span> <span class="st">"Introduction"</span><span class="fu">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"text"</span><span class="fu">:</span> <span class="st">"[Verified excerpt from the approved article]"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"Methods-01"</span><span class="fu">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"section"</span><span class="fu">:</span> <span class="st">"Methods"</span><span class="fu">,</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"text"</span><span class="fu">:</span> <span class="st">"[Verified excerpt from the approved article]"</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The bracketed strings are placeholders, not real study content. Keep the original document available to the authorized reviewer. Do not commit confidential source text to a public repository.</p>
 </section>
-<section id="core-ideas" class="level1">
-<h1>Core ideas</h1>
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+<section id="establish-the-baseline-first" class="level2">
+<h2 class="anchored" data-anchor-id="establish-the-baseline-first">Establish the baseline first</h2>
+<p>Have a reviewer complete the four-field manual template on the chosen cases according to Chapter 12’s plan. Record start and finish times, source locations, and any missing or ambiguous field. This gives the AI-assisted workflow a fair comparison and helps reveal whether the task definition itself needs clarification.</p>
+<p>If one reviewer performs both baseline and assisted versions of the same article, familiarity with the source can affect timing. Use separate articles, vary the order across reviewers, or state this limitation in the results. The aim of a small hackathon is a transparent pilot, not a definitive productivity estimate.</p>
 </section>
-<section id="worked-example" class="level1">
-<h1>Worked example</h1>
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/13-*.py and describe exact commands here. -->
+<section id="implement-the-draft-pathway" class="level2">
+<h2 class="anchored" data-anchor-id="implement-the-draft-pathway">Implement the draft pathway</h2>
+<p>Keep each stage identifiable:</p>
+<ol type="1">
+<li><strong>Intake:</strong> verify an approved article ID and source file.</li>
+<li><strong>Passage preparation:</strong> extract and label text; capture warnings.</li>
+<li><strong>Selection:</strong> choose candidate passages for each requested field.</li>
+<li><strong>Generation:</strong> submit the controlled task and selected passages to the approved model interface.</li>
+<li><strong>Validation:</strong> parse the response and check the four-field contract.</li>
+<li><strong>Reference check:</strong> confirm every cited passage ID was actually supplied and belongs to the article.</li>
+<li><strong>Review:</strong> inspect claims in the original article, correct or reject fields, and approve the final version.</li>
+</ol>
+<p>For a single short article, manual passage selection is a valid first implementation. If automated retrieval is part of the learning question, test whether it finds expected passages separately. Record both the selected IDs and the full source locations.</p>
 </section>
-<section id="check-your-understanding" class="level1">
-<h1>Check your understanding</h1>
-<!-- Include 2–3 short questions or a small decision exercise. -->
+<section id="use-the-chapter-07-output-contract" class="level2">
+<h2 class="anchored" data-anchor-id="use-the-chapter-07-output-contract">Use the Chapter 07 output contract</h2>
+<p>The draft should contain <code>study_aim</code>, <code>study_design</code>, <code>main_finding</code>, and <code>stated_limitations</code>. Each field has <code>text</code>, <code>source</code>, and <code>status</code>. A supported field needs substantive text and a resolvable source; an unsupported field has empty text and source. Apply the structural validation described in Chapter 07 before sending anything to a reviewer as a completed draft.</p>
+<p>A source-ID check can be expressed simply:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>supplied_ids <span class="op">=</span> {passage[<span class="st">"id"</span>] <span class="cf">for</span> passage <span class="kw">in</span> passages}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> field_name, item <span class="kw">in</span> draft.items():</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> item[<span class="st">"status"</span>] <span class="op">==</span> <span class="st">"supported"</span>:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> item[<span class="st">"source"</span>] <span class="kw">not</span> <span class="kw">in</span> supplied_ids:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Unknown source for </span><span class="sc">{</span>field_name<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This illustrative check detects invented or mismatched identifiers. It does not show that the cited passage supports the wording. The reviewer must still read it in context. If a claim combines multiple passages, revise the output contract to accept a list of references and check every item.</p>
 </section>
-<section id="try-it-yourself" class="level1">
-<h1>Try it yourself</h1>
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+<section id="handle-failures-without-disguising-them" class="level2">
+<h2 class="anchored" data-anchor-id="handle-failures-without-disguising-them">Handle failures without disguising them</h2>
+<p>Define a response for each failure before the demonstration:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Failure</th>
+<th>Prototype behavior</th>
+<th>Next action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Article is not approved</td>
+<td>Stop</td>
+<td>Obtain permission or use another article</td>
+</tr>
+<tr class="even">
+<td>Text extraction is incomplete</td>
+<td>Mark run incomplete</td>
+<td>Inspect original and repair extraction</td>
+</tr>
+<tr class="odd">
+<td>Retrieval finds no relevant passage</td>
+<td>Mark field unsupported</td>
+<td>Reviewer searches the full article</td>
+</tr>
+<tr class="even">
+<td>Model output does not parse</td>
+<td>Reject draft</td>
+<td>Retry under a documented policy or review manually</td>
+</tr>
+<tr class="odd">
+<td>Passage ID is unknown</td>
+<td>Reject affected field</td>
+<td>Correct reference or remove claim</td>
+</tr>
+<tr class="even">
+<td>Passage conflicts with generated claim</td>
+<td>Flag error</td>
+<td>Reviewer corrects and logs severity</td>
+</tr>
+</tbody>
+</table>
+<p>A retry is a new attempt, not a reason to erase the first failure. Record attempts and count them in cost and timing if retries would occur in real use.</p>
 </section>
-<section id="key-takeaways" class="level1">
-<h1>Key takeaways</h1>
-<!-- Summarize the actionable lessons. -->
+<section id="test-development-cases-then-freeze-a-version" class="level2">
+<h2 class="anchored" data-anchor-id="test-development-cases-then-freeze-a-version">Test development cases, then freeze a version</h2>
+<p>Use development cases to make the end-to-end path work. Inspect each failure: did extraction lose evidence, did selection omit it, did the model misinterpret a correct passage, or did validation miss a malformed field? Make focused changes and document what changed.</p>
+<p>Once the workflow reaches the build checkpoint, freeze a version of the prompt, model settings, retrieval method, output contract, and review procedure. Run the reserved cases without quietly adjusting the system between them. If a reserved case exposes a problem requiring a fix, record the original result; the case becomes development material for a subsequent version.</p>
+</section>
+<section id="review-the-outputs-against-the-original" class="level2">
+<h2 class="anchored" data-anchor-id="review-the-outputs-against-the-original">Review the outputs against the original</h2>
+<p>The reviewer should see the draft, cited passages, and original article location. For each field, record one of these judgments: supported, partially supported, unsupported, missing, or not assessable because the source is unreadable. Add a brief correction and severity when needed.</p>
+<p>A useful review table is:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>article_id</th>
+<th>field</th>
+<th>model_status</th>
+<th>reviewer_judgment</th>
+<th>source_checked</th>
+<th>correction_time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>article-017</td>
+<td>study_aim</td>
+<td>supported</td>
+<td>supported</td>
+<td>Introduction-02</td>
+<td>0 min</td>
+</tr>
+<tr class="even">
+<td>article-017</td>
+<td>main_finding</td>
+<td>supported</td>
+<td>partially supported</td>
+<td>Results-04</td>
+<td>3 min</td>
+</tr>
+</tbody>
+</table>
+<p>These are illustrative entries. Record total time for intake, draft generation, source review, and corrections. If a model draft is quick but its evidence takes longer to verify than the baseline, the result matters even when the final corrected summary is accurate.</p>
+</section>
+<section id="calculate-transparent-pilot-measures" class="level2">
+<h2 class="anchored" data-anchor-id="calculate-transparent-pilot-measures">Calculate transparent pilot measures</h2>
+<p>Suppose the pilot contains <span class="math inline">\(N\)</span> articles and four fields each. State how many fields were eligible for assessment. For example:</p>
+<p><span class="math display">\[
+\text{Supported-claim rate}
+=\frac{\text{supported substantive draft fields}}
+{\text{all substantive draft fields assessed}}.
+\]</span></p>
+<p>Also report required-field coverage and the number of cases correctly marked unsupported. A high supported-claim rate can be achieved by generating almost nothing, so it must be interpreted with coverage. Report critical errors separately from minor formatting repairs. Compare the median or individual completion times if the pilot is small; avoid presenting a tiny sample as a stable population estimate.</p>
+<p>The primary result is a reviewed workflow comparison: what the user gained, what errors occurred, and how much work the reviewer still performed. Chapter 09 provides the fuller evaluation framework.</p>
+</section>
+<section id="test-at-least-one-hard-boundary" class="level2">
+<h2 class="anchored" data-anchor-id="test-at-least-one-hard-boundary">Test at least one hard boundary</h2>
+<p>Include a reserved case in which the supplied passages lack a requested answer. The expected result is an unsupported field and an opportunity for the reviewer to inspect the full article. Also include a source passage containing an irrelevant instruction. Verify that the model treats it as document content and does not change tasks or invoke unauthorized tools.</p>
+<p>If figures or scans are in scope, add an unreadable or ambiguous example where the correct behavior is to request human inspection. If they are out of scope, ensure the prototype flags them instead of making a confident claim about their contents.</p>
+</section>
+<section id="practice-complete-one-evaluated-run" class="level2">
+<h2 class="anchored" data-anchor-id="practice-complete-one-evaluated-run">Practice: complete one evaluated run</h2>
+<p>Using an approved development article, perform the full workflow and save a run record with:</p>
+<ul>
+<li>source and permission status;</li>
+<li>extraction and selection results;</li>
+<li>prompt, model, and workflow versions;</li>
+<li>provisional four-field draft;</li>
+<li>structure and reference validation;</li>
+<li>reviewer judgments and corrections;</li>
+<li>total effort and any failures.</li>
+</ul>
+<p>Then freeze the version and run the reserved cases. Compare them with the baseline and prepare a short error log. Do not delete unsuccessful runs; they show where the workflow needs work.</p>
+</section>
+<section id="chapter-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-checklist">Chapter checklist</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">A permitted article can move from intake to a provisional four-field draft.</label></li>
+<li><label><input type="checkbox">Every supported field has a resolvable source ID and still receives content review.</label></li>
+<li><label><input type="checkbox">Invalid, incomplete, or wrong-document runs are visible and handled.</label></li>
+<li><label><input type="checkbox">I tested reserved cases with a recorded, unchanged workflow version.</label></li>
+<li><label><input type="checkbox">I measured the reviewed result and reviewer effort against the baseline.</label></li>
+</ul>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking ahead</h2>
+<p>Chapter 14 turns the build and test results into a clear demonstration. You will show the working path, the evidence behind the claims, the most important failures, and a justified next decision.</p>
 
 
 </section>
@@ -753,13 +1004,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./12-hackathon-choose-a-problem.html" class="pagination-link" aria-label="Hackathon: Choose a Problem">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Hackathon: Choose a Problem</span></span>
+      <a href="./12-hackathon-choose-a-problem.html" class="pagination-link" aria-label="AI Hackathon: Choose the Problem and Plan">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">AI Hackathon: Choose the Problem and Plan</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./14-hackathon-present-and-improve.html" class="pagination-link" aria-label="Hackathon: Present and Improve">
-        <span class="nav-page-text"><span class="chapter-title">Hackathon: Present and Improve</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./14-hackathon-present-and-improve.html" class="pagination-link" aria-label="AI Hackathon: Demonstrate, Decide, and Improve">
+        <span class="nav-page-text"><span class="chapter-title">AI Hackathon: Demonstrate, Decide, and Improve</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -11,7 +11,7 @@
 
 Artificial intelligence can seem like a collection of impressive demonstrations. A chatbot writes a response, a vision model labels an image, or an assistant summarizes a document. The demonstration shows what is possible, but it does not establish whether the system solves a real problem reliably, safely, or at an acceptable cost.
 
-**Artificial Intelligence: From Concepts to Prototype** is a practical introduction to making those judgments. It explains the ideas behind modern AI, helps you choose an appropriate approach, and guides you through designing, building, evaluating, and communicating a small prototype. You do not need to train a large model to learn how to build a useful AI application.
+**Artificial Intelligence: A Practical Path from AI Concepts to a Working Prototype** is an introduction to making those judgments. It explains the ideas behind modern AI, helps you choose an appropriate approach, and guides you through designing, building, evaluating, and communicating a small prototype. You do not need to train a large model to learn how to build a useful AI application.
 
 The principle throughout this guide is:
 
@@ -49,6 +49,28 @@ By the end of the guide, you should be able to:
 A prototype is a limited implementation designed to answer a specific question: **Can this approach help a defined user complete a defined task under stated conditions?** It may be a command-line program, notebook-backed experiment, or small interface. Its purpose is to generate evidence and feedback, not to imply production readiness.
 
 For example, a prototype might help a reviewer find passages in an approved set of documents and draft a cited summary. A useful evaluation would check whether the retrieved passages support the summary, whether the system admits when the documents lack an answer, and how often a reviewer must correct it. A polished interface alone would not answer those questions.
+
+## How the guide is organized
+
+### Foundations
+
+Chapters 01–03 establish AI thinking and problem framing, explain the roles of data, models, and inference, and clarify how AI relates to machine learning.
+
+### Modern AI
+
+Chapters 04–08 introduce neural networks, language models and generative AI, image and multimodal systems, prompting and structured outputs, and workflows that use retrieval and tools. The emphasis is on choosing and testing these capabilities for a specific task.
+
+### Building responsibly
+
+Chapters 09–11 develop evaluation and failure analysis, privacy, bias, human oversight, and reproducible AI workflows. These chapters provide the evidence and safeguards needed before presenting a prototype as useful.
+
+### AI Hackathon
+
+Chapters 12–14 form a guided build sequence: choose a problem, build and test a focused solution, then present the evidence and improve it. Here, a hackathon means a structured, time-bounded learning project. You can complete it individually or with a team; speed does not excuse weak evaluation or careless data use.
+
+### Next steps
+
+Chapter 15 considers how to turn a promising prototype into a more dependable practical application, including what additional testing, documentation, and operational decisions would be required.
 
 ## The learning workflow
 
@@ -96,4 +118,4 @@ You may revise this statement as you learn. A narrow first version makes the eve
 
 ## Looking ahead
 
-The next chapter introduces the core concepts and language of artificial intelligence. It will help you compare different AI approaches before selecting one for your prototype.
+Chapter 01, **AI Thinking and Problem Framing**, starts with the user, the task, and the decision the output will support. That foundation will guide your choice of data, approach, and evaluation throughout the book.

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>AI, Machine Learning and Software – Artificial Intelligence</title>
+<title>AI and Machine Learning – Artificial Intelligence</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -83,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00-preface.html">Foundations</a></li><li class="breadcrumb-item"><a href="./03-ai-and-machine-learning.html"><span class="chapter-title">AI, Machine Learning and Software</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00-preface.html">Foundations</a></li><li class="breadcrumb-item"><a href="./03-ai-and-machine-learning.html"><span class="chapter-title">AI and Machine Learning</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -136,12 +156,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, Training and Inference</span></a>
+  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, and Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">AI, Machine Learning and Software</span></a>
+  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">AI and Machine Learning</span></a>
   </div>
 </li>
       </ul>
@@ -167,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Images and Multimodal AI</span></a>
+  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Image and Multimodal AI</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -177,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval, Tools and AI Workflows</span></a>
+  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval and Tools</span></a>
   </div>
 </li>
       </ul>
@@ -198,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Privacy, Bias and Human Oversight</span></a>
+  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Privacy, Bias, and Human Oversight</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -219,17 +239,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Choose a Problem</span></a>
+  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Choose the Problem and Plan</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Build and Test</span></a>
+  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Build and Test the Prototype</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Present and Improve</span></a>
+  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Demonstrate, Decide, and Improve</span></a>
   </div>
 </li>
       </ul>
@@ -245,7 +265,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical</span></a>
+  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical Application</span></a>
   </div>
 </li>
       </ul>
@@ -282,22 +302,37 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-outcome" id="toc-learning-outcome" class="nav-link active" data-scroll-target="#learning-outcome">Learning outcome</a></li>
-  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">Why this matters</a></li>
-  <li><a href="#core-ideas" id="toc-core-ideas" class="nav-link" data-scroll-target="#core-ideas">Core ideas</a></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key takeaways</a></li>
+  <li><a href="#where-machine-learning-fits" id="toc-where-machine-learning-fits" class="nav-link active" data-scroll-target="#where-machine-learning-fits">Where machine learning fits</a></li>
+  <li><a href="#rules-and-learned-patterns" id="toc-rules-and-learned-patterns" class="nav-link" data-scroll-target="#rules-and-learned-patterns">Rules and learned patterns</a></li>
+  <li><a href="#common-machine-learning-tasks" id="toc-common-machine-learning-tasks" class="nav-link" data-scroll-target="#common-machine-learning-tasks">Common machine-learning tasks</a>
+  <ul class="collapse">
+  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification">Classification</a></li>
+  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression">Regression</a></li>
+  <li><a href="#ranking" id="toc-ranking" class="nav-link" data-scroll-target="#ranking">Ranking</a></li>
+  <li><a href="#clustering" id="toc-clustering" class="nav-link" data-scroll-target="#clustering">Clustering</a></li>
+  <li><a href="#generation" id="toc-generation" class="nav-link" data-scroll-target="#generation">Generation</a></li>
+  </ul></li>
+  <li><a href="#how-learning-from-examples-differs" id="toc-how-learning-from-examples-differs" class="nav-link" data-scroll-target="#how-learning-from-examples-differs">How learning from examples differs</a></li>
+  <li><a href="#general-models-and-task-specific-systems" id="toc-general-models-and-task-specific-systems" class="nav-link" data-scroll-target="#general-models-and-task-specific-systems">General models and task-specific systems</a></li>
+  <li><a href="#continue-the-article-example" id="toc-continue-the-article-example" class="nav-link" data-scroll-target="#continue-the-article-example">Continue the article example</a></li>
+  <li><a href="#avoid-three-common-shortcuts" id="toc-avoid-three-common-shortcuts" class="nav-link" data-scroll-target="#avoid-three-common-shortcuts">Avoid three common shortcuts</a>
+  <ul class="collapse">
+  <li><a href="#choosing-a-model-before-defining-the-task" id="toc-choosing-a-model-before-defining-the-task" class="nav-link" data-scroll-target="#choosing-a-model-before-defining-the-task">Choosing a model before defining the task</a></li>
+  <li><a href="#equating-training-success-with-real-use" id="toc-equating-training-success-with-real-use" class="nav-link" data-scroll-target="#equating-training-success-with-real-use">Equating training success with real use</a></li>
+  <li><a href="#treating-generation-as-understanding" id="toc-treating-generation-as-understanding" class="nav-link" data-scroll-target="#treating-generation-as-understanding">Treating generation as understanding</a></li>
+  </ul></li>
+  <li><a href="#practice-justify-an-approach" id="toc-practice-justify-an-approach" class="nav-link" data-scroll-target="#practice-justify-an-approach">Practice: justify an approach</a></li>
+  <li><a href="#chapter-checklist" id="toc-chapter-checklist" class="nav-link" data-scroll-target="#chapter-checklist">Chapter checklist</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking ahead</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00-preface.html">Foundations</a></li><li class="breadcrumb-item"><a href="./03-ai-and-machine-learning.html"><span class="chapter-title">AI, Machine Learning and Software</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00-preface.html">Foundations</a></li><li class="breadcrumb-item"><a href="./03-ai-and-machine-learning.html"><span class="chapter-title">AI and Machine Learning</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">AI, Machine Learning and Software</span></h1>
+<h1 class="title"><span id="sec-ai-and-machine-learning" class="quarto-section-identifier"><span class="chapter-title">AI and Machine Learning</span></span></h1>
 </div>
 
 
@@ -320,35 +355,279 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="learning-outcome" class="level1">
-<h1>Learning outcome</h1>
-<p>By the end of this chapter, you should be able to explain the central ideas of ai, machine learning and software and apply them to a small example.</p>
+<div class="cdi-message">
+<ul>
+<li><strong>ID:</strong> AI-L03</li>
+<li><strong>Type:</strong> Foundations</li>
+<li><strong>Focus:</strong> Understand how machine learning fits within AI and choose an approach for a defined task</li>
+<li><strong>Output:</strong> A justified method choice and a comparison plan</li>
+</ul>
+</div>
+<section id="where-machine-learning-fits" class="level2">
+<h2 class="anchored" data-anchor-id="where-machine-learning-fits">Where machine learning fits</h2>
+<p>Artificial intelligence (AI) is a broad field concerned with systems that perform tasks associated with perception, reasoning, language, planning, or decision-making. The OECD’s updated definition describes AI systems in terms of how they infer outputs, including predictions, content, recommendations, or decisions, from their inputs <span class="citation" data-cites="oecd2024ai-definition">(<a href="99-references.html#ref-oecd2024ai-definition" role="doc-biblioref">Organisation for Economic Co-operation and Development 2024</a>)</span>. <strong>Machine learning (ML)</strong> is one way to build such systems: a model learns useful patterns from examples rather than having every possible case specified by hand.</p>
+<p>Not every AI system is a machine-learning model. A system can combine fixed rules, search, a knowledge base, and a learned model. Nor does every task that sounds “intelligent” require AI. If a clearly defined rule solves the user’s problem, the rule may be the better choice.</p>
+<p>The terms are related as follows:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Working meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Artificial intelligence</td>
+<td>Broad area of systems performing tasks that require context-sensitive interpretation or action</td>
+<td>An assistant that finds and summarizes permitted documents</td>
+</tr>
+<tr class="even">
+<td>Machine learning</td>
+<td>Methods that learn relationships from examples</td>
+<td>A classifier trained to label incoming requests</td>
+</tr>
+<tr class="odd">
+<td>Deep learning</td>
+<td>Machine learning using multilayer neural networks</td>
+<td>A model that recognizes patterns in images or text</td>
+</tr>
+<tr class="even">
+<td>Generative AI</td>
+<td>Models that generate content such as text, images, or audio</td>
+<td>A language model drafting a summary</td>
+</tr>
+</tbody>
+</table>
+<p>These are overlapping descriptions of methods and capabilities, not a ladder of quality. A generative system may use deep learning; a broader AI workflow may also include ordinary software and human review. The right method depends on the task and evidence, not on which term sounds more advanced.</p>
 </section>
-<section id="why-this-matters" class="level1">
-<h1>Why this matters</h1>
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+<section id="rules-and-learned-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="rules-and-learned-patterns">Rules and learned patterns</h2>
+<p>Suppose a research assistant must identify the publication year of an article. If that year is in a reliable metadata field, a direct lookup is straightforward. If article files vary and metadata are missing, extraction may require more flexible text processing. If the task is to interpret a study’s limitations, rules alone may struggle with the variety of wording and context.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>How it handles a new case</th>
+<th>Typical strength</th>
+<th>Typical limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fixed rule</td>
+<td>Applies instructions written in advance</td>
+<td>Predictable for well-defined cases</td>
+<td>Brittle when inputs vary beyond the rules</td>
+</tr>
+<tr class="even">
+<td>Search or retrieval</td>
+<td>Finds matching records or passages</td>
+<td>Traceable to source material</td>
+<td>Finding a passage does not interpret it</td>
+</tr>
+<tr class="odd">
+<td>Trained predictive model</td>
+<td>Uses learned relationships to estimate an outcome</td>
+<td>Handles patterns across many examples</td>
+<td>Depends on suitable training data and evaluation</td>
+</tr>
+<tr class="even">
+<td>Generative model</td>
+<td>Produces content conditioned on an input and instructions</td>
+<td>Flexible drafting and transformation</td>
+<td>Can produce fluent but unsupported content</td>
+</tr>
+<tr class="odd">
+<td>Human-led workflow</td>
+<td>Applies domain judgment and accountability</td>
+<td>Handles ambiguity and consequences</td>
+<td>Requires time and may vary across reviewers</td>
+</tr>
+</tbody>
+</table>
+<p>Real applications often combine approaches. A document assistant could use search to locate passages, a language model to draft a summary, fixed checks to ensure required fields are present, and a reviewer to verify meaning. The chosen design and level of review should reflect the system’s context and risks; the NIST AI Risk Management Framework offers a structured approach to considering those risks <span class="citation" data-cites="tabassi2023ai-rmf">(<a href="99-references.html#ref-tabassi2023ai-rmf" role="doc-biblioref">Tabassi 2023</a>)</span>.</p>
 </section>
-<section id="core-ideas" class="level1">
-<h1>Core ideas</h1>
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+<section id="common-machine-learning-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="common-machine-learning-tasks">Common machine-learning tasks</h2>
+<p>The <em>task</em> describes the expected output. It does not by itself specify which algorithm to use.</p>
+<section id="classification" class="level3">
+<h3 class="anchored" data-anchor-id="classification">Classification</h3>
+<p>Classification assigns one or more categories to an input. An example is labeling a support message as a billing question, an access problem, or another request. The categories must be defined clearly, and some messages may belong to more than one category or none of the planned categories.</p>
 </section>
-<section id="worked-example" class="level1">
-<h1>Worked example</h1>
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/03-*.py and describe exact commands here. -->
+<section id="regression" class="level3">
+<h3 class="anchored" data-anchor-id="regression">Regression</h3>
+<p>Regression estimates a numeric value, such as the expected number of days to complete a process. Its accuracy depends on what information is available when the estimate is made and whether past examples reflect future cases.</p>
 </section>
-<section id="check-your-understanding" class="level1">
-<h1>Check your understanding</h1>
-<!-- Include 2–3 short questions or a small decision exercise. -->
+<section id="ranking" class="level3">
+<h3 class="anchored" data-anchor-id="ranking">Ranking</h3>
+<p>Ranking orders candidates, such as documents likely to be relevant to a search. The first result may matter more than the tenth, so evaluation should reflect how people use the ordered list.</p>
 </section>
-<section id="try-it-yourself" class="level1">
-<h1>Try it yourself</h1>
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+<section id="clustering" class="level3">
+<h3 class="anchored" data-anchor-id="clustering">Clustering</h3>
+<p>Clustering groups examples by similarity without requiring predefined labels for every group. A cluster is a pattern in the available representation, not automatically a meaningful real-world category. People must inspect and interpret the groups.</p>
 </section>
-<section id="key-takeaways" class="level1">
-<h1>Key takeaways</h1>
-<!-- Summarize the actionable lessons. -->
+<section id="generation" class="level3">
+<h3 class="anchored" data-anchor-id="generation">Generation</h3>
+<p>Generation produces new text, images, or other content conditioned on a request. A paper summary is a generation task, but it also requires factual support and may depend on retrieval. Evaluating only whether the prose reads well would miss the core requirement.</p>
+<p>The same user need can contain several tasks. A literature assistant might rank papers, extract study characteristics, and generate a reviewer-facing draft. Define and evaluate each step rather than giving the entire workflow one vague “accuracy” score.</p>
+</section>
+</section>
+<section id="how-learning-from-examples-differs" class="level2">
+<h2 class="anchored" data-anchor-id="how-learning-from-examples-differs">How learning from examples differs</h2>
+<p>There are several ways models can learn. The distinctions help you understand the resources and evaluation each approach needs.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Learning setup</th>
+<th>Available signal</th>
+<th>Illustrative use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Supervised learning</td>
+<td>Inputs paired with target labels or values</td>
+<td>Predict a defined request category from past labeled requests</td>
+</tr>
+<tr class="even">
+<td>Unsupervised learning</td>
+<td>Inputs without task-specific target labels</td>
+<td>Explore groups of similar documents</td>
+</tr>
+<tr class="odd">
+<td>Self-supervised learning</td>
+<td>Training signals derived from the data itself</td>
+<td>Learn general representations from text or images</td>
+</tr>
+</tbody>
+</table>
+<p>These labels describe training setups. They do not guarantee an appropriate model, trustworthy data, or useful performance on your particular task. A general-purpose language model may have learned broad patterns before you use it, while your application still needs task-specific instructions, source material, and evaluation.</p>
+</section>
+<section id="general-models-and-task-specific-systems" class="level2">
+<h2 class="anchored" data-anchor-id="general-models-and-task-specific-systems">General models and task-specific systems</h2>
+<p>A model can provide a capability without constituting a complete solution. For example, a language model may write a plausible summary. A dependable article-summary workflow additionally needs document intake, text extraction, source references, output formatting, verification, and review.</p>
+<p>Distinguish three levels:</p>
+<ol type="1">
+<li><strong>Model capability:</strong> Can the model perform a type of transformation at all?</li>
+<li><strong>Task performance:</strong> Does it do so on representative examples under the stated constraints?</li>
+<li><strong>Workflow usefulness:</strong> Does the full process improve the user’s work after corrections, delays, and costs are counted?</li>
+</ol>
+<p>A good demonstration at level one does not establish levels two and three. This is why the problem brief from Chapter 01 and the data map from Chapter 02 come before choosing a model.</p>
+</section>
+<section id="continue-the-article-example" class="level2">
+<h2 class="anchored" data-anchor-id="continue-the-article-example">Continue the article example</h2>
+<p>Our defined task is to draft four article-summary fields, each supported by a section reference, for review. Several approaches are possible:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Candidate</th>
+<th>How it would work</th>
+<th>What to test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Manual template</td>
+<td>Reviewer reads and fills four fields</td>
+<td>Time, consistency, and errors in the current workflow</td>
+</tr>
+<tr class="even">
+<td>Search plus template</td>
+<td>Reviewer uses section search and fills fields</td>
+<td>Whether search reduces effort without hiding context</td>
+</tr>
+<tr class="odd">
+<td>Language-model draft</td>
+<td>Model receives the article and instructions</td>
+<td>Support, omissions, corrections, and reviewer time</td>
+</tr>
+<tr class="even">
+<td>Retrieval plus draft</td>
+<td>Relevant passages are selected before generation</td>
+<td>Whether selection improves support or omits key context</td>
+</tr>
+</tbody>
+</table>
+<p>The manual or search-assisted workflow is a meaningful baseline. If the model saves drafting time but takes longer to verify, the benefit may disappear. If retrieval excludes the limitations section, a fluent generated answer may perform worse than a simple template.</p>
+<p>The choice is therefore a hypothesis:</p>
+<blockquote class="blockquote">
+<p>For approved articles in scope, a model-assisted draft with traceable references will reduce reviewer effort while meeting the agreed support and accuracy criteria.</p>
+</blockquote>
+<p>The hypothesis can be rejected. That is a useful outcome: it prevents investing further in a method that does not help the user.</p>
+</section>
+<section id="avoid-three-common-shortcuts" class="level2">
+<h2 class="anchored" data-anchor-id="avoid-three-common-shortcuts">Avoid three common shortcuts</h2>
+<section id="choosing-a-model-before-defining-the-task" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-a-model-before-defining-the-task">Choosing a model before defining the task</h3>
+<p>Starting with a popular model encourages a demonstration designed around its strengths. Start with the user’s work, constraints, and baseline; then compare tools that could meet those needs.</p>
+</section>
+<section id="equating-training-success-with-real-use" class="level3">
+<h3 class="anchored" data-anchor-id="equating-training-success-with-real-use">Equating training success with real use</h3>
+<p>Performance on training examples does not show how a model handles unfamiliar documents, changed wording, or missing information. Reserve appropriate evaluation cases and measure the workflow under conditions resembling use.</p>
+</section>
+<section id="treating-generation-as-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="treating-generation-as-understanding">Treating generation as understanding</h3>
+<p>Well-formed text can be wrong or unsupported. Require source checks, explicit uncertainty, and human review where errors matter. Do not infer factual reliability from a polished writing style.</p>
+</section>
+</section>
+<section id="practice-justify-an-approach" class="level2">
+<h2 class="anchored" data-anchor-id="practice-justify-an-approach">Practice: justify an approach</h2>
+<p>Return to your problem brief and data-and-inference map:</p>
+<ol type="1">
+<li>State the primary task: classification, numeric prediction, ranking, grouping, generation, or a combination.</li>
+<li>Identify one non-ML baseline that could address all or part of it.</li>
+<li>Identify one learned approach and the data or context it would require.</li>
+<li>Compare likely failure modes, verification effort, cost, and permissions.</li>
+<li>Write a testable hypothesis explaining why the learned approach might help.</li>
+<li>State what finding would lead you to retain the simpler baseline.</li>
+</ol>
+<p>For a multi-step workflow, repeat the exercise for each step. You may discover that only one component benefits from a learned model.</p>
+</section>
+<section id="chapter-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-checklist">Chapter checklist</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">I can describe the relationship among AI, ML, deep learning, and generative AI.</label></li>
+<li><label><input type="checkbox">I can distinguish task types from model choices.</label></li>
+<li><label><input type="checkbox">I can explain why a model alone is not a complete workflow.</label></li>
+<li><label><input type="checkbox">I have named a simple baseline and a candidate learned approach for my task.</label></li>
+<li><label><input type="checkbox">I can state how I would decide between them using representative cases.</label></li>
+</ul>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking ahead</h2>
+<p>Chapter 04 introduces <strong>neural networks</strong>. It explains why layered learned representations are useful for complex inputs, what training changes, and which limitations still matter when these models become components of an AI workflow.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-oecd2024ai-definition" class="csl-entry" role="listitem">
+Organisation for Economic Co-operation and Development. 2024. <span>“Explanatory Memorandum on the Updated <span>OECD</span> Definition of an <span>AI</span> System.”</span> 8. OECD Artificial Intelligence Papers. OECD. <a href="https://doi.org/10.1787/623da898-en">https://doi.org/10.1787/623da898-en</a>.
+</div>
+<div id="ref-tabassi2023ai-rmf" class="csl-entry" role="listitem">
+Tabassi, Elham. 2023. <span>“Artificial Intelligence Risk Management Framework (<span>AI RMF</span> 1.0).”</span> NIST AI 100-1. National Institute of Standards; Technology. <a href="https://doi.org/10.6028/NIST.AI.100-1">https://doi.org/10.6028/NIST.AI.100-1</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -753,8 +1032,8 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./02-data-models-and-inference.html" class="pagination-link" aria-label="Data, Models, Training and Inference">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Data, Models, Training and Inference</span></span>
+      <a href="./02-data-models-and-inference.html" class="pagination-link" aria-label="Data, Models, and Inference">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Data, Models, and Inference</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

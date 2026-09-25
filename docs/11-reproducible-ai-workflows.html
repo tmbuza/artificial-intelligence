@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -136,12 +171,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, Training and Inference</span></a>
+  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, and Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI, Machine Learning and Software</span></a>
+  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI and Machine Learning</span></a>
   </div>
 </li>
       </ul>
@@ -167,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Images and Multimodal AI</span></a>
+  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Image and Multimodal AI</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -177,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval, Tools and AI Workflows</span></a>
+  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval and Tools</span></a>
   </div>
 </li>
       </ul>
@@ -198,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Privacy, Bias and Human Oversight</span></a>
+  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Privacy, Bias, and Human Oversight</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -219,17 +254,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Choose a Problem</span></a>
+  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Choose the Problem and Plan</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Build and Test</span></a>
+  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Build and Test the Prototype</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Present and Improve</span></a>
+  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Demonstrate, Decide, and Improve</span></a>
   </div>
 </li>
       </ul>
@@ -245,7 +280,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical</span></a>
+  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical Application</span></a>
   </div>
 </li>
       </ul>
@@ -282,13 +317,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-outcome" id="toc-learning-outcome" class="nav-link active" data-scroll-target="#learning-outcome">Learning outcome</a></li>
-  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">Why this matters</a></li>
-  <li><a href="#core-ideas" id="toc-core-ideas" class="nav-link" data-scroll-target="#core-ideas">Core ideas</a></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key takeaways</a></li>
+  <li><a href="#make-the-prototype-inspectable" id="toc-make-the-prototype-inspectable" class="nav-link active" data-scroll-target="#make-the-prototype-inspectable">Make the prototype inspectable</a></li>
+  <li><a href="#identify-the-complete-run" id="toc-identify-the-complete-run" class="nav-link" data-scroll-target="#identify-the-complete-run">Identify the complete run</a></li>
+  <li><a href="#separate-source-configuration-and-generated-results" id="toc-separate-source-configuration-and-generated-results" class="nav-link" data-scroll-target="#separate-source-configuration-and-generated-results">Separate source, configuration, and generated results</a></li>
+  <li><a href="#keep-prompts-and-output-contracts-versioned" id="toc-keep-prompts-and-output-contracts-versioned" class="nav-link" data-scroll-target="#keep-prompts-and-output-contracts-versioned">Keep prompts and output contracts versioned</a></li>
+  <li><a href="#preserve-the-evidence-path" id="toc-preserve-the-evidence-path" class="nav-link" data-scroll-target="#preserve-the-evidence-path">Preserve the evidence path</a></li>
+  <li><a href="#use-a-staged-checkable-pipeline" id="toc-use-a-staged-checkable-pipeline" class="nav-link" data-scroll-target="#use-a-staged-checkable-pipeline">Use a staged, checkable pipeline</a></li>
+  <li><a href="#track-changes-by-reason" id="toc-track-changes-by-reason" class="nav-link" data-scroll-target="#track-changes-by-reason">Track changes by reason</a></li>
+  <li><a href="#reproducibility-and-changing-external-systems" id="toc-reproducibility-and-changing-external-systems" class="nav-link" data-scroll-target="#reproducibility-and-changing-external-systems">Reproducibility and changing external systems</a></li>
+  <li><a href="#practice-design-one-run-record" id="toc-practice-design-one-run-record" class="nav-link" data-scroll-target="#practice-design-one-run-record">Practice: design one run record</a></li>
+  <li><a href="#chapter-checklist" id="toc-chapter-checklist" class="nav-link" data-scroll-target="#chapter-checklist">Chapter checklist</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking ahead</a></li>
   </ul>
 </nav>
     </div>
@@ -297,7 +336,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-evaluation-and-failure-analysis.html">Building Responsibly</a></li><li class="breadcrumb-item"><a href="./11-reproducible-ai-workflows.html"><span class="chapter-title">Reproducible AI Workflows</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Reproducible AI Workflows</span></h1>
+<h1 class="title"><span id="sec-reproducible-ai-workflows" class="quarto-section-identifier"><span class="chapter-title">Reproducible AI Workflows</span></span></h1>
 </div>
 
 
@@ -320,33 +359,219 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="learning-outcome" class="level1">
-<h1>Learning outcome</h1>
-<p>By the end of this chapter, you should be able to explain the central ideas of reproducible ai workflows and apply them to a small example.</p>
+<div class="cdi-message">
+<ul>
+<li><strong>ID:</strong> AI-L11</li>
+<li><strong>Type:</strong> Building responsibly</li>
+<li><strong>Focus:</strong> Record the inputs, configurations, decisions, and evidence needed to inspect and repeat an AI prototype</li>
+<li><strong>Output:</strong> A run record and a reproducibility checklist for the article-summary workflow</li>
+</ul>
+</div>
+<section id="make-the-prototype-inspectable" class="level2">
+<h2 class="anchored" data-anchor-id="make-the-prototype-inspectable">Make the prototype inspectable</h2>
+<p>Chapter 10 established data boundaries and human review. This chapter turns those commitments into a workflow another authorized person can inspect. If a summary changes, you should be able to identify the article version, extracted passages, retrieval configuration, prompt, model, validation result, and review decision involved.</p>
+<p>Reproducibility does not promise that a hosted generative model will return identical words every time. It means the project preserves enough information to explain what was run, compare outcomes under stated conditions, and detect when a component changed. Exact repeatability may depend on access to the same model version, settings, service behavior, and source materials.</p>
 </section>
-<section id="why-this-matters" class="level1">
-<h1>Why this matters</h1>
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+<section id="identify-the-complete-run" class="level2">
+<h2 class="anchored" data-anchor-id="identify-the-complete-run">Identify the complete run</h2>
+<p>A <em>run</em> is one attempt to process a defined input through a defined version of the workflow. Give each run a unique identifier. Record at least:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Record item</th>
+<th>Example content</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Run ID and time</td>
+<td><code>run-2026-09-25-001</code>, UTC timestamp</td>
+<td>Connects outputs and reviews</td>
+</tr>
+<tr class="even">
+<td>Source identity</td>
+<td>Approved article ID and source version</td>
+<td>Prevents wrong-document comparisons</td>
+</tr>
+<tr class="odd">
+<td>Extraction</td>
+<td>Method, page count, warnings</td>
+<td>Explains missing or damaged text</td>
+</tr>
+<tr class="even">
+<td>Retrieval</td>
+<td>Index or passage-set version and settings</td>
+<td>Shows which evidence was available</td>
+</tr>
+<tr class="odd">
+<td>Prompt</td>
+<td>Template version and filled task variables</td>
+<td>Distinguishes instruction changes</td>
+</tr>
+<tr class="even">
+<td>Model</td>
+<td>Provider or local model identifier and available version</td>
+<td>Exposes model changes</td>
+</tr>
+<tr class="odd">
+<td>Generation settings</td>
+<td>Relevant settings and limits</td>
+<td>Supports comparison across runs</td>
+</tr>
+<tr class="even">
+<td>Validation</td>
+<td>Parse result and reference checks</td>
+<td>Identifies rejected outputs</td>
+</tr>
+<tr class="odd">
+<td>Human review</td>
+<td>Corrections, decision, reviewer role</td>
+<td>Separates drafts from approved summaries</td>
+</tr>
+</tbody>
+</table>
+<p>Do not save private credentials or unrestricted document copies merely to make a log detailed. Chapter 10’s access and retention rules still apply.</p>
 </section>
-<section id="core-ideas" class="level1">
-<h1>Core ideas</h1>
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+<section id="separate-source-configuration-and-generated-results" class="level2">
+<h2 class="anchored" data-anchor-id="separate-source-configuration-and-generated-results">Separate source, configuration, and generated results</h2>
+<p>A small repository can keep program code, reusable prompt templates, evaluation definitions, and generated outputs in distinct locations:</p>
+<pre class="text"><code>.
+├── config/
+│   └── article-summary.example.yml
+├── prompts/
+│   └── article-summary-v1.txt
+├── scripts/
+│   ├── bash/
+│   └── python/
+├── data/
+│   ├── reference/
+│   └── approved/
+├── results/
+│   ├── tables/
+│   └── runs/
+└── README.md</code></pre>
+<p>This is an illustrative layout, not a requirement to commit sensitive articles. The <code>approved/</code> directory may be local, access-controlled, or represented by references to another authorized location. Use repository-specific rules for ignored files and generated artifacts. The <code>.qmd</code> guide examples remain non-executable; complete programs, when developed, belong in <code>scripts/python/</code>, with Bash wrappers in <code>scripts/bash/</code> where useful.</p>
 </section>
-<section id="worked-example" class="level1">
-<h1>Worked example</h1>
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/11-*.py and describe exact commands here. -->
+<section id="keep-prompts-and-output-contracts-versioned" class="level2">
+<h2 class="anchored" data-anchor-id="keep-prompts-and-output-contracts-versioned">Keep prompts and output contracts versioned</h2>
+<p>Store a prompt template in a file rather than relying on an unrecorded message copied into a chat window. Record the output schema and validation rules with it. Give meaningful versions to changes that alter the task, evidence policy, or result structure.</p>
+<p>For example, <code>article-summary-v1</code> may require four fields and passage IDs. A later version might add a separate flag for ambiguous evidence. Record what changed and why. Do not merge results from both versions under a single label when evaluating improvement.</p>
+<p>A simple run configuration might be:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">workflow_id</span><span class="kw">:</span><span class="at"> article-summary-v1</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prompt_file</span><span class="kw">:</span><span class="at"> prompts/article-summary-v1.txt</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">required_fields</span><span class="kw">:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> study_aim</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> study_design</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> main_finding</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> stated_limitations</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">source_policy</span><span class="kw">:</span><span class="at"> approved_article_only</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">review_required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Actual provider settings, paths, and retention policies should be set for the project. This configuration illustrates the decisions that should be visible, not a ready-to-run application.</p>
 </section>
-<section id="check-your-understanding" class="level1">
-<h1>Check your understanding</h1>
-<!-- Include 2–3 short questions or a small decision exercise. -->
+<section id="preserve-the-evidence-path" class="level2">
+<h2 class="anchored" data-anchor-id="preserve-the-evidence-path">Preserve the evidence path</h2>
+<p>For each generated field, retain the passage IDs supplied to the model, the reference returned by the model, and the reviewer’s final judgment. This lets you distinguish a missing passage from a model that ignored a correct passage.</p>
+<p>A compact review record could include:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>run_id</th>
+<th>field</th>
+<th>cited_passage</th>
+<th>review_result</th>
+<th>correction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>run-001</td>
+<td>study_design</td>
+<td>Methods-02</td>
+<td>supported</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td>run-001</td>
+<td>main_finding</td>
+<td>Results-04</td>
+<td>overstatement</td>
+<td>Restore qualification</td>
+</tr>
+<tr class="odd">
+<td>run-001</td>
+<td>stated_limitations</td>
+<td>—</td>
+<td>correctly unsupported</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<p>These are illustrative entries. If a field draws on a figure or table, preserve that location and note which visual check was performed. Protect the underlying article and reviewer notes according to the approved data plan.</p>
 </section>
-<section id="try-it-yourself" class="level1">
-<h1>Try it yourself</h1>
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+<section id="use-a-staged-checkable-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="use-a-staged-checkable-pipeline">Use a staged, checkable pipeline</h2>
+<p>Keep the workflow’s stages visible:</p>
+<ol type="1">
+<li><strong>Intake:</strong> confirm the article is approved and assign its identifier.</li>
+<li><strong>Extraction:</strong> create text or visual references; record warnings.</li>
+<li><strong>Retrieval:</strong> select passages and save the candidate identifiers.</li>
+<li><strong>Generation:</strong> record the prompt version, model identifier, and draft.</li>
+<li><strong>Validation:</strong> check output structure and whether references resolve.</li>
+<li><strong>Review:</strong> compare claims with the original, correct fields, and record approval.</li>
+<li><strong>Evaluation:</strong> add the run to the appropriate development or reserved test set.</li>
+</ol>
+<p>A failed stage should not silently advance as a success. For instance, if article extraction omits pages, mark the run incomplete or route it to manual review rather than generating a confident summary from partial text.</p>
 </section>
-<section id="key-takeaways" class="level1">
-<h1>Key takeaways</h1>
-<!-- Summarize the actionable lessons. -->
+<section id="track-changes-by-reason" class="level2">
+<h2 class="anchored" data-anchor-id="track-changes-by-reason">Track changes by reason</h2>
+<p>When evaluation exposes a problem, record the observed failure, the proposed change, and the cases used to test it. A change log entry may read:</p>
+<blockquote class="blockquote">
+<p>Run 014 overstated the main finding despite a qualifying phrase in the Results passage. Version 2 adds an instruction to preserve uncertainty language. Retest on the original case and on reserved articles with qualified findings.</p>
+</blockquote>
+<p>If retrieval, prompt, model, and output schema all change at once, you may improve the workflow but struggle to identify why. Make focused changes when feasible; document combined changes when they are necessary. Keep comparisons fair by reporting case-set changes and reviewer effort.</p>
+</section>
+<section id="reproducibility-and-changing-external-systems" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility-and-changing-external-systems">Reproducibility and changing external systems</h2>
+<p>Hosted models and services may change their behavior or availability. Record the exact identifier exposed by the service, relevant settings, and date of use. If a service does not provide a fixed version or deterministic behavior, state that limitation. Re-run a small stable set after material changes and compare error categories, not just wording.</p>
+<p>Local software also changes. Maintain a documented Python environment, dependency specification, and commands for preparing data and running evaluation. Avoid embedding API keys in source files or command transcripts. Never assume that a recorded random seed alone makes the complete external workflow deterministic.</p>
+</section>
+<section id="practice-design-one-run-record" class="level2">
+<h2 class="anchored" data-anchor-id="practice-design-one-run-record">Practice: design one run record</h2>
+<p>Create a template with fields for source ID, permission status, extraction warning, candidate passage IDs, prompt and model versions, generated draft, validation result, reviewer corrections, review status, timing, and storage location. Then trace one article from intake to review:</p>
+<ul>
+<li>Can another authorized reviewer locate the original evidence?</li>
+<li>Can they tell whether a field was drafted from supplied text or guessed?</li>
+<li>Can they identify which component changed between two runs?</li>
+<li>Can they reproduce the evaluation method without exposing restricted content?</li>
+</ul>
+<p>If any answer is no, revise the run record or workflow boundary before expanding the prototype.</p>
+</section>
+<section id="chapter-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-checklist">Chapter checklist</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Every run has a source identifier and recorded configuration.</label></li>
+<li><label><input type="checkbox">Prompt, model, retrieval, and schema versions are distinguishable.</label></li>
+<li><label><input type="checkbox">Generated drafts are separate from reviewer-approved summaries.</label></li>
+<li><label><input type="checkbox">Extraction and validation failures remain visible.</label></li>
+<li><label><input type="checkbox">The record supports comparison while respecting access and retention limits.</label></li>
+</ul>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking ahead</h2>
+<p>Chapter 12 begins the <strong>AI Hackathon</strong> sequence. You will choose a tightly scoped problem, set a baseline and success criteria, and prepare the materials for a focused prototype build.</p>
 
 
 </section>
@@ -753,13 +978,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./10-privacy-bias-and-human-oversight.html" class="pagination-link" aria-label="Privacy, Bias and Human Oversight">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Privacy, Bias and Human Oversight</span></span>
+      <a href="./10-privacy-bias-and-human-oversight.html" class="pagination-link" aria-label="Privacy, Bias, and Human Oversight">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Privacy, Bias, and Human Oversight</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./12-hackathon-choose-a-problem.html" class="pagination-link" aria-label="Hackathon: Choose a Problem">
-        <span class="nav-page-text"><span class="chapter-title">Hackathon: Choose a Problem</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./12-hackathon-choose-a-problem.html" class="pagination-link" aria-label="AI Hackathon: Choose the Problem and Plan">
+        <span class="nav-page-text"><span class="chapter-title">AI Hackathon: Choose the Problem and Plan</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

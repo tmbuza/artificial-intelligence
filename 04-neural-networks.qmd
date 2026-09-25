@@ -1,31 +1,131 @@
----
-title: "Neural Networks"
----
+# Neural Networks {#sec-neural-networks}
 
-# Learning outcome
+::: {.cdi-message}
+- **ID:** AI-L04
+- **Type:** Modern AI
+- **Focus:** Understand what neural networks learn and when their capabilities help a defined task
+- **Output:** A neural-network suitability note for the prototype
+:::
 
-By the end of this chapter, you should be able to explain the central ideas of neural networks and apply them to a small example.
+## Why this chapter matters
 
-# Why this matters
+Chapter 03 compared rules, retrieval, predictive models, and generation. Many modern systems used for language, images, and audio rely on neural networks. To select one responsibly, you need a working account of what the model learns, what happens when it receives a new input, and why a capable general model can still fail at your particular task.
 
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+You do not need to train a large network for the article-summary prototype. Understanding the mechanism will help you decide whether an existing model is useful, what evidence to request, and where checks belong in the workflow.
 
-# Core ideas
+## From inputs to outputs
 
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+A neural network is a model with adjustable numerical parameters. It transforms an input through a sequence of operations to produce an output. During training, examples guide changes to those parameters so that the model performs better according to a chosen objective.
 
-# Worked example
+For a simple network, one layer can be written as:
 
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/04-*.py and describe exact commands here. -->
+$$
+\mathbf{h}=g(W\mathbf{x}+\mathbf{b}),
+$$
 
-# Check your understanding
+where $\mathbf{x}$ is a numerical representation of the input, $W$ contains learned weights, $\mathbf{b}$ contains learned offsets, and $g$ is a nonlinear activation function. The resulting values $\mathbf{h}$ become input to another layer or an output calculation. The word *neuron* is a convenient analogy for a small computation; it does not mean the system thinks like a person.
 
-<!-- Include 2–3 short questions or a small decision exercise. -->
+A network used to classify messages could turn text into numerical representations, combine those representations through learned layers, and return scores for categories. A language model instead uses its context to produce a distribution over possible next tokens, generating a response one token at a time. The task, architecture, data, and training objective determine what the output means.
 
-# Try it yourself
+## What training changes
 
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+A typical training loop has four stages:
 
-# Key takeaways
+1. **Forward pass:** compute an output for an example or batch.
+2. **Loss:** compare the output with the training objective using a numerical measure of error.
+3. **Gradient calculation:** estimate how changes to the parameters would affect that loss, commonly using backpropagation.
+4. **Update:** adjust parameters with an optimization method and repeat across examples.
 
-<!-- Summarize the actionable lessons. -->
+The network learns parameter values that improve its training objective. That achievement does not establish that an answer is true, that an explanation is faithful, or that the system will work on new users' documents. Those are separate questions for evaluation.
+
+Training a model from scratch requires data, compute, and careful validation. A small prototype will often use an existing model through an approved local or hosted interface. You still need to test the complete workflow on representative inputs.
+
+## Learned representations
+
+A useful feature of layered models is that intermediate values can represent patterns that were not specified as individual rules. In image tasks, these may support recognition of visual structures. In language tasks, they can encode relationships among tokens and surrounding context. The representation depends on the model and training data; an apparently meaningful pattern need not match the user's intended concept.
+
+Compare two approaches to locating an article's limitations:
+
+| Approach | Possible strength | Possible failure |
+|---|---|---|
+| Search for a heading or keyword | Easy to inspect and trace | Misses an unusual heading or wording |
+| Neural language model | Can handle varied phrasing and context | May infer a limitation the article never states |
+| Search followed by model-assisted extraction | Grounds the draft in selected passages | Retrieval may exclude a relevant passage |
+
+These methods can work together. The network adds flexibility, while the source passage and reviewer provide checks on what it produces.
+
+## Training, adaptation, and inference
+
+Keep three activities distinct:
+
+- **Pretraining** develops broad capability from a large collection of examples using a general training objective.
+- **Task adaptation** may use additional training or other configuration to improve performance on a narrower task. Instructions and retrieved documents can also shape behavior at use time without changing model weights.
+- **Inference** applies the already trained model to a new input. A normal prompt changes the context supplied for that request; it does not retrain the model.
+
+A general language model may draft clear summaries without knowing what your reviewer considers an acceptable article-summary field. Giving it an approved article and a precise instruction can help. Neither step alone proves that every field is supported.
+
+## Generalization and its limits
+
+The useful question is whether a network performs well on cases it did not learn or tune against. A model can appear strong on familiar examples yet struggle with different document layouts, technical vocabulary, long articles, scanned pages, or articles that do not report the requested field.
+
+For the article-summary workflow, set aside articles representing these differences. Include cases where the answer is genuinely absent. Check whether the draft reports that absence instead of filling the gap with plausible language. Keep evaluation cases separate from examples repeatedly used to edit a prompt.
+
+The same principle applies to smaller supervised networks: a low training loss does not replace evaluation on independent data. Model size and fluent output are not measures of fitness for a specific task.
+
+## A closer look at language models
+
+Modern language models commonly use transformer architectures that process token representations in context. An attention mechanism allows parts of the input to influence other parts as the model constructs its representations. This helps the model use surrounding text, but attention is not a guarantee that it identified the decisive evidence or that its generated answer follows from that evidence.
+
+Language models work with tokens, which can be words, word parts, punctuation, or other units depending on the tokenizer. An article and its instructions must fit within the model's usable context for a request. Even when a document fits, important details can be missed. If the application supplies selected passages instead, selection quality becomes another part of the system to evaluate. Chapter 05 develops language models and generation in more detail; Chapter 08 examines retrieval and tools.
+
+## Continue the article-summary example
+
+Suppose the prototype asks for four fields: study aim, study design, main finding, and stated limitations. Each field must cite a section or passage from the supplied article. The model may draft the fields, but the workflow should define what to do when a passage is missing or ambiguous.
+
+| Component | Role | Check |
+|---|---|---|
+| Approved article text | Supplies permitted source material | Confirm article identity and readable extraction |
+| Instructions | Define fields, format, and absence handling | Inspect whether the request matches the reviewer's task |
+| Existing language model | Drafts candidate fields | Evaluate support, omissions, and incorrect claims |
+| Passage references | Let a reviewer inspect the basis for each field | Verify that each reference exists and supports its claim |
+| Human reviewer | Accepts, corrects, or rejects the draft | Record corrections and time spent |
+
+A passage reference generated by a model is only a claim about support. The reviewer or an independent check must confirm it. If the source does not state a limitation, the appropriate draft may be “not stated in the supplied article,” with that absence flagged for review.
+
+## Decide whether a neural network is warranted
+
+Use the candidate method from Chapter 03 and ask:
+
+1. Does the task require flexible interpretation of varied text, images, or other complex inputs?
+2. Can a rule, search, or template meet the same need with acceptable effort?
+3. Are the necessary inputs permitted, legible, and representative?
+4. Can each important output be checked against a source or other reference?
+5. What happens when the model is uncertain, the input is outside scope, or the source lacks an answer?
+6. Does the full workflow improve accuracy or reviewer effort after corrections, cost, and delay are included?
+
+A neural model is suitable when its measured benefit justifies its added complexity for this task. The comparison is a practical test, not a declaration that one family of methods is universally superior.
+
+## Practice: write a suitability note
+
+For your own proposed prototype, write six short statements:
+
+1. **Input:** What will the network receive, and where does it come from?
+2. **Output:** What exactly should it produce?
+3. **Reason to try it:** Which variation or complexity is difficult for the baseline?
+4. **Baseline:** What simpler process will you compare it with?
+5. **Evidence:** Which held-out cases and checks would demonstrate improvement?
+6. **Boundary:** Which output must a person verify, and when should the system abstain?
+
+For the article example, the note might say: “We will test whether a language-model draft reduces reviewer time for four supported fields on approved articles. We will compare it with a manual template using reserved articles, check each cited passage, count omissions and unsupported claims, and require a reviewer to approve the final summary.”
+
+## Chapter checklist
+
+- [ ] I can explain inputs, learned parameters, layers, and outputs in plain language.
+- [ ] I can distinguish training or adaptation from inference with a new prompt.
+- [ ] I understand why training success or fluent generation does not establish task reliability.
+- [ ] I have identified a baseline, representative evaluation cases, and a verification method.
+- [ ] I have written a suitability note for my proposed prototype.
+
+## Looking ahead
+
+Chapter 05 examines **language models and generative AI**: how generated text is produced, which tasks it can help with, and why grounded evaluation matters when a model drafts content for a user.

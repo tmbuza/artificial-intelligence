@@ -1,31 +1,158 @@
----
-title: "Data, Models, Training and Inference"
----
+# Data, Models, and Inference {#sec-data-models-inference}
 
-# Learning outcome
+::: {.cdi-message}
+- **ID:** AI-L02
+- **Type:** Foundations
+- **Focus:** Understand how data, models, and inference interact
+- **Output:** A data-and-inference map for the task framed in Chapter 01
+:::
 
-By the end of this chapter, you should be able to explain the central ideas of data, models, training and inference and apply them to a small example.
+## From a task to a system
 
-# Why this matters
+Chapter 01 began with a user and a defined task. Before choosing an AI tool, we need to understand what information the system will receive, what the model can do with it, and how an output is produced.
 
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+Consider the proposed research paper assistant. A reviewer supplies an approved article and requests four fields: aim, methods, findings, and limitations. A model might produce a fluent summary, but the reviewer needs something more specific: claims supported by the article, traceable references, and a clear signal when the article does not provide an answer.
 
-# Core ideas
+Three terms help us reason about this workflow:
 
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+- **Data** are the information used to develop, configure, supply, and assess the system.
+- **A model** is a learned mechanism that maps an input to a prediction, representation, or generated output.
+- **Inference** is the act of using a trained model on a particular input to produce an output.
 
-# Worked example
+These definitions are related but distinct. Supplying a new article to an existing model is inference; it does not usually retrain the model. Editing a prompt changes what we ask the model to do, not the learned parameters inside it.
 
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/02-*.py and describe exact commands here. -->
+## The different roles of data
 
-# Check your understanding
+“The data” can refer to several different things. Keeping them separate prevents mistakes in design and evaluation.
 
-<!-- Include 2–3 short questions or a small decision exercise. -->
+| Data role | Example in the article task | Main question |
+|---|---|---|
+| Development examples | A small set of articles used to refine instructions | Are examples varied enough to reveal common failures? |
+| Input at use time | The article a reviewer currently supplies | Is its text complete, permitted, and readable? |
+| Reference material | Passages retrieved from the article for a particular question | Can each passage be traced to its source? |
+| Evaluation cases | Articles and expected behaviors reserved for assessment | Do they represent the intended use and difficult cases? |
+| Feedback | Reviewer corrections and error notes | Can they be recorded and used appropriately? |
 
-# Try it yourself
+A model may also have been trained on a large collection of data before you obtain access to it. You generally cannot assume that its training material includes your specific article, is current, or is authoritative for your task. Supply relevant approved source information at use time when the answer must depend on that source, and still verify the resulting claims.
 
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+### Data quality is task specific
 
-# Key takeaways
+Useful data must be appropriate for the decision the system supports. In the article example, important properties include:
 
-<!-- Summarize the actionable lessons. -->
+- **Completeness:** Are pages, tables, and appendices available when they matter?
+- **Readability:** Was text extracted accurately, including headings and numbers?
+- **Provenance:** Which article and section supplied a passage?
+- **Relevance:** Does the supplied article actually address the requested question?
+- **Permission:** May the document be processed with the chosen tool?
+- **Representativeness:** Do evaluation articles reflect the formats and topics users will encounter?
+
+A large collection does not compensate for missing methods sections, corrupted tables, or evaluation examples that avoid difficult cases.
+
+## What a model learns
+
+A model is built by adjusting internal parameters using examples and an objective. Different model families learn different relationships. A classifier might estimate which label fits an input; a language model predicts or generates sequences of text. Later chapters introduce machine learning, neural networks, language models, and image systems in more detail.
+
+Training, selection, and use should not be treated as the same operation:
+
+1. **Training** adjusts model parameters from training data.
+2. **Selection or configuration** chooses a model, prompt, settings, or supporting workflow for a task.
+3. **Inference** applies the configured system to a new input.
+4. **Evaluation** compares its behavior with criteria and examples that reflect the intended task.
+
+Some systems include additional learned components, such as a text extraction model or a retrieval model. The output of the complete workflow depends on all of them, not only the final language model.
+
+### A model is not a source of record
+
+A fluent answer may combine useful patterns with unsupported claims. Model confidence expressed in natural language is not evidence that a statement is correct. For source-based work, the article remains the source of record. The output must be checked against it.
+
+This distinction also applies to general knowledge questions. A model can help formulate an answer, but a consequential or time-sensitive claim should be checked against an appropriate source.
+
+## What happens during inference
+
+At inference time, the system receives an input and produces an output. For a document assistant, the real sequence may be:
+
+1. Receive the approved document and the user's request.
+2. Extract readable text and preserve page or section references.
+3. Select relevant passages if the document is too large or the task is focused.
+4. Provide instructions and selected material to the model.
+5. Receive a draft and validate its expected structure.
+6. Present the draft and supporting passages to a human reviewer.
+
+Each step can fail. A missing page can lead to an omitted limitation. Poor passage selection can hide a qualifying sentence. A structured draft can still contain an unsupported claim. Human review is therefore part of the designed workflow, not a substitute for evaluating it.
+
+### Inputs, parameters, and outputs
+
+An AI result depends on more than the words typed into a prompt:
+
+| Element | Example | Why record it? |
+|---|---|---|
+| Input | Article version and user request | Different inputs can produce different answers |
+| Model | Provider, model identifier, and available version | Behavior may vary by model or version |
+| Instructions | Task definition and output requirements | Small changes can change the answer |
+| Context | Supplied or retrieved passages | Missing or irrelevant context changes what is supported |
+| Settings | Applicable generation settings | They can affect variation and output length |
+| Postprocessing | Parsing and checks | A valid format does not guarantee factual correctness |
+
+Recording these elements helps reproduce and investigate an output. Chapter 11 develops reproducible AI workflows more fully.
+
+## Three ways information can reach a model
+
+The distinction below is especially useful when planning a prototype:
+
+| Method | What changes? | Suitable question |
+|---|---|---|
+| Prompt or instructions | The request sent at inference time | Can we specify the task more clearly? |
+| Supplied or retrieved context | The information available for this request | Can the answer be grounded in an approved source? |
+| Additional training or fine-tuning | Some learned parameters or model behavior | Do we have evidence that a trained adaptation is needed? |
+
+These methods solve different problems. Supplying article passages can help a model answer from that article, but it does not guarantee that the model uses them correctly. Fine-tuning a model does not automatically make it a reliable store of current document facts. Start with the task and the observed failure before deciding which intervention to try.
+
+## Data leakage and evaluation boundaries
+
+An evaluation case should reveal how the system performs on examples it has not been optimized to answer. If you repeatedly inspect an evaluation article while revising the prompt, it becomes part of development. Set aside other cases for a more independent check.
+
+Leakage can also arise when an input contains information that would be unavailable in real use. For example, a triage assistant evaluated with notes written after a case was resolved may appear unusually accurate. Chapter 01's question—*what is available at the time of use?*—protects the evaluation as well as the prototype.
+
+For generative tasks, a single reference answer may be too restrictive because several summaries can be valid. Evaluate required facts, supporting evidence, omissions, and unacceptable errors as well as any agreement with a reference draft.
+
+## A worked data-and-inference map
+
+Return to the article assistant:
+
+| Stage | Proposed choice | Check |
+|---|---|---|
+| User input | One approved article and a request for four summary fields | Is the article within scope and permitted? |
+| Preparation | Extract text with section identifiers | Were headings, tables, and numbers preserved? |
+| Model context | Relevant article passages and task instructions | Does the context include support for each requested field? |
+| Inference | Produce a structured draft with references or “unclear” | Does every claim have a traceable basis? |
+| Validation | Check fields, references, and obvious omissions | Does format validation miss factual errors? |
+| Review | Human verifies and corrects the draft | What effort and error rate remain? |
+| Evaluation | Compare reviewed workflow with manual summaries | Is the benefit real across representative articles? |
+
+This map describes a possible implementation, not an endorsement of a particular tool. If extraction or retrieval introduces errors, changing the final prompt alone may not fix the problem.
+
+## Practice: map your own task
+
+Use the problem brief from Chapter 01:
+
+1. List each type of data involved: development examples, live inputs, reference material, evaluation cases, and feedback.
+2. State the source, owner or permission basis, and quality concerns for each.
+3. Describe what happens before inference, during inference, and after the model responds.
+4. Identify the source of record against which important claims will be checked.
+5. Name two failure points outside the model itself.
+6. Reserve representative cases for evaluation and note which examples you used for development.
+
+Your output should be a short data-and-inference map. It will help you choose methods in later chapters and build the hackathon prototype without losing track of where its answers come from.
+
+## Chapter checklist
+
+- [ ] I can distinguish data used for development, live input, reference material, and evaluation.
+- [ ] I can explain the difference between training and inference.
+- [ ] I understand that a prompt change does not retrain the model.
+- [ ] I can identify how source information reaches the system and how to verify an output.
+- [ ] I have mapped at least two places where the workflow could fail.
+- [ ] I have reserved evaluation cases that are separate from my development examples.
+
+## Looking ahead
+
+Chapter 03 places these ideas in context by explaining how **artificial intelligence and machine learning** relate, which problems learned models address, and when a non-learning method is sufficient.

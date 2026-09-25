@@ -1,31 +1,130 @@
----
-title: "Evaluation and Failure Analysis"
----
+# Evaluation and Failure Analysis {#sec-evaluation-and-failure-analysis}
 
-# Learning outcome
+::: {.cdi-message}
+- **ID:** AI-L09
+- **Type:** Building responsibly
+- **Focus:** Test the complete AI workflow against a baseline and examine errors by cause and consequence
+- **Output:** An evaluation plan, reviewed case sheet, and decision record
+:::
 
-By the end of this chapter, you should be able to design tests that expose useful behavior and common failures.
+## Ask whether the workflow helps
 
-# Why this matters
+Chapters 01–08 defined a task, a baseline, an article-summary output contract, and a way to supply evidence. A working demonstration now needs evaluation. The useful question is not whether the model can produce a convincing example; it is whether the complete workflow helps a reviewer produce reliable article summaries under the stated conditions.
 
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+For the continuing prototype, a person checks four proposed fields: study aim, study design, main finding, and stated limitations. Each supported field should identify a passage in the approved article. The evaluation must account for source extraction, retrieval, generation, reference checks, human corrections, time, and cases in which the system should say that evidence is missing.
 
-# Core ideas
+## Define the unit and the comparison
 
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+Choose the unit before counting successes. An *article* is one unit of work; a *field* is one opportunity for a claim or omission. Report both when they answer different questions. Four fields from one article are related observations, not four independent articles.
 
-# Worked example
+Compare the model-assisted workflow with a realistic baseline: a reviewer filling a manual template, possibly using ordinary document search. Use the same article set, output requirements, and review standard for each approach. Record total reviewer time, including source checks and corrections, rather than only the model's generation time.
 
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/09-*.py and describe exact commands here. -->
+Write down success criteria before inspecting final results. For example, a prototype might need every material claim supported by its cited passage, no unreviewed field delivered as final, and a meaningful reduction in reviewer time on approved articles. Choose thresholds based on the actual task and consequences; an arbitrary percentage copied from another project would not establish fitness here.
 
-# Check your understanding
+## Build a representative case set
 
-<!-- Include 2–3 short questions or a small decision exercise. -->
+A useful evaluation set reflects the kinds of cases the user will encounter, including difficult and missing-evidence cases. For the article task, include:
 
-# Try it yourself
+| Case type | What it probes |
+|---|---|
+| Ordinary article with clear sections | Basic extraction and field completion |
+| Article with unusual headings | Whether retrieval depends on familiar section titles |
+| Qualified or mixed findings | Whether the draft preserves uncertainty and limits |
+| Missing requested detail | Whether the system marks evidence as absent |
+| Relevant figure or table | Whether visual evidence is read and cited correctly |
+| Scan or poor extraction | Whether unreadable material is flagged |
+| Similar articles in a collection | Whether the system keeps article identity straight |
+| Misleading instruction in source text | Whether document content stays within its evidence role |
 
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+A small, carefully reviewed initial set can expose useful errors. It cannot establish reliable performance across every discipline, publication format, or population. Expand the set when the intended use broadens.
 
-# Key takeaways
+## Prepare a reference record
 
-<!-- Summarize the actionable lessons. -->
+Before viewing model outputs, a reviewer should record what the approved article supports. A practical case sheet includes article ID, field, expected answer or acceptable range of wording, passage location, known ambiguity, and a note when the information is absent. Some fields permit more than one defensible summary; record the criteria for judging them instead of pretending that one sentence is the only correct answer.
+
+A simple table structure is:
+
+| article_id | field | expected_status | source_location | review_note |
+|---|---|---|---|---|
+| article-017 | study_design | supported | Methods, passage 2 | Preserve the study population |
+| article-017 | stated_limitations | unsupported | — | Not established in supplied excerpt |
+
+These rows illustrate the review record, not findings from an actual article. Keep the reviewed reference separate from prompts and examples used to develop the system.
+
+## Score what matters
+
+Use a small set of interpretable measures rather than one vague “accuracy” number:
+
+- **Field support:** the proportion of substantive draft fields whose claims are supported by the cited source.
+- **Reference validity:** whether each cited identifier resolves to the intended article and passage.
+- **Required-field coverage:** whether each of the four fields is supplied or explicitly marked unsupported.
+- **Missing-evidence behavior:** whether unsupported cases are marked for review rather than guessed.
+- **Critical-error count:** errors with potential to change the study's interpretation, such as reversing a result or turning association into causation.
+- **Reviewer effort:** total time and number of corrections required for a completed, reviewed summary.
+
+Define the numerator and denominator for every reported rate. For example, support among the model's substantive claims differs from the fraction of all expected fields correctly completed. If a system avoids every claim, its support rate may look excellent while its usefulness is poor. Report coverage alongside support.
+
+## Record the severity and location of errors
+
+An error log should say what went wrong and where the workflow introduced it:
+
+| Stage | Example failure | Evidence to inspect |
+|---|---|---|
+| Intake and extraction | Methods text omitted from a scan | Original page and extracted text |
+| Retrieval | Wrong article's Results passage selected | Query, filters, returned passage IDs |
+| Generation | Finding overstated despite correct passage | Supplied passages and generated field |
+| Structural validation | Missing status accepted | Parsed output and validator result |
+| Human review | Unsupported field approved | Review record and approval criteria |
+
+Assign severity according to the consequence for the user. A formatting error repaired automatically is different from a false finding presented as verified. Keep the original output and source trace so reviewers can examine the cause. Do not collapse all failures into “the model hallucinated”; that label does not tell you which component to repair.
+
+## Test the complete path and its components
+
+An end-to-end test follows the document from intake to the reviewed draft. Component checks answer narrower questions: did OCR preserve a number, did retrieval include the expected passage, did the output parse, and did a reference resolve? Both are useful. A correct response when handed the perfect passage does not prove that the retrieval workflow will find that passage in practice.
+
+For each case, record the model or system version, prompt version, retrieval configuration, source document ID, output, validator results, reviewer corrections, and timing. This makes comparisons possible when changing a prompt, extraction method, or source index.
+
+## Avoid misleading evaluation shortcuts
+
+Several practices can make a prototype look more reliable than it is:
+
+- Selecting only successful demonstrations after seeing the output.
+- Rewriting a prompt repeatedly against the same “held-out” cases.
+- Checking whether references exist without checking whether they support the claim.
+- Reporting generation time while omitting reviewer correction time.
+- Mixing results from different model or prompt versions without identifying them.
+- Treating agreement between two model responses as independent evidence.
+
+Reserve cases for final checks. If you inspect and use a reserved case to improve the prompt, move it into development and replace it with a new reserved case. Document changes rather than silently updating the test set.
+
+## Decide what to change
+
+After a first evaluation, choose an intervention tied to an observed failure. If a figure caption is missing, repair extraction. If retrieval misses unconventional limitations wording, improve search or passage selection. If the correct passage is present but the model overstates the result, tighten the instruction and review criteria. If reviewers spend longer checking drafts than writing summaries, reconsider the value of generation for that task.
+
+Retest the affected cases and a stable broader set. A change may fix one error while creating another. Keep the baseline results visible so the team can decide whether added complexity improved the completed workflow.
+
+## Practice: write the evaluation plan
+
+Prepare a one-page evaluation plan that states:
+
+1. The user, task, eligible articles, and final reviewer responsibility.
+2. The manual or search-assisted baseline.
+3. The case types, number of articles, and how the set was selected.
+4. A reference record for all four fields per article.
+5. The field, article, time, and critical-error measures to report.
+6. The criteria for continuing, revising, or stopping the prototype.
+7. The information that will be saved to reproduce and audit each result.
+
+Then conduct a small pilot with cases you can review carefully. Use the pilot to improve the evaluation procedure. Keep separate cases for assessing the revised workflow.
+
+## Chapter checklist
+
+- [ ] I have defined the unit of analysis and a realistic baseline.
+- [ ] My case set includes ordinary, difficult, and missing-evidence examples.
+- [ ] I can distinguish claim support, reference validity, coverage, and reviewer effort.
+- [ ] I can locate a failure in extraction, retrieval, generation, validation, or review.
+- [ ] I have written decision criteria before selecting favorable examples.
+
+## Looking ahead
+
+Chapter 10 considers **privacy, bias, and human oversight**. It asks whether the inputs, outputs, review responsibilities, and patterns of error remain acceptable for the people and settings involved in the prototype.

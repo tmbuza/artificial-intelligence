@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -135,12 +170,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, Training and Inference</span></a>
+  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, and Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI, Machine Learning and Software</span></a>
+  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI and Machine Learning</span></a>
   </div>
 </li>
       </ul>
@@ -166,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Images and Multimodal AI</span></a>
+  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Image and Multimodal AI</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -176,7 +211,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval, Tools and AI Workflows</span></a>
+  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval and Tools</span></a>
   </div>
 </li>
       </ul>
@@ -197,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Privacy, Bias and Human Oversight</span></a>
+  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Privacy, Bias, and Human Oversight</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -218,17 +253,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Choose a Problem</span></a>
+  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Choose the Problem and Plan</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Build and Test</span></a>
+  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Build and Test the Prototype</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Present and Improve</span></a>
+  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Demonstrate, Decide, and Improve</span></a>
   </div>
 </li>
       </ul>
@@ -244,7 +279,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical</span></a>
+  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical Application</span></a>
   </div>
 </li>
       </ul>
@@ -281,8 +316,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#environment-and-reproducibility" id="toc-environment-and-reproducibility" class="nav-link active" data-scroll-target="#environment-and-reproducibility">Environment and reproducibility</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
+  <li><a href="#using-the-guides-materials" id="toc-using-the-guides-materials" class="nav-link active" data-scroll-target="#using-the-guides-materials">Using the guide’s materials</a></li>
+  <li><a href="#environment-and-execution" id="toc-environment-and-execution" class="nav-link" data-scroll-target="#environment-and-execution">Environment and execution</a></li>
+  <li><a href="#problem-brief-template" id="toc-problem-brief-template" class="nav-link" data-scroll-target="#problem-brief-template">Problem brief template</a></li>
+  <li><a href="#article-summary-output-contract" id="toc-article-summary-output-contract" class="nav-link" data-scroll-target="#article-summary-output-contract">Article-summary output contract</a></li>
+  <li><a href="#evaluation-case-sheet" id="toc-evaluation-case-sheet" class="nav-link" data-scroll-target="#evaluation-case-sheet">Evaluation case sheet</a></li>
+  <li><a href="#run-and-review-record" id="toc-run-and-review-record" class="nav-link" data-scroll-target="#run-and-review-record">Run and review record</a></li>
+  <li><a href="#reporting-a-pilot-honestly" id="toc-reporting-a-pilot-honestly" class="nav-link" data-scroll-target="#reporting-a-pilot-honestly">Reporting a pilot honestly</a></li>
+  <li><a href="#key-terms" id="toc-key-terms" class="nav-link" data-scroll-target="#key-terms">Key terms</a></li>
+  <li><a href="#references-and-further-study" id="toc-references-and-further-study" class="nav-link" data-scroll-target="#references-and-further-study">References and further study</a></li>
   </ul>
 </nav>
     </div>
@@ -314,13 +356,239 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="environment-and-reproducibility" class="level1">
-<h1>Environment and reproducibility</h1>
-<p>Record the Python and Quarto versions, dependencies, seeds, data origins and commands for each runnable example.</p>
+<section id="using-the-guides-materials" class="level1">
+<h1>Using the guide’s materials</h1>
+<p>This appendix gathers the worksheets, run instructions, and review records used across the Artificial Intelligence guide. The chapters explain the decisions behind them. Copy the templates below into project files as needed and adapt their fields to the user and data permissions for your own task.</p>
+<p>The guide’s running example changes emphasis by chapter. Chapter 01 uses a <strong>fictional course-policy question router</strong> as a transparent baseline. Chapters 02–15 use a <strong>research article-summary prototype</strong> to explain model selection, generation, retrieval, evaluation, and human review. The policy router’s numerical results do not measure the article-summary workflow.</p>
 </section>
-<section id="further-reading" class="level1">
-<h1>Further reading</h1>
-<p>Add references and links to deeper reading as chapters are developed.</p>
+<section id="environment-and-execution" class="level1">
+<h1>Environment and execution</h1>
+<p>The book uses Quarto for rendering. Python examples displayed in <code>.qmd</code> files use ordinary, non-executing code fences. Complete runnable Python programs belong in <code>scripts/python/</code>; Bash wrappers, when provided, belong in <code>scripts/bash/</code>. Generated figures and tables belong in <code>results/figures/</code> and <code>results/tables/</code>.</p>
+<p>Use the repository’s own <code>.venv</code> and its documented dependencies. From the repository root on macOS or Linux:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv .venv</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To reproduce Chapter 01’s supplied baseline, run:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/bash/01-ai-problem-framing.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Alternatively, use <code>.venv/bin/python scripts/python/01-ai-problem-framing.py</code>. The program reads fictional policies and synthetic questions from <code>data/reference/</code>, produces two figures and two CSV tables, and records run metadata in <code>results/tables/01-run-metadata.json</code>. The chapter reports 10 correct routes out of 16, including two wrong automatic routes among six automatic routes. Those counts describe an intentionally small, synthetic development set and should not be used as an operational performance estimate.</p>
+<p>After generating the figures, render the book from the repository root:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rendering the book does not run the displayed Python code. If a chapter references an image that has not been generated, run its documented script first or supply the corresponding repository asset. The remaining chapters describe conceptual or illustrative workflows; they do not currently provide full runnable model-service implementations. Consult the specific chapter before expecting a generated output.</p>
+<p>For a reproducible run, record the source and permission status, Python and Quarto versions, dependency versions, script or workflow version, input identifiers, commands, output paths, and review decisions. Where relevant, retain a hash or version identifier for the exact inputs. Never record credentials in a run log.</p>
+</section>
+<section id="problem-brief-template" class="level1">
+<h1>Problem brief template</h1>
+<p>Use this worksheet before building a model-assisted workflow:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Question to answer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>User</td>
+<td>Who performs the task and who is affected by its result?</td>
+</tr>
+<tr class="even">
+<td>Unit of work</td>
+<td>What is one case, article, request, or decision?</td>
+</tr>
+<tr class="odd">
+<td>Permitted input</td>
+<td>What may the application receive and where does it come from?</td>
+</tr>
+<tr class="even">
+<td>Expected output</td>
+<td>What form, fields, and source references are required?</td>
+</tr>
+<tr class="odd">
+<td>Action and authority</td>
+<td>Who may approve, send, publish, or act on the result?</td>
+</tr>
+<tr class="even">
+<td>Baseline</td>
+<td>How is the same task completed without this AI method?</td>
+</tr>
+<tr class="odd">
+<td>Success criteria</td>
+<td>What support, coverage, effort, and error levels matter?</td>
+</tr>
+<tr class="even">
+<td>Failure response</td>
+<td>When does the system abstain, request review, or stop?</td>
+</tr>
+<tr class="odd">
+<td>Scope boundary</td>
+<td>Which users, documents, formats, and actions are excluded for now?</td>
+</tr>
+</tbody>
+</table>
+<p>A short statement ties the fields together:</p>
+<blockquote class="blockquote">
+<p>For <strong>[specific user]</strong>, given <strong>[permitted input]</strong>, the prototype will produce <strong>[defined output]</strong> to support <strong>[task]</strong>. A person will review <strong>[specified claims or actions]</strong>. We will compare it with <strong>[baseline]</strong> on <strong>[representative cases]</strong> using <strong>[criteria]</strong>. The first version excludes <strong>[boundary]</strong>.</p>
+</blockquote>
+<p>Chapter 01 also supplies <code>data/reference/01-problem-brief-template.md</code> as a reusable file for its course-policy exercise.</p>
+</section>
+<section id="article-summary-output-contract" class="level1">
+<h1>Article-summary output contract</h1>
+<p>Chapters 03–15 use a proposed four-field summary: <code>study_aim</code>, <code>study_design</code>, <code>main_finding</code>, and <code>stated_limitations</code>. A provisional output should make the status and evidence of each field visible. For example:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"study_aim"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"text"</span><span class="fu">:</span> <span class="st">"[Claim to be verified]"</span><span class="fu">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"source"</span><span class="fu">:</span> <span class="st">"Introduction-02"</span><span class="fu">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"status"</span><span class="fu">:</span> <span class="st">"supported"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"study_design"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"text"</span><span class="fu">:</span> <span class="st">"[Claim to be verified]"</span><span class="fu">,</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"source"</span><span class="fu">:</span> <span class="st">"Methods-01"</span><span class="fu">,</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"status"</span><span class="fu">:</span> <span class="st">"supported"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"main_finding"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"text"</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"source"</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"status"</span><span class="fu">:</span> <span class="st">"unsupported"</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"stated_limitations"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"text"</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"source"</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"status"</span><span class="fu">:</span> <span class="st">"unsupported"</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The example is a format illustration, not a finding from a real article. <code>supported</code> means the draft claims a source passage exists; a reviewer must still inspect whether that passage supports the wording. <code>unsupported</code> means the supplied evidence did not establish the field, not necessarily that the full article lacks it. Confirm that source identifiers belong to the correct article before review. See Chapters 07–09 for validation and evaluation.</p>
+</section>
+<section id="evaluation-case-sheet" class="level1">
+<h1>Evaluation case sheet</h1>
+<p>Record expected behavior before using a case to adjust a prompt or workflow:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>What to record</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Case ID</td>
+<td>Stable identifier and eligible source version</td>
+</tr>
+<tr class="even">
+<td>Split</td>
+<td>Development or reserved evaluation</td>
+</tr>
+<tr class="odd">
+<td>Case type</td>
+<td>Ordinary, unusual heading, qualified finding, absent evidence, scan, figure, or other</td>
+</tr>
+<tr class="even">
+<td>Expected field status</td>
+<td>Supported, unsupported, or not assessable from supplied material</td>
+</tr>
+<tr class="odd">
+<td>Reference evidence</td>
+<td>Article, page, section, passage, figure, or table</td>
+</tr>
+<tr class="even">
+<td>Acceptable interpretation</td>
+<td>What a reviewer would accept and what would be an overstatement</td>
+</tr>
+<tr class="odd">
+<td>Consequence of error</td>
+<td>Whether a mistake is cosmetic, substantive, or critical</td>
+</tr>
+</tbody>
+</table>
+<p>Once a reserved case is used to tune the workflow, move it to development and obtain a fresh reserved case. Report the number of articles and fields assessed. Four fields from one article are related observations, not four independent articles.</p>
+</section>
+<section id="run-and-review-record" class="level1">
+<h1>Run and review record</h1>
+<p>For every model-assisted article summary, record:</p>
+<ol type="1">
+<li>run ID and timestamp;</li>
+<li>article ID, source version, and permission status;</li>
+<li>extraction method, coverage, and warnings;</li>
+<li>candidate passage IDs and retrieval configuration;</li>
+<li>prompt, model, output-contract, and relevant setting versions;</li>
+<li>provisional draft and structural validation results;</li>
+<li>whether every cited passage ID resolves to the supplied article;</li>
+<li>reviewer judgments, corrections, and final approval status; and</li>
+<li>generation, checking, correction, and total completion time.</li>
+</ol>
+<p>Keep the raw draft distinct from the approved summary. An existing passage ID does not prove that a claim is supported. Protect source material, reviewer notes, and logs according to the project’s access and retention rules.</p>
+</section>
+<section id="reporting-a-pilot-honestly" class="level1">
+<h1>Reporting a pilot honestly</h1>
+<p>A short report should present the baseline and assisted workflow under comparable requirements, with counts and denominators for claim support, required-field coverage, missing-evidence behavior, and critical errors. Include total reviewer effort, retries, and case types. Trace at least one important failure to extraction, retrieval, generation, validation, or review.</p>
+<p>Conclude with a decision supported by the evidence: continue within scope, revise one stage and retest, narrow the task, retain the simpler baseline, or pause pending permission or domain review. The hackathon chapters (12–14) provide the guided sequence; Chapter 15 describes what further testing and ownership broader use would require.</p>
+</section>
+<section id="key-terms" class="level1">
+<h1>Key terms</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Meaning in this guide</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Baseline</td>
+<td>A credible simpler way to complete the same user task</td>
+</tr>
+<tr class="even">
+<td>Chunk or passage</td>
+<td>A labeled piece of source material selected for inspection or retrieval</td>
+</tr>
+<tr class="odd">
+<td>Generative model</td>
+<td>A model that produces text, images, or other content conditioned on input</td>
+</tr>
+<tr class="even">
+<td>Human oversight</td>
+<td>A defined opportunity for a person to inspect, correct, approve, or reject an output</td>
+</tr>
+<tr class="odd">
+<td>Inference</td>
+<td>Applying a trained model to a new input</td>
+</tr>
+<tr class="even">
+<td>Output contract</td>
+<td>Agreed response fields, types, statuses, and reference requirements</td>
+</tr>
+<tr class="odd">
+<td>Prototype</td>
+<td>A limited implementation built to test a specific usefulness claim</td>
+</tr>
+<tr class="even">
+<td>Retrieval</td>
+<td>Selecting source material potentially relevant to a request</td>
+</tr>
+<tr class="odd">
+<td>Run record</td>
+<td>The configuration, inputs, intermediate evidence, outputs, and review decision for one attempt</td>
+</tr>
+<tr class="even">
+<td>Supported claim</td>
+<td>A claim that a reviewer judges consistent with the cited source in context</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="references-and-further-study" class="level1">
+<h1>References and further study</h1>
+<p>The guide’s cited sources are maintained in <code>library/references.bib</code> and rendered in <code>99-references.qmd</code>. Use the references attached to individual chapters for deeper study of their particular topics. For a new application, add domain-specific sources and document permissions, evaluation requirements, and oversight procedures appropriate to its setting.</p>
 
 
 </section>

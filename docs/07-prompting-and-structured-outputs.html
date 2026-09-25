@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -136,12 +171,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, Training and Inference</span></a>
+  <a href="./02-data-models-and-inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data, Models, and Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI, Machine Learning and Software</span></a>
+  <a href="./03-ai-and-machine-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI and Machine Learning</span></a>
   </div>
 </li>
       </ul>
@@ -167,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Images and Multimodal AI</span></a>
+  <a href="./06-images-and-multimodal-ai.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Image and Multimodal AI</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -177,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval, Tools and AI Workflows</span></a>
+  <a href="./08-retrieval-tools-and-ai-workflows.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrieval and Tools</span></a>
   </div>
 </li>
       </ul>
@@ -198,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Privacy, Bias and Human Oversight</span></a>
+  <a href="./10-privacy-bias-and-human-oversight.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Privacy, Bias, and Human Oversight</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -219,17 +254,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Choose a Problem</span></a>
+  <a href="./12-hackathon-choose-a-problem.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Choose the Problem and Plan</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Build and Test</span></a>
+  <a href="./13-hackathon-build-and-test.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Build and Test the Prototype</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hackathon: Present and Improve</span></a>
+  <a href="./14-hackathon-present-and-improve.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI Hackathon: Demonstrate, Decide, and Improve</span></a>
   </div>
 </li>
       </ul>
@@ -245,7 +280,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical</span></a>
+  <a href="./15-from-prototype-to-practical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">From Prototype to Practical Application</span></a>
   </div>
 </li>
       </ul>
@@ -282,13 +317,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-outcome" id="toc-learning-outcome" class="nav-link active" data-scroll-target="#learning-outcome">Learning outcome</a></li>
-  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">Why this matters</a></li>
-  <li><a href="#core-ideas" id="toc-core-ideas" class="nav-link" data-scroll-target="#core-ideas">Core ideas</a></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key takeaways</a></li>
+  <li><a href="#give-the-model-a-defined-job" id="toc-give-the-model-a-defined-job" class="nav-link active" data-scroll-target="#give-the-model-a-defined-job">Give the model a defined job</a></li>
+  <li><a href="#specify-task-source-boundaries-and-output" id="toc-specify-task-source-boundaries-and-output" class="nav-link" data-scroll-target="#specify-task-source-boundaries-and-output">Specify task, source, boundaries, and output</a></li>
+  <li><a href="#separate-instructions-from-untrusted-source-material" id="toc-separate-instructions-from-untrusted-source-material" class="nav-link" data-scroll-target="#separate-instructions-from-untrusted-source-material">Separate instructions from untrusted source material</a></li>
+  <li><a href="#choose-a-response-shape-that-fits-the-workflow" id="toc-choose-a-response-shape-that-fits-the-workflow" class="nav-link" data-scroll-target="#choose-a-response-shape-that-fits-the-workflow">Choose a response shape that fits the workflow</a></li>
+  <li><a href="#validate-the-structure-independently" id="toc-validate-the-structure-independently" class="nav-link" data-scroll-target="#validate-the-structure-independently">Validate the structure independently</a></li>
+  <li><a href="#examples-can-clarify-a-rule" id="toc-examples-can-clarify-a-rule" class="nav-link" data-scroll-target="#examples-can-clarify-a-rule">Examples can clarify a rule</a></li>
+  <li><a href="#revisions-should-answer-observed-failures" id="toc-revisions-should-answer-observed-failures" class="nav-link" data-scroll-target="#revisions-should-answer-observed-failures">Revisions should answer observed failures</a></li>
+  <li><a href="#costs-length-and-uncertainty" id="toc-costs-length-and-uncertainty" class="nav-link" data-scroll-target="#costs-length-and-uncertainty">Costs, length, and uncertainty</a></li>
+  <li><a href="#practice-prepare-a-prompt-and-tests" id="toc-practice-prepare-a-prompt-and-tests" class="nav-link" data-scroll-target="#practice-prepare-a-prompt-and-tests">Practice: prepare a prompt and tests</a></li>
+  <li><a href="#chapter-checklist" id="toc-chapter-checklist" class="nav-link" data-scroll-target="#chapter-checklist">Chapter checklist</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking ahead</a></li>
   </ul>
 </nav>
     </div>
@@ -297,7 +336,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-neural-networks.html">Modern AI</a></li><li class="breadcrumb-item"><a href="./07-prompting-and-structured-outputs.html"><span class="chapter-title">Prompting and Structured Outputs</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Prompting and Structured Outputs</span></h1>
+<h1 class="title"><span id="sec-prompting-and-structured-outputs" class="quarto-section-identifier"><span class="chapter-title">Prompting and Structured Outputs</span></span></h1>
 </div>
 
 
@@ -320,33 +359,193 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="learning-outcome" class="level1">
-<h1>Learning outcome</h1>
-<p>By the end of this chapter, you should be able to explain the central ideas of prompting and structured outputs and apply them to a small example.</p>
+<div class="cdi-message">
+<ul>
+<li><strong>ID:</strong> AI-L07</li>
+<li><strong>Type:</strong> Modern AI</li>
+<li><strong>Focus:</strong> Specify a narrow model task, request usable outputs, and check results</li>
+<li><strong>Output:</strong> A versioned prompt, an output contract, and test cases</li>
+</ul>
+</div>
+<section id="give-the-model-a-defined-job" class="level2">
+<h2 class="anchored" data-anchor-id="give-the-model-a-defined-job">Give the model a defined job</h2>
+<p>Chapters 05 and 06 showed that a model can draft from text and describe visual material, but an accepted input and a fluent answer do not establish that it performed the intended task. A prompt is the material supplied to a model for a request: instructions, relevant context, examples, and the immediate question. Good prompting begins with the user task and evidence requirements established in Chapter 01.</p>
+<p>For our article-summary prototype, the task is specific: draft four reviewer-facing fields from an approved article, provide a source location for each substantive claim, and identify missing evidence. Prompt design makes those expectations explicit. Evaluation determines whether the result satisfies them.</p>
 </section>
-<section id="why-this-matters" class="level1">
-<h1>Why this matters</h1>
-<!-- Explain the learner's problem and connect it to a concrete application. -->
+<section id="specify-task-source-boundaries-and-output" class="level2">
+<h2 class="anchored" data-anchor-id="specify-task-source-boundaries-and-output">Specify task, source, boundaries, and output</h2>
+<p>A useful request answers four questions:</p>
+<ol type="1">
+<li><strong>Task:</strong> What should the system do for the user?</li>
+<li><strong>Source:</strong> Which information is it allowed to use?</li>
+<li><strong>Boundary:</strong> What should happen when the source is unclear or silent?</li>
+<li><strong>Output:</strong> What shape should the response have?</li>
+</ol>
+<p>For example:</p>
+<blockquote class="blockquote">
+<p>Draft four article-summary fields for a human reviewer: study aim, study design, main finding, and stated limitations. Use only the supplied article text. Include a section or page reference with each field. If the supplied text does not establish a field, mark it as unsupported and explain what is missing. Do not invent article details. Return the four fields in the specified format.</p>
+</blockquote>
+<p>This is a task specification, not a guarantee. A model might still invent a page reference or misread a result. Checks must address the content as well as the format.</p>
 </section>
-<section id="core-ideas" class="level1">
-<h1>Core ideas</h1>
-<!-- Develop the concepts with citations, plain-language examples and limitations. -->
+<section id="separate-instructions-from-untrusted-source-material" class="level2">
+<h2 class="anchored" data-anchor-id="separate-instructions-from-untrusted-source-material">Separate instructions from untrusted source material</h2>
+<p>An article is evidence for the summary, not a source of instructions about how the assistant should behave. A document might contain quoted commands, irrelevant text, or even deliberate instructions telling an AI system to ignore its task. Treat these as document content. The application’s task rules and permissions should come from its controlled configuration; supplied articles and retrieved passages provide facts to inspect.</p>
+<p>A practical prompt can label its parts:</p>
+<pre class="text"><code>TASK
+Draft the four fields for reviewer verification using only the article excerpt.
+Mark missing information as unsupported. Cite the passage identifier.
+
+ARTICLE EXCERPT
+[Approved text with section and passage identifiers]
+
+OUTPUT
+Return the four required fields in the agreed structure.</code></pre>
+<p>Clear labels help the reader and developer inspect what was supplied. They do not, by themselves, create a secure boundary. If retrieved content can influence tools or access to other data, the application also needs appropriate permission and tool controls. Chapter 08 examines those workflows.</p>
 </section>
-<section id="worked-example" class="level1">
-<h1>Worked example</h1>
-<!-- Include a small, non-executable QMD code fence only when code clarifies the idea. Put runnable code in scripts/python/07-*.py and describe exact commands here. -->
+<section id="choose-a-response-shape-that-fits-the-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="choose-a-response-shape-that-fits-the-workflow">Choose a response shape that fits the workflow</h2>
+<p>Free-form paragraphs can be pleasant to read but difficult to check automatically. A small, explicit output structure makes missing fields and source references visible.</p>
+<p>For the article example, a conceptual response could be:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"study_aim"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"text"</span><span class="fu">:</span> <span class="st">"The stated aim goes here."</span><span class="fu">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"source"</span><span class="fu">:</span> <span class="st">"Introduction, passage 2"</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"status"</span><span class="fu">:</span> <span class="st">"supported"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"study_design"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"text"</span><span class="fu">:</span> <span class="st">"The design goes here."</span><span class="fu">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"source"</span><span class="fu">:</span> <span class="st">"Methods, passage 1"</span><span class="fu">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"status"</span><span class="fu">:</span> <span class="st">"supported"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"main_finding"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"text"</span><span class="fu">:</span> <span class="st">"The main finding goes here."</span><span class="fu">,</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"source"</span><span class="fu">:</span> <span class="st">"Results, passage 4"</span><span class="fu">,</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"status"</span><span class="fu">:</span> <span class="st">"supported"</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"stated_limitations"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"text"</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"source"</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"status"</span><span class="fu">:</span> <span class="st">"unsupported"</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The example shows the <em>shape</em> of an output, not a finding from a real article. In an actual implementation, give every passage a stable identifier and define allowed statuses precisely. A null value indicates that evidence was not found in the supplied material; it does not prove the full article lacks that information.</p>
 </section>
-<section id="check-your-understanding" class="level1">
-<h1>Check your understanding</h1>
-<!-- Include 2–3 short questions or a small decision exercise. -->
+<section id="validate-the-structure-independently" class="level2">
+<h2 class="anchored" data-anchor-id="validate-the-structure-independently">Validate the structure independently</h2>
+<p>A program can check that the response parses and contains exactly the expected fields. It can check types, permitted status values, required references for supported claims, and length limits. If a response fails these checks, ask for a correction or route it for review before presenting it as a completed draft.</p>
+<p>A small illustrative Python check might be:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>REQUIRED_FIELDS <span class="op">=</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"study_aim"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"study_design"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"main_finding"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"stated_limitations"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>ALLOWED_STATUS <span class="op">=</span> {<span class="st">"supported"</span>, <span class="st">"unsupported"</span>}</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> validate_draft(draft):</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(draft, <span class="bu">dict</span>) <span class="kw">or</span> <span class="bu">set</span>(draft) <span class="op">!=</span> REQUIRED_FIELDS:</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Unexpected article-summary fields"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name, item <span class="kw">in</span> draft.items():</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(item, <span class="bu">dict</span>) <span class="kw">or</span> <span class="bu">set</span>(item) <span class="op">!=</span> {<span class="st">"text"</span>, <span class="st">"source"</span>, <span class="st">"status"</span>}:</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Invalid field structure: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> item[<span class="st">"status"</span>] <span class="kw">not</span> <span class="kw">in</span> ALLOWED_STATUS:</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Invalid status: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> item[<span class="st">"status"</span>] <span class="op">==</span> <span class="st">"supported"</span>:</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(item[<span class="st">"text"</span>], <span class="bu">str</span>) <span class="kw">or</span> <span class="kw">not</span> item[<span class="st">"text"</span>].strip():</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Missing supported text: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(item[<span class="st">"source"</span>], <span class="bu">str</span>) <span class="kw">or</span> <span class="kw">not</span> item[<span class="st">"source"</span>].strip():</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Missing source reference: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> item[<span class="st">"text"</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="kw">or</span> item[<span class="st">"source"</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Unsupported field must be empty: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is illustrative chapter code, not a complete executable program. It checks whether the response follows the contract. It cannot determine whether “Results, passage 4” exists or supports the claim. That second question requires comparing the output with the original article or an independently prepared answer.</p>
 </section>
-<section id="try-it-yourself" class="level1">
-<h1>Try it yourself</h1>
-<!-- Give an achievable task with a clear output; the free guide remains self-contained. -->
+<section id="examples-can-clarify-a-rule" class="level2">
+<h2 class="anchored" data-anchor-id="examples-can-clarify-a-rule">Examples can clarify a rule</h2>
+<p>A short example can show the expected behavior for an absent field:</p>
+<pre class="text"><code>Source excerpt: The Methods describe the study design. No limitations
+section is included in the provided excerpt.
+Expected output for stated_limitations:
+{"text": null, "source": null, "status": "unsupported"}</code></pre>
+<p>Examples should be representative and should avoid teaching the model an accidental shortcut. A single example of a missing limitations section does not mean all articles lack one. Keep the final evaluation cases separate from examples used to develop the prompt.</p>
 </section>
-<section id="key-takeaways" class="level1">
-<h1>Key takeaways</h1>
-<!-- Summarize the actionable lessons. -->
+<section id="revisions-should-answer-observed-failures" class="level2">
+<h2 class="anchored" data-anchor-id="revisions-should-answer-observed-failures">Revisions should answer observed failures</h2>
+<p>A common temptation is to lengthen the prompt every time one response disappoints. Instead, log the failure and identify its cause:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Observed failure</th>
+<th>Possible cause</th>
+<th>Focused next step</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Missing field</td>
+<td>Output contract unclear or unchecked</td>
+<td>Enforce field validation</td>
+</tr>
+<tr class="even">
+<td>Invented page number</td>
+<td>Source lacks stable page mapping</td>
+<td>Assign passage identifiers before generation</td>
+</tr>
+<tr class="odd">
+<td>Wrong finding</td>
+<td>Relevant section omitted or misread</td>
+<td>Inspect extraction and source selection</td>
+</tr>
+<tr class="even">
+<td>Conclusion overstated</td>
+<td>Source qualification ignored</td>
+<td>Add a targeted instruction and test qualified cases</td>
+</tr>
+<tr class="odd">
+<td>Article instruction followed</td>
+<td>Source treated as task authority</td>
+<td>Strengthen application boundaries and test adversarial text</td>
+</tr>
+</tbody>
+</table>
+<p>Change one component at a time when possible and rerun the same reserved cases. A better-sounding prompt is not evidence of an improved workflow until it performs better on the defined measures.</p>
+</section>
+<section id="costs-length-and-uncertainty" class="level2">
+<h2 class="anchored" data-anchor-id="costs-length-and-uncertainty">Costs, length, and uncertainty</h2>
+<p>Instructions and source material consume input capacity and may affect cost and latency. Extra examples can help clarify a task, but they also enlarge the request. Choose only what the model needs to answer and what the evaluator needs to trace the answer.</p>
+<p>Asking a model to state that it is “confident” does not turn its self-assessment into a calibrated probability. For consequential decisions, use observable checks: source support, comparison with reviewed cases, error counts, and a rule for human review. When the evidence is incomplete, make unsupported status and escalation part of the output contract.</p>
+</section>
+<section id="practice-prepare-a-prompt-and-tests" class="level2">
+<h2 class="anchored" data-anchor-id="practice-prepare-a-prompt-and-tests">Practice: prepare a prompt and tests</h2>
+<p>Create a first version of your prototype’s prompt:</p>
+<ol type="1">
+<li>Name the user task and permitted source.</li>
+<li>State the output fields and allowed status values.</li>
+<li>Define what to do when evidence is missing or ambiguous.</li>
+<li>Identify any source content that must be treated as data, not instructions.</li>
+<li>Provide one short formatting example if it clarifies the contract.</li>
+<li>Write a structural validator or a manual checklist for the output.</li>
+</ol>
+<p>Then prepare at least four reserved cases: a straightforward source, an absent field, a qualified or contradictory statement, and a source containing an irrelevant instruction. Record what correct behavior looks like before trying the prompt. Save a version identifier for the prompt and the cases used to evaluate it.</p>
+</section>
+<section id="chapter-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-checklist">Chapter checklist</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">My prompt states the task, allowed source, missing-evidence behavior, and output shape.</label></li>
+<li><label><input type="checkbox">I treat document text as evidence rather than application instructions.</label></li>
+<li><label><input type="checkbox">I can distinguish a valid structure from a supported claim.</label></li>
+<li><label><input type="checkbox">I have reserved cases for omissions, qualifications, and misleading source text.</label></li>
+<li><label><input type="checkbox">I will compare prompt revisions using the same explicit criteria.</label></li>
+</ul>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking ahead</h2>
+<p>Chapter 08 connects models to <strong>retrieval and tools</strong>. It explains how external information reaches a model, how actions differ from reading, and how to check the complete workflow rather than only the generated response.</p>
 
 
 </section>
@@ -753,13 +952,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./06-images-and-multimodal-ai.html" class="pagination-link" aria-label="Images and Multimodal AI">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Images and Multimodal AI</span></span>
+      <a href="./06-images-and-multimodal-ai.html" class="pagination-link" aria-label="Image and Multimodal AI">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Image and Multimodal AI</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./08-retrieval-tools-and-ai-workflows.html" class="pagination-link" aria-label="Retrieval, Tools and AI Workflows">
-        <span class="nav-page-text"><span class="chapter-title">Retrieval, Tools and AI Workflows</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./08-retrieval-tools-and-ai-workflows.html" class="pagination-link" aria-label="Retrieval and Tools">
+        <span class="nav-page-text"><span class="chapter-title">Retrieval and Tools</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

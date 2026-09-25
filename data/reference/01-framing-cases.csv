@@ -1,0 +1,17 @@
+case_id,family,question,expected_route,label_reason
+D01,Direct,When does registration close?,registration,Explicit course registration question
+D02,Direct,What are the requirements for a course certificate?,certificate,Explicit course certificate question
+D03,Direct,How do I request a course refund?,refund,Explicit course refund question
+D04,Direct,What is the course timetable?,schedule,Explicit course schedule question
+P01,Paraphrase,How many days before the course begins must I sign up?,registration,Sign up refers to course registration
+P02,Paraphrase,What proof of completion do I get after attending all sessions and submitting the final exercise?,certificate,Proof of completion refers to the course certificate
+P03,Paraphrase,When must I ask for my course fees back?,refund,Course fees back refers to refund timing
+P04,Paraphrase,Which days and hours are the course sessions?,schedule,Days and hours refers to the course timetable
+M01,Multi-topic,Explain registration and the course timetable.,REVIEW,Single-passage contract cannot resolve two topics
+M02,Multi-topic,Explain the certificate and refund rules.,REVIEW,Single-passage contract cannot resolve two topics
+M03,Multi-topic,Can you explain registration and refund deadlines?,REVIEW,Single-passage contract cannot resolve two topics
+M04,Multi-topic,Explain the course schedule and certificate requirements.,REVIEW,Single-passage contract cannot resolve two topics
+O01,Outside scope,Where can I obtain a birth certificate?,REVIEW,Course collection does not cover civil records
+O02,Outside scope,What is the bus schedule to the training centre?,REVIEW,Course collection does not cover transport
+O03,Outside scope,Can you book accommodation for me?,REVIEW,Collection and system authority exclude accommodation
+O04,Outside scope,Will I receive a scholarship?,REVIEW,Collection contains no scholarship policy
